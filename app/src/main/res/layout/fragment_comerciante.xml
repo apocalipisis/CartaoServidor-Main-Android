@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.appcartaoservidorv1.viewmodels.comerciante.ComercianteViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:background="@color/primaryColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/Nome"
+                style="@style/UserTopBarTexto"
+                android:text="@{viewModel.nome}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginBottom="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                style="@style/UserTopBarTexto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/ola"
+                app:layout_constraintBottom_toTopOf="@+id/Nome"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/btnSair"
+                style="@style/UserTopBarTexto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="25dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp"
+                android:text="@string/sair"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/btnVender"
+            style="@style/ImageBtnStyle"
+            android:layout_marginTop="-30dp"
+            android:drawableTop="@drawable/btn_add_circle"
+            android:text="@string/vender"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+        <LinearLayout
+            android:id="@+id/Saldo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="40dp"
+            android:background="@drawable/background_saldo"
+            android:orientation="vertical"
+            android:padding="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            app:layout_constraintVertical_bias="0.27">
+
+
+            <TextView
+                android:id="@+id/faturamento"
+                style="@style/s_Saldo"
+                android:text="@{viewModel.faturamento}" />
+
+            <TextView
+                android:id="@+id/faturamentoLabel"
+                style="@style/s_SaldoLabel"
+                android:text="R$" />
+
+            <TextView
+                android:id="@+id/mensagem"
+                style="@style/s_Mensagem"
+                android:visibility="gone"
+                android:text="@{viewModel.mensagemAPI}" />
+
+            <ProgressBar
+                android:id="@+id/Bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                style="@style/ProgressBarStyle"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/saldoMes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{viewModel.descricaoFaturamento}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Saldo" />
+
+
+        <Button
+            android:id="@+id/btnHistorico"
+            style="@style/ImageBtnStyle"
+            android:drawableTop="@drawable/btn_monetization_on"
+            android:layout_marginBottom="40dp"
+            android:text="@string/historico_vendas"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnInfo"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btnInfo"
+            style="@style/ImageBtnStyle"
+            android:drawableTop="@drawable/btn_info"
+            android:text="@string/info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnHistorico"
+            app:layout_constraintTop_toTopOf="@+id/btnHistorico" />
+
+        <Button
+            android:id="@+id/btnRefresh"
+            style="@style/ImageBtnStyle"
+            android:drawableTop="@drawable/icon_refresh"
+            android:text="@string/is_tentar_novamente"
+            android:onClick="@{() -> viewModel.ConsultaComerciante(viewModel.matricula)}"
+            android:layout_marginBottom="40dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

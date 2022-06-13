@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- ________________________________________________________________________________________________ -->
+    <!--Gerais-->
+    <!-- ________________________________________________________________________________________________ -->
+    <style name="EntryStyle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColorHint">@color/cinzaDias80</item>
+        <item name="android:background">@drawable/background_entry</item>
+    </style>
+
+
+    <style name="FragmentoStyle">
+        <item name="android:padding">4dp</item>
+    </style>
+
+    <style name="TituloStyle">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/secondaryTextColor</item>
+    </style>
+
+    <style name="SubTituloStyle">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/cinzaDias80</item>
+    </style>
+
+    <style name="ProgressBarStyle">
+        <item name="android:indeterminateTint">@color/primaryColor</item>
+    </style>
+
+    <style name="ImageBtnStyle">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <!-- ________________________________________________________________________________________________ -->
+    <!--    Barras superior    -->
+    <!-- ________________________________________________________________________________________________ -->
+    <style name="UserTopBarTexto">
+        <item name="android:textColor">@color/Branco</item>
+        <item name="android:textSize">@dimen/textSizeUserBar</item>
+    </style>
+
+    <style name="textoTituloBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/primaryColor</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">@dimen/paddingTopTextoTituloBar</item>
+        <item name="android:paddingBottom">@dimen/paddingBottomTextoTituloBar</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:textSize">@dimen/textSizeTituloBar</item>
+    </style>
+
+    <style name="imagemTituloBar">
+        <item name="android:layout_width">@dimen/widthImagemTituloBar</item>
+        <item name="android:layout_height">@dimen/heightImagemTituloBar</item>
+        <item name="android:layout_marginTop">@dimen/marginTopImagemTituloBar</item>
+    </style>
+    <!-- ________________________________________________________________________________________________ -->
+    <!--    Cards    -->
+    <!-- ________________________________________________________________________________________________ -->
+    <style name="Card">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="CardTitulo">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">@dimen/textSizeTituloCard</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="CardLiha">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/heigthLinhaCard</item>
+        <item name="android:layout_marginTop">@dimen/marginTopLinhaCard</item>
+        <item name="android:background">@color/secondaryColor</item>
+    </style>
+
+    <style name="CardLabel">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">@dimen/textSizeLabelCard</item>
+        <item name="android:textColor">@color/cinzaDias</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/marginTopLabelCard</item>
+    </style>
+
+    <style name="CardItem">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">@dimen/textSizeItemCard</item>
+        <item name="android:textColor">@color/cinzaDias80</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/marginTopItemCard</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <!-- ________________________________________________________________________________________________ -->
+    <!--Pagina Servidor (s_)-->
+    <!-- ________________________________________________________________________________________________ -->
+    <style name="s_Saldo">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">50sp</item>
+    </style>
+
+    <style name="s_SaldoLabel">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/cinzaDias80</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+
+    <style name="s_Mensagem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    <!-- ________________________________________________________________________________________________ -->
+    <!--Pagina Info Servidor (is_)-->
+    <!-- ________________________________________________________________________________________________ -->
+
+    <style name="is_Item">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">19sp</item>
+        <item name="android:textColor">@color/secondaryTextColor</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/is_marginTopItem</item>
+    </style>
+
+    <style name="is_SubItem">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/cinzaDias80</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/is_marginTopsubItem</item>
+    </style>
+
+    <style name="is_Nome">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/is_paddingTitulo</item>
+        <item name="android:textSize">@dimen/is_fontSizeNome</item>
+        <item name="android:textColor">@color/cinzaDias80</item>
+    </style>
+
+    <style name="is_Linha">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/is_heigthLinha</item>
+        <item name="android:layout_marginTop">@dimen/is_marginTopLinha</item>
+        <item name="android:background">@color/secondaryColor</item>
+    </style>
+    <!-- ________________________________________________________________________________________________ -->
+    <!--Pagina Transação Item (ti_)-->
+    <!-- ________________________________________________________________________________________________ -->
+
+    <style name="ti_Linha">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/ti_heigthLinha</item>
+        <item name="android:layout_marginTop">@dimen/ti_marginTopLinha</item>
+        <item name="android:background">@color/cinzaDias80</item>
+
+    </style>
+
+    <style name="ti_NomeVendedor">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/ti_textSizeNomeVendedor</item>
+        <item name="android:textColor">@color/cinzaDias</item>
+    </style>
+
+    <style name="ti_Valor">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/ti_textSizeValor</item>
+        <item name="android:textColor">@color/cinzaDias80</item>
+    </style>
+
+    <style name="ti_Data">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:textSize">@dimen/ti_textSizeData</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/cinzaDias80</item>
+    </style>
+    <!-- ________________________________________________________________________________________________ -->
+    <!--Inserir Valor-->
+    <!-- ________________________________________________________________________________________________ -->
+    <style name="EntryInserirValor">
+        <item name="android:textSize">@dimen/iv_textSizeEntry</item>
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:background">@drawable/backgroundentry_inserirvalor</item>
+    </style>
+
+    <style name="sufixEntryInserirValor">
+        <item name="android:textSize">@dimen/iv_textSizeEntry</item>
+        <item name="android:layout_marginLeft">@dimen/iv_textSizeEntry</item>
+    </style>
+</resources>

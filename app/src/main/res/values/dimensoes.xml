@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="PaddingInternoFragmento">20sp</dimen>
+
+
+    <!--    Barras superior    -->
+    <dimen name="textSizeUserBar">20sp</dimen>
+    <dimen name="textSizeTituloBar">30sp</dimen>
+    <dimen name="paddingTopTextoTituloBar">20dp</dimen>
+    <dimen name="paddingBottomTextoTituloBar">30dp</dimen>
+    <dimen name="widthImagemTituloBar">50dp</dimen>
+    <dimen name="heightImagemTituloBar">50dp</dimen>
+    <dimen name="marginTopImagemTituloBar">-25dp</dimen>
+
+    <!--    Cards    -->
+    <dimen name="paddingCard">15dp</dimen>
+    <dimen name="marginVerticalCard">20dp</dimen>
+    <dimen name="marginHorizontalCard">40dp</dimen>
+    <dimen name="cornerRadiusCard">4dp</dimen>
+    <dimen name="elevationCard">8dp</dimen>
+    <dimen name="textSizeTituloCard">20sp</dimen>
+    <dimen name="textSizeLabelCard">16sp</dimen>
+    <dimen name="textSizeItemCard">14sp</dimen>
+    <dimen name="heigthLinhaCard">1dp</dimen>
+    <dimen name="marginTopLinhaCard">8dp</dimen>
+    <dimen name="marginTopLabelCard">10dp</dimen>
+    <dimen name="marginTopItemCard">5dp</dimen>
+
+    <!--    Backgroud Saldo    -->
+    <dimen name="bordasBackgroundSaldo">7dp</dimen>
+    <dimen name="cantosBackgroundSaldo1">30dp</dimen>
+    <dimen name="cantosBackgroundSaldo2">23dp</dimen>
+
+    <!--    Fragment info servidor (is_)   -->
+    <dimen name="is_paddingTitulo">30dp</dimen>
+    <dimen name="is_marginTopLinha">30dp</dimen>
+    <dimen name="is_horizontalMarginLinha">40dp</dimen>
+    <dimen name="is_heigthLinha">2dp</dimen>
+    <dimen name="is_marginTopItem">25dp</dimen>
+    <dimen name="is_marginTopsubItem">5dp</dimen>
+    <dimen name="is_fontSizeItem">22sp</dimen>
+    <dimen name="is_fontSizeNome">30sp</dimen>
+
+    <!--    Transação Intem (ti_)   -->
+    <dimen name="ti_marginTopLinha">15dp</dimen>
+    <dimen name="ti_heigthLinha">1dp</dimen>
+    <dimen name="ti_textSizeNomeVendedor">16dp</dimen>
+    <dimen name="ti_textSizeValor">16dp</dimen>
+    <dimen name="ti_textSizeData">14dp</dimen>
+
+    <!--    Inserir Valor (iv_)   -->
+    <dimen name="iv_textSizeEntry">40sp</dimen>
+
+
+
+</resources>

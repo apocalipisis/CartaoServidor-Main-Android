@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.login.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_servidorFragment"
+            app:destination="@id/servidorFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_comercianteFragment"
+            app:destination="@id/comercianteFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_usuarioinativoFragment"
+            app:destination="@id/usuarioinativoFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_usuarionaopermitidoFragment"
+            app:destination="@id/usuarionaopermitidoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/servidorFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.servidor.ServidorFragment"
+        android:label="ServidorFragment" >
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="nome"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_servidorFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/servidorFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_servidorFragment_to_extratoservidorFragment"
+            app:destination="@id/extratoservidorFragment" />
+        <action
+            android:id="@+id/action_servidorFragment_to_infoservidorFragment"
+            app:destination="@id/infoservidorFragment" />
+        <action
+            android:id="@+id/action_servidorFragment_to_compraservidorFragment"
+            app:destination="@id/compraservidorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/extratoservidorFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.servidor.ExtratoservidorFragment"
+        android:label="ExtratoservidorFragment" >
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="list"
+            app:argType="com.example.appcartaoservidorv1.models.Transacao[]"/>
+        <action
+            android:id="@+id/action_extratoservidorFragment_to_transacaodetalhesFragment"
+            app:destination="@id/transacaodetalhesFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/infoservidorFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.servidor.InfoservidorFragment"
+        android:label="InfoservidorFragment" >
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="nome"
+            app:argType="string" />
+        <argument
+            android:name="cpf"
+            app:argType="string" />
+        <argument
+            android:name="tipoUsuario"
+            app:argType="string" />
+        <argument
+            android:name="status"
+            app:argType="string" />
+        <argument
+            android:name="instituto"
+            app:argType="string" />
+        <argument
+            android:name="limiteMensal"
+            app:argType="float" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/transacaodetalhesFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.TransacaodetalhesFragment"
+        android:label="TransacaodetalhesFragment" >
+
+        <argument
+            android:name="transacao"
+            app:argType="com.example.appcartaoservidorv1.models.Transacao"/>
+    </fragment>
+    <fragment
+        android:id="@+id/compraservidorFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.servidor.CompraservidorFragment"
+        android:label="CompraservidorFragment" >
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="nome"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/comercianteFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciante.ComercianteFragment"
+        android:label="ComercianteFragment" >
+        <action
+            android:id="@+id/action_comercianteFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/comercianteFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="nome"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_comercianteFragment_to_inserirvalorFragment"
+            app:destination="@id/inserirvalorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/vendacomercianteFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciante.VendercomercianteFragment"
+        android:label="VendacomercianteFragment" >
+        <action
+            android:id="@+id/action_vendacomercianteFragment_to_inserirsenhaFragment"
+            app:destination="@id/inserirsenhaFragment" />
+        <argument
+            android:name="valor"
+            app:argType="float" />
+    </fragment>
+    <fragment
+        android:id="@+id/inserirsenhaFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciante.InserirsenhaFragment"
+        android:label="InserirsenhaFragment" >
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="nome"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/usuarioinativoFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.login.UsuarioinativoFragment"
+        android:label="UsuarioinativoFragment" >
+        <argument
+            android:name="nome"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_usuarioinativoFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/usuarionaopermitidoFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.login.UsuarionaopermitidoFragment"
+        android:label="UsuarionaopermitidoFragment" >
+        <argument
+            android:name="tipo"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_usuarionaopermitidoFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inserirvalorFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciante.InserirvalorFragment"
+        android:label="InserirvalorFragment" >
+        <action
+            android:id="@+id/action_inserirvalorFragment_to_vendacomercianteFragment"
+            app:destination="@id/vendacomercianteFragment" />
+    </fragment>
+</navigation>

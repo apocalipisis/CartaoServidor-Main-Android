@@ -1,0 +1,69 @@
+<resources>
+    <!--Caixa de pesquisa-->
+    <string name="search_hint">Pesquisar vendas</string>
+
+    <!--    Pagina de login    -->
+    <string name="app_name">AppCartaoServidorV1</string>
+    <string name="seja_bem_vindo">Seja bem vindo!</string>
+    <string name="matricula">Matricula</string>
+    <string name="senha">Senha</string>
+    <string name="entrar">Entrar</string>
+
+    <!--    Barras superior    -->
+    <string name="detalhecompra">Detalhes Compra</string>
+    <!--    Cards    -->
+    <string name="vendedor">Vendedor</string>
+    <string name="valor">Valor:</string>
+    <string name="nome">Nome:</string>
+    <string name="data">Data:</string>
+    <string name="descrição">Descrição:</string>
+    <string name="detalhes">Detalhes:</string>
+
+    <!--    Pagina do servidor    -->
+    <string name="ola">Ola,</string>
+    <string name="sair">Sair</string>
+    <string name="extrato">Extrato</string>
+    <string name="info">Informações</string>
+    <string name="comprar">Comprar</string>
+
+    <!--    Pagina informações do servidor (is_)    -->
+    <string name="is_cpf">Cpf:</string>
+    <string name="is_matricula">Matricula:</string>
+    <string name="is_tipo_de_usu_rio">Tipo de usuário:</string>
+    <string name="is_status">Status:</string>
+    <string name="is_financeiro">Financeiro</string>
+    <string name="is_limite_mensal">Limite mensal:</string>
+    <string name="is_informa_es_adicionais">Informações adicionais</string>
+    <string name="is_instituto">Instituto:</string>
+    <string name="is_tentar_novamente">Tentar novamente</string>
+
+    <!--    Pagina comprar servidor    -->
+    <string name="apresente_qr_code">Apresente esse QR code para o vendedor</string>
+
+    <!--    Pagina inserir valor    -->
+    <string name="inserir_valor">Inserir valor</string>
+    <string name="inserir_valor_hint">0,00 R$</string>
+
+    <!--    Pagina inserir senha    -->
+    <string name="inserir_senha">Inserir senha</string>
+
+    <!--    Pagina vender comerciante    -->
+    <string name="leia_qr_code">Aponte para o QR code do cliente</string>
+    <string name="qrcode_invalido">QRcode Inválido</string>
+
+    <!--    Pagina usuario Inativo    -->
+    <string name="usuario_inativo">Usuário inativo</string>
+    <string name="userInativo_text">No momento voce aparece como usuário inativo, entre em contato conosco para regularizar sua situação</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="ligar">Ligar</string>
+
+    <!--    Pagina usuario não permitido    -->
+    <string name="usuario_nao_permitido">Usuário não permitido</string>
+    <string name="texto_usuario_nao_permitido">Este tipo de usuário não tem suporte no aplicativo, acesse suas informações através de nosso site</string>
+    <string name="acessar_site">Acessar site</string>
+
+    <!--    Pagina do Comerciante    -->
+    <string name="vender">Vender</string>
+    <string name="historico_vendas">Histórico de vendas</string>
+
+</resources>

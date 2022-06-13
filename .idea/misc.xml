@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2985" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/backgroud_imagebtn.xml" value="0.3065" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/background_entry.xml" value="0.2985" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/background_login_info.xml" value="0.2985" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/background_saldo.xml" value="0.3175" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/background_transparent.xml" value="0.327" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/backgroundentry_inserirvalor.xml" value="0.327" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/btn_add_circle.xml" value="0.327" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/btn_arrow_foward.xml" value="0.327" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/btn_arrow_foward_animation.xml" value="0.327" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/btn_info.xml" value="0.327" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/btn_monetization_on.xml" value="0.327" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/button.xml" value="0.327" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/gradient.xml" value="0.327" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/gradient_verde_branco.xml" value="0.2985" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/ic_baseline_refresh_24.xml" value="0.3065" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.3065" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2985" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/icon_add_card.xml" value="0.3065" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/icon_add_circle.xml" value="0.3295" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/icon_add_circle_disabled.xml" value="0.327" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/icon_arrow_forward.xml" value="0.327" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/icon_arrow_foward_disabled.xml" value="0.327" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/icon_computer.xml" value="0.327" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/icon_credit_card.xml" value="0.3065" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/icon_info.xml" value="0.3065" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/icon_info_disabled.xml" value="0.327" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/icon_monetization_on.xml" value="0.3065" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/icon_monetization_on_disabled.xml" value="0.327" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/icon_not_interested.xml" value="0.327" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/icon_payments.xml" value="0.327" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/icon_phone.xml" value="0.327" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/icon_refresh.xml" value="0.3065" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/icon_search.xml" value="0.3065" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/icon_vpn_key.xml" value="0.327" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/icon_whatsapp.xml" value="0.327" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/linha_amarela.xml" value="0.3065" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout-v23/fragment_comerciante.xml" value="0.3625" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_comerciante.xml" value="0.25" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_compraservidor.xml" value="0.20935792349726776" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_extratoservidor.xml" value="0.18" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_infoservidor.xml" value="0.22" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_inserirsenha.xml" value="0.271875" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_inserirvalor.xml" value="0.27109375" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_login.xml" value="0.18818306010928962" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_servidor.xml" value="0.25" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_transacaodetalhes.xml" value="0.271875" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_usuarioinativo.xml" value="0.27109375" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_usuarionaopermitido.xml" value="0.27109375" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_vendercomerciante.xml" value="0.27109375" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragmento_compraservidor.xml" value="0.27109375" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/header_recycleview_extrato.xml" value="0.271875" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/transacao_item.xml" value="0.27109375" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/transacao_item_header.xml" value="0.271875" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2985" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1935" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/xml/searchable.xml" value="0.271875" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

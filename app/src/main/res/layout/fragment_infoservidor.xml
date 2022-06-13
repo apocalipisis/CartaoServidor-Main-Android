@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.appcartaoservidorv1.viewmodels.servidor.InfoservidorViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/Informações"
+            style="@style/textoTituloBar"
+            android:text="@string/info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- A CardView that contains a TextView -->
+        <ImageView
+            android:id="@+id/Image"
+            style="@style/imagemTituloBar"
+            android:src="@drawable/icon_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Informações" />
+
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            android:scrollbars="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Image">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/CardConta"
+                    style="@style/Card"
+                    android:layout_marginVertical="@dimen/marginVerticalCard"
+                    android:layout_marginHorizontal="@dimen/marginHorizontalCard"
+                    app:cardCornerRadius="@dimen/cornerRadiusCard"
+                    app:cardElevation="@dimen/elevationCard"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/CardFinanceiro"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/paddingCard">
+
+                        <TextView
+                            android:id="@+id/VendedorLabel"
+                            style="@style/CardTitulo"
+                            android:text="@{viewModel.nome}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:id="@+id/linhaVendedor"
+                            style="@style/CardLiha"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/VendedorLabel" />
+                        <!-- ________________________________________________________ -->
+
+                        <TextView
+                            android:id="@+id/labelCpf"
+                            style="@style/CardLabel"
+                            android:text="@string/is_cpf"
+                            app:layout_constraintEnd_toStartOf="@+id/labelMatricula"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/linhaVendedor" />
+
+                        <TextView
+                            android:id="@+id/labelMatricula"
+                            style="@style/CardLabel"
+                            android:text="@string/is_matricula"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/labelCpf"
+                            app:layout_constraintTop_toBottomOf="@+id/linhaVendedor" />
+
+                        <TextView
+                            android:id="@+id/cpf"
+                            style="@style/CardItem"
+                            android:text="@{viewModel.cpf}"
+                            app:layout_constraintEnd_toStartOf="@+id/labelMatricula"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/labelCpf" />
+
+                        <TextView
+                            android:id="@+id/matricula"
+                            style="@style/CardItem"
+                            android:text="@{viewModel.matricula}"
+                            app:layout_constraintBottom_toBottomOf="@+id/cpf"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/labelCpf"
+                            app:layout_constraintTop_toBottomOf="@+id/labelMatricula" />
+                        <!-- ________________________________________________________ -->
+
+                        <TextView
+                            android:id="@+id/labelTipoServidor"
+                            style="@style/CardLabel"
+                            android:text="@string/is_tipo_de_usu_rio"
+                            app:layout_constraintEnd_toStartOf="@+id/labelMatricula"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/matricula" />
+
+                        <TextView
+                            android:id="@+id/labelStatus"
+                            style="@style/CardLabel"
+                            android:text="@string/is_status"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/labelCpf"
+                            app:layout_constraintTop_toBottomOf="@+id/matricula" />
+
+                        <TextView
+                            android:id="@+id/TipoServidor"
+                            style="@style/CardItem"
+                            android:text="@{viewModel.tipoUsuario}"
+                            app:layout_constraintEnd_toStartOf="@+id/labelMatricula"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/labelTipoServidor" />
+
+                        <TextView
+                            android:id="@+id/Status"
+                            style="@style/CardItem"
+                            android:text="@{viewModel.status}"
+                            app:layout_constraintBottom_toBottomOf="@+id/TipoServidor"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/labelCpf"
+                            app:layout_constraintTop_toBottomOf="@+id/labelStatus" />
+
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/CardFinanceiro"
+                    style="@style/Card"
+                    android:layout_marginHorizontal="@dimen/marginHorizontalCard"
+                    android:layout_marginVertical="@dimen/marginVerticalCard"
+                    app:cardCornerRadius="@dimen/cornerRadiusCard"
+                    app:cardElevation="@dimen/elevationCard"
+                    app:layout_constraintBottom_toTopOf="@+id/CardInfoAdicional"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/CardConta">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/paddingCard">
+
+                        <TextView
+                            android:id="@+id/Financeiro"
+                            style="@style/CardTitulo"
+                            android:text="@string/is_financeiro"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:id="@+id/linhaCardFinanceiro"
+                            style="@style/CardLiha"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/Financeiro" />
+
+
+                        <TextView
+                            android:id="@+id/labelLimiteMensal"
+                            style="@style/CardLabel"
+                            android:text="@string/is_limite_mensal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/linhaCardFinanceiro" />
+
+                        <TextView
+                            android:id="@+id/LimiteMensal"
+                            style="@style/CardItem"
+                            android:text="@{viewModel.limiteMes}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/labelLimiteMensal" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/CardInfoAdicional"
+                    style="@style/Card"
+                    android:layout_marginHorizontal="@dimen/marginHorizontalCard"
+                    android:layout_marginVertical="@dimen/marginVerticalCard"
+                    app:cardCornerRadius="@dimen/cornerRadiusCard"
+                    app:cardElevation="@dimen/elevationCard"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/CardFinanceiro">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/paddingCard">
+
+                        <TextView
+                            android:id="@+id/InfoAdicional"
+                            style="@style/CardTitulo"
+                            android:text="@string/is_informa_es_adicionais"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:id="@+id/linhaInfoAdicional"
+                            style="@style/CardLiha"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/InfoAdicional" />
+
+                        <TextView
+                            android:id="@+id/labelInstituto"
+                            style="@style/CardLabel"
+                            android:text="@string/is_instituto"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/linhaInfoAdicional" />
+
+                        <TextView
+                            android:id="@+id/Instituto"
+                            style="@style/CardItem"
+                            android:text="@{viewModel.instituto}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/labelInstituto" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
