@@ -45,7 +45,7 @@ class ComercianteFragment : Fragment() {
 
         // ClickListener para o botão adicionarVenda
         binding.btnVender.setOnClickListener {
-            goToInserirValorPage()
+            goToInserirValorPage(viewModel.nome)
 //            Toast.makeText(context, "Btn comprar Clickado", Toast.LENGTH_LONG).show()
         }
 
@@ -89,8 +89,8 @@ class ComercianteFragment : Fragment() {
     }
 
     // Função que redireciona o usuario para a pagina Vender
-    private fun goToInserirValorPage() {
-        val action = ComercianteFragmentDirections.actionComercianteFragmentToInserirvalorFragment()
+    private fun goToInserirValorPage(nomeComerciante:String) {
+        val action = ComercianteFragmentDirections.actionComercianteFragmentToInserirvalorFragment(nomeComerciante)
         NavHostFragment.findNavController(this).navigate(action)
     }
 

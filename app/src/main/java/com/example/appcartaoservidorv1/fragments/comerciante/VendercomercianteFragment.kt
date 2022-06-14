@@ -65,7 +65,7 @@ class VendercomercianteFragment : Fragment() {
         // Recupera as variaveis passada para a view
         args = VendercomercianteFragmentArgs.fromBundle(requireArguments())
         // Inicializa o ViewModel e passa as variaveis
-        viewModelFactory = VendercomercianteViewModelFactory(args.valor)
+        viewModelFactory = VendercomercianteViewModelFactory(args.valor, args.nomeComerciante)
         viewModel =
             ViewModelProvider(this, viewModelFactory).get(VendercomercianteViewModel::class.java)
         // Faz o binding com o viewModel
@@ -165,9 +165,9 @@ class VendercomercianteFragment : Fragment() {
                     try {
                         // str1 = nome, str2 = matricula
                         val obj = Json.decodeFromString<ParStrings>(qrCode)
-                        val nome = obj.str1
+                        val nomeServidor = obj.str1
                         val matricula = obj.str2
-                        goToInserirSenhaPage(nome, matricula)
+                        goToInserirSenhaPage(nomeServidor, matricula, viewModel.valor, viewModel.nomeComerciante)
                     } catch (e: Exception) {
                         setTextQRcodeInvalido()
                     }
@@ -197,13 +197,17 @@ class VendercomercianteFragment : Fragment() {
 
     // Função que redireciona o usuario para a pagina Inserir Senha
     private fun goToInserirSenhaPage(
+        nomeServidor: String,
         matricula: String,
-        nome: String
+        valor: Float,
+        nomeComerciante: String,
     ) {
         val action =
             VendercomercianteFragmentDirections.actionVendacomercianteFragmentToInserirsenhaFragment(
                 matricula,
-                nome
+                nomeServidor,
+                valor,
+                nomeComerciante,
             )
         NavHostFragment.findNavController(this).navigate(action)
     }

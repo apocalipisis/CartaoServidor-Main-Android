@@ -141,6 +141,9 @@
         <argument
             android:name="valor"
             app:argType="float" />
+        <argument
+            android:name="nomeComerciante"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/inserirsenhaFragment"
@@ -151,6 +154,12 @@
             app:argType="string" />
         <argument
             android:name="nome"
+            app:argType="string" />
+        <argument
+            android:name="valor"
+            app:argType="float" />
+        <argument
+            android:name="nomeComerciante"
             app:argType="string" />
     </fragment>
     <fragment
@@ -182,5 +191,8 @@
         <action
             android:id="@+id/action_inserirvalorFragment_to_vendacomercianteFragment"
             app:destination="@id/vendacomercianteFragment" />
+        <argument
+            android:name="nomeComerciante"
+            app:argType="string" />
     </fragment>
 </navigation>

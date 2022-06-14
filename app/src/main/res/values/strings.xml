@@ -43,6 +43,7 @@
     <!--    Pagina inserir valor    -->
     <string name="inserir_valor">Inserir valor</string>
     <string name="inserir_valor_hint">0,00 R$</string>
+    <string name="digite_o_valor_da_venda">Digite o valor da venda</string>
 
     <!--    Pagina inserir senha    -->
     <string name="inserir_senha">Inserir senha</string>

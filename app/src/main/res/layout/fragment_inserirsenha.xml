@@ -36,55 +36,93 @@
             android:id="@+id/Mensagem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:textSize="16sp"
-            android:text="@{viewModel.nome}"
+            android:layout_marginTop="20dp"
+            android:text="@{viewModel.servidor}"
             android:textColor="@color/cinzaDias"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Image"
-            tools:text="Fulano"/>
+            tools:text="Fulano" />
 
         <TextView
             android:id="@+id/texto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
             android:layout_marginTop="5dp"
+            android:text="@{viewModel.confirmStr}"
             android:textColor="@color/cinzaDias80"
-            android:text="Confirme a compra no valor de: "
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Mensagem" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/Valor"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            android:textSize="50sp"-->
-<!--            android:textColor="@color/primaryColor"-->
-<!--            android:text="@{viewModel.valor}"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/texto"-->
-<!--            tools:text="30,00R$"/>-->
+        <TextView
+            android:id="@+id/Valor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{viewModel.ValorStr}"
+            android:textAlignment="center"
+            android:textColor="@color/primaryColor"
+            android:textSize="50sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/texto"
+            tools:text="30,00 R$" />
 
-<!--        <EditText-->
-<!--            android:id="@+id/Senha"-->
-<!--            style="@style/EntryStyle"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="48dp"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            android:layout_marginHorizontal="10dp"-->
-<!--            android:hint="@string/senha"-->
-<!--            android:textAlignment="center"-->
-<!--            android:inputType="number"-->
-<!--            android:maxLength="4"-->
-<!--            android:paddingHorizontal="15dp"-->
-<!--            android:text="@={viewModel.Matricula}"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/Valor" />-->
+        <EditText
+            android:id="@+id/senha1"
+            style="@style/EntryInserirSenha"
+            android:background="@drawable/background_inserir_senha"
+            app:layout_constraintBottom_toBottomOf="@+id/senha2"
+            app:layout_constraintEnd_toStartOf="@+id/senha2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/senha2"
+            tools:hint="0" />
 
+        <EditText
+            android:id="@+id/senha2"
+            style="@style/EntryInserirSenha"
+            android:background="@drawable/background_inserir_senha"
+            app:layout_constraintBottom_toBottomOf="@+id/senha3"
+            app:layout_constraintEnd_toStartOf="@+id/senha3"
+            app:layout_constraintStart_toEndOf="@+id/senha1"
+            app:layout_constraintTop_toTopOf="@+id/senha3"
+            tools:hint="0" />
+
+        <EditText
+            android:id="@+id/senha3"
+            style="@style/EntryInserirSenha"
+            android:background="@drawable/background_inserir_senha"
+            app:layout_constraintBottom_toBottomOf="@+id/senha4"
+            app:layout_constraintEnd_toStartOf="@+id/senha4"
+            app:layout_constraintStart_toEndOf="@+id/senha2"
+            app:layout_constraintTop_toTopOf="@+id/senha4"
+            tools:hint="0" />
+
+        <EditText
+            android:id="@+id/senha4"
+            style="@style/EntryInserirSenha"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/background_inserir_senha"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/senha3"
+            app:layout_constraintTop_toBottomOf="@+id/Valor"
+            tools:hint="0" />
+
+        <Button
+            android:id="@+id/btnAvancar"
+            style="@style/ImageBtnStyle"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="30dp"
+            android:drawableTop="@drawable/btn_arrow_foward"
+            android:padding="0dp"
+            app:layout_constraintEnd_toEndOf="@+id/senha4"
+            app:layout_constraintStart_toStartOf="@+id/senha4"
+            app:layout_constraintTop_toBottomOf="@+id/senha4" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

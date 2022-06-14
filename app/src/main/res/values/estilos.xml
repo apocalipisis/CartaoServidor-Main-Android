@@ -210,4 +210,19 @@
         <item name="android:textSize">@dimen/iv_textSizeEntry</item>
         <item name="android:layout_marginLeft">@dimen/iv_textSizeEntry</item>
     </style>
+    <!-- ________________________________________________________________________________________________ -->
+    <!--Inserir Senha-->
+    <!-- ________________________________________________________________________________________________ -->
+
+    <style name="EntryInserirSenha">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:inputType">numberPassword</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:maxLength">1</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+
 </resources>
