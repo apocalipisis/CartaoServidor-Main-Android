@@ -2,18 +2,14 @@ package com.example.appcartaoservidorv1.fragments.comerciante
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.util.Size
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
@@ -25,26 +21,22 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.NavHostFragment
-import com.example.appcartaoservidorv1.MainActivity
 import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.databinding.FragmentVendercomercianteBinding
+import com.example.appcartaoservidorv1.fromVendacomercianteToInserirsenha
 import com.example.appcartaoservidorv1.models.auxiliares.ParStrings
 import com.example.appcartaoservidorv1.services.qrcode.QRCodeFoundListener
 import com.example.appcartaoservidorv1.services.qrcode.QRCodeImageAnalyzer
 import com.example.appcartaoservidorv1.viewmodels.comerciante.VendercomercianteViewModel
 import com.example.appcartaoservidorv1.viewmodels.comerciante.VendercomercianteViewModelFactory
 import com.google.common.util.concurrent.ListenableFuture
-import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
 import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 
 
 class VendercomercianteFragment : Fragment() {
     // Variavel responsavel pelo binding
     lateinit var binding: FragmentVendercomercianteBinding
-    lateinit var args: VendercomercianteFragmentArgs
 
     // Variavel que representa o viewModel
     private lateinit var viewModel: VendercomercianteViewModel
@@ -58,23 +50,27 @@ class VendercomercianteFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Infla o layout do fragmento
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_vendercomerciante, container, false)
         // Recupera as variaveis passada para a view
-        args = VendercomercianteFragmentArgs.fromBundle(requireArguments())
+        val args = VendercomercianteFragmentArgs.fromBundle(requireArguments())
         // Inicializa o ViewModel e passa as variaveis
-        viewModelFactory = VendercomercianteViewModelFactory(args.valor, args.nomeComerciante)
+        viewModelFactory = VendercomercianteViewModelFactory(
+            args.valor,
+            args.nomeComerciante,
+            args.matriculaComerciante,
+            args.token
+        )
         viewModel =
-            ViewModelProvider(this, viewModelFactory).get(VendercomercianteViewModel::class.java)
+            ViewModelProvider(this, viewModelFactory)[VendercomercianteViewModel::class.java]
         // Faz o binding com o viewModel
         binding.viewModel = viewModel
-        // Coloca um observer no QRCode e coloca na tela
 
+        // Configurações iniciais para o uso da camera
         cameraProviderFuture = ProcessCameraProvider.getInstance(this.requireContext())
         previewView = binding.activityMainPreviewView
-
         requestCamera()
 
         // Configura o ciclo de vida
@@ -82,7 +78,7 @@ class VendercomercianteFragment : Fragment() {
         return binding.root
     }
 
-    val requestPermissionLauncher =
+    private val requestPermissionLauncher =
         registerForActivityResult(
             ActivityResultContracts.RequestPermission()
         ) { isGranted: Boolean ->
@@ -144,14 +140,16 @@ class VendercomercianteFragment : Fragment() {
         }, ContextCompat.getMainExecutor(this.requireContext()))
     }
 
+    // Armazena o fragmento em uma variavel
+    val fragment = this
     private fun bindCameraPreview(cameraProvider: ProcessCameraProvider) {
-        previewView.setImplementationMode(PreviewView.ImplementationMode.PERFORMANCE)
+        previewView.implementationMode = PreviewView.ImplementationMode.PERFORMANCE
         val preview: Preview = Builder()
             .build()
         val cameraSelector = CameraSelector.Builder()
             .requireLensFacing(CameraSelector.LENS_FACING_BACK)
             .build()
-        preview.setSurfaceProvider(previewView.getSurfaceProvider())
+        preview.setSurfaceProvider(previewView.surfaceProvider)
 
         val imageAnalysis = ImageAnalysis.Builder()
             .setTargetResolution(Size(1280, 720))
@@ -167,7 +165,16 @@ class VendercomercianteFragment : Fragment() {
                         val obj = Json.decodeFromString<ParStrings>(qrCode)
                         val nomeServidor = obj.str1
                         val matricula = obj.str2
-                        goToInserirSenhaPage(nomeServidor, matricula, viewModel.valor, viewModel.nomeComerciante)
+
+                        fromVendacomercianteToInserirsenha(
+                            fragment,
+                            nomeServidor,
+                            matricula,
+                            viewModel.valor,
+                            viewModel.nomeComerciante,
+                            viewModel.matriculaComerciante,
+                            viewModel.token,
+                        )
                     } catch (e: Exception) {
                         setTextQRcodeInvalido()
                     }
@@ -194,23 +201,5 @@ class VendercomercianteFragment : Fragment() {
             binding.status.setTextColor(Color.parseColor("#FF0000"))
         }
     }
-
-    // Função que redireciona o usuario para a pagina Inserir Senha
-    private fun goToInserirSenhaPage(
-        nomeServidor: String,
-        matricula: String,
-        valor: Float,
-        nomeComerciante: String,
-    ) {
-        val action =
-            VendercomercianteFragmentDirections.actionVendacomercianteFragmentToInserirsenhaFragment(
-                matricula,
-                nomeServidor,
-                valor,
-                nomeComerciante,
-            )
-        NavHostFragment.findNavController(this).navigate(action)
-    }
-
 }
 

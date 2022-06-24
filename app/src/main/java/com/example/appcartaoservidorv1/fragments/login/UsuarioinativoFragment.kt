@@ -10,10 +10,10 @@ import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.NavHostFragment
 import com.example.appcartaoservidorv1.Constantes
 import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.databinding.FragmentUsuarioinativoBinding
+import com.example.appcartaoservidorv1.goToLoginPage
 import com.example.appcartaoservidorv1.viewmodels.login.UsuarioinativoViewModel
 import com.example.appcartaoservidorv1.viewmodels.login.UsuarioinativoViewModelFactory
 
@@ -31,7 +31,7 @@ class UsuarioinativoFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Infla o layout do fragmento
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_usuarioinativo, container, false)
@@ -40,31 +40,31 @@ class UsuarioinativoFragment : Fragment() {
         // Inicializa o ViewModel e passa as variaveis
         viewModelFactory = UsuarioinativoViewModelFactory(args.nome)
         viewModel =
-            ViewModelProvider(this, viewModelFactory).get(UsuarioinativoViewModel::class.java)
+            ViewModelProvider(this, viewModelFactory)[UsuarioinativoViewModel::class.java]
         // Faz o binding com o viewModel
         binding.viewModel = viewModel
 
         // Configura o botão de voltar para ao pressionar voltar para a página login
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                goToHomeInativoPage()
+                goToLoginPage(binding.root)
             }
         }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            onBackPressedCallback
+        )
 
         // Ao clickar abre o whatsapp
-        binding.btnWhatsapp.setOnClickListener { Whatsapp() }
+        binding.btnWhatsapp.setOnClickListener { whatsapp() }
 
         // Ao clickar abre o whatsapp
-        binding.btnLigar.setOnClickListener { Telefone() }
+        binding.btnLigar.setOnClickListener { telefone() }
 
         // Configura o ciclo de vida
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
-
-
-
 
     private fun whatsAppItent(): Intent {
         val url =
@@ -76,24 +76,18 @@ class UsuarioinativoFragment : Fragment() {
         return shareIntent
     }
 
-    private fun Whatsapp() {
+    private fun whatsapp() {
         startActivity(whatsAppItent())
     }
 
     private fun telefoneIntent(): Intent {
-        val shareIntent: Intent = Uri.parse("tel:" + Constantes.TelefoneApp).let { number ->
-            Intent(Intent.ACTION_DIAL, number)
-        }
-        return shareIntent
+        return Intent(
+            Intent.ACTION_DIAL,
+            Uri.parse("tel:" + Constantes.TelefoneApp)
+        )
     }
 
-    private fun Telefone() {
+    private fun telefone() {
         startActivity(telefoneIntent())
     }
-
-    private fun goToHomeInativoPage() {
-        val action = UsuarioinativoFragmentDirections.actionUsuarioinativoFragmentToLoginFragment()
-        NavHostFragment.findNavController(this).navigate(action)
-    }
-
 }

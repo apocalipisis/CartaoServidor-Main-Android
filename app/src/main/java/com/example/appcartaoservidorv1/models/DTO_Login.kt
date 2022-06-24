@@ -8,4 +8,5 @@ data class DTO_Login(
     @Json(name = "nomeUsuario") var nomeUsuario: String,
     @Json(name = "tipoUsuario") var tipoUsuario: String,
     @Json(name = "usuarioAtivo") var usuarioAtivo: Boolean,
+    @Json(name = "token") var token: String,
 )

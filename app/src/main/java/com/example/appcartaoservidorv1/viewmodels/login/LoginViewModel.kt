@@ -1,12 +1,15 @@
-package com.example.appcartaoservidorv1.viewmodels
+package com.example.appcartaoservidorv1.viewmodels.login
 
 import androidx.lifecycle.*
+import com.example.appcartaoservidorv1.Constantes
+import com.example.appcartaoservidorv1.fromLoginToUsuarioinativo
 import com.example.appcartaoservidorv1.models.DTO_Login
 import com.example.appcartaoservidorv1.services.myAndroidApi
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class LoginViewModel : ViewModel() {
+    // Resposta da API
+    private lateinit var response:DTO_Login
     // Status da consulta a API
     enum class ApiStatus { LOADING, ERROR, DONE }
 
@@ -14,43 +17,88 @@ class LoginViewModel : ViewModel() {
     val status: LiveData<ApiStatus>
         get() = _status
 
+    // Status do Login
+    private val _loginSucess = MutableLiveData<Boolean>()
+    val loginSucess: LiveData<Boolean>
+        get() = _loginSucess
+
+    // Motivo (em caso de loginSucess = false)
+    private val _motivoLoginFail = MutableLiveData<String>()
+    val motivoLoginFail: LiveData<String>
+        get() = _motivoLoginFail
+
+    // Destino (em caso de loginSucess = True)
+    private val _destino = MutableLiveData<String>()
+    val destino: LiveData<String>
+        get() = _destino
+
+
     // Matricula digitada pelo usuario
-    var Matricula = MutableLiveData<String>()
+    var matricula = MutableLiveData<String>()
 
     // Senha digitada pelo usuario
-    var Senha = MutableLiveData<String>()
+    var senha = MutableLiveData<String>()
 
-    // Autoriza o login
-    var _login = MutableLiveData<DTO_Login>()
-    val login: LiveData<DTO_Login>
-        get() = _login
-    // Informa a situação do login
-    private val _mensagemLogin = MutableLiveData<String>()
-    val mensagemLogin: LiveData<String>
-        get() = _mensagemLogin
+    //Nome do usuário
+    var nome : String = ""
 
-    init {
-        Matricula.value = "00003"
-//        Matricula.value = "00002"
-    }
+    //Token do usuário
+    var token : String = ""
 
-    fun VerificaLogin() {
+    fun getApiResponse(matricula: String, senha: String)  {
+
         _status.value = ApiStatus.LOADING
         viewModelScope.launch {
             try {
-//                _login.value = myAndroidApi.retrofitService.verificaLogin(
-//                    Matricula.value.toString(),
-//                    Senha.value.toString()
-//                )
-                _login.value = DTO_Login(true,true,  "Teste","Comerciante", true)
-//                _login.value = DTO_Login(true,true,  "Teste","Servidor")
+                response = myAndroidApi.retrofitService.verificaLogin(
+                    matricula,
+                    senha,
+                )
+                analisaResposta(response)
                 _status.value = ApiStatus.DONE
             } catch (e: Exception) {
+                _motivoLoginFail.value = Constantes.Erro1
+//                _motivoLoginFail.value = e.toString()
                 _status.value = ApiStatus.ERROR
-                _mensagemLogin.value = e.toString()
             }
         }
     }
+
+    private fun analisaResposta(response:DTO_Login) {
+        if (!response.bancoDeDadosOk) {
+            _loginSucess.value = false
+            _motivoLoginFail.value = Constantes.Erro1
+            return
+        }
+
+        if (response.bancoDeDadosOk && !response.loginAutorizado) {
+            _loginSucess.value = false
+            _motivoLoginFail.value = Constantes.Erro2
+            return
+        }
+
+        _loginSucess.value = true
+        redirectUser(response)
+    }
+
+    private fun redirectUser(response: DTO_Login) {
+        nome = response.nomeUsuario
+        token = response.token
+
+        if (!response.usuarioAtivo) {
+            _destino.value = "UsuarioInativo"
+            return
+        }
+
+        when (response.tipoUsuario) {
+            "Servidor" -> {_destino.value = "Servidor"}
+            "Comerciante" -> {_destino.value = "Comerciante"}
+            "Prefeitura" -> {_destino.value = "NãoAutorizado"}
+            "Admin" -> {_destino.value = "NãoAutorizado"}
+        }
+    }
+
+
 }
 
 // Configura a factory do ViewModel (Usada para receber os parametros passados para o viewmodel)

@@ -6,7 +6,7 @@
     <group>
     <path
         android:name="square"
-        android:fillColor="@color/primaryColor"
+        android:fillColor="?attr/colorPrimary"
         android:pathData="M0,256
             A256,256 0 1,1 512,256
             A256,256 0 1,1 0,256" />

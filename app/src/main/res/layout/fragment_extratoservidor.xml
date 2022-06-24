@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="viewModel"
             type="com.example.appcartaoservidorv1.viewmodels.servidor.ExtratoservidorViewModel" />
+
     </data>
 
 
@@ -22,7 +24,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- A CardView that contains a TextView -->
         <ImageView
             android:id="@+id/Image"
             style="@style/imagemTituloBar"
@@ -31,12 +32,37 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
+        <ProgressBar
+            android:id="@+id/Bar"
+            android:layout_gravity="center"
+            android:background="@drawable/backgroudn_circle_verde"
+            style="@style/BarLoadingList"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/Menssagem"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:padding="7dp"
+            android:layout_marginHorizontal="20dp"
+            android:textColor="@android:color/holo_red_light"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/Image"
+            android:text="@{viewModel.mensagemAPI}"
+            android:visibility="gone"
+            tools:text="Problemas no servidor tente novamente em alguns instantes" />
+
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Image">
+            app:layout_constraintTop_toBottomOf="@+id/Menssagem">
 
 <!--            <androidx.appcompat.widget.SearchView-->
 <!--                android:id="@+id/Pesquisa"-->

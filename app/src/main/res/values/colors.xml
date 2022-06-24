@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--?xml version="1.0" encoding="UTF-8"?-->
     <color name="primaryColor">#104a57</color>
     <color name="primaryLightColor">#437684</color>
     <color name="primaryDarkColor">#00222e</color>
-    <color name="secondaryColor">#ffcd55</color>
-    <color name="secondaryLightColor">#fff886</color>
-    <color name="secondaryDarkColor">#c89c21</color>
+    <color name="secondaryColor">#fa6a31</color>
+    <color name="secondaryLightColor">#ff9b5f</color>
+    <color name="secondaryDarkColor">#c03900</color>
     <color name="primaryTextColor">#ffffff</color>
-    <color name="secondaryTextColor">#000000</color>
+    <color name="secondaryTextColor">#ffffff</color>
 
     <!--    Cores padrões -->
     <color name="Branco">#ffffff</color>
@@ -16,5 +17,7 @@
     <color name="cinzaDias80">#CC424242</color>
     <color name="cinzaDias70">#B3424242</color>
     <color name="cinzaDias20">#0D424242</color>
+    <color name="VerdeDias20">#B3104a57</color>
+    <color name="VerdeDias">#104a57</color>
 
 </resources>

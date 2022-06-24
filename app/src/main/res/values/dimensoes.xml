@@ -51,6 +51,10 @@
     <!--    Inserir Valor (iv_)   -->
     <dimen name="iv_textSizeEntry">40sp</dimen>
 
+    <!--    Animações (an_)   -->
+    <dimen name="an_duration">800</dimen>
+
+
 
 
 </resources>

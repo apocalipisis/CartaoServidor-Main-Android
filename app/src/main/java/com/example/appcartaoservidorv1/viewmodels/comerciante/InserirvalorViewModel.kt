@@ -4,26 +4,27 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import java.text.DecimalFormat
 
-
-class InserirvalorViewModel(val nomeComerciante : String) :
+class InserirvalorViewModel(val nomeComerciante: String, val matriculaComerciante: String, val token: String) :
     ViewModel() {
-    // Valor a ser passado
-    val ValorStr = MutableLiveData<String>()
-    val ValorFloat = MutableLiveData<Float>()
+//    var valor: Double = 0.0
+    val valor = MutableLiveData<Double>()
 
     init {
-        ValorStr.value = "0,00"
+        valor.value = 0.0
     }
 
 }
 
 // Configura a factory do ViewModel (Usada para receber os parametros passados para o viewmodel)
-class InserirvalorViewModelFactory(private val nomeComerciante: String) : ViewModelProvider.Factory {
+class InserirvalorViewModelFactory(
+    private val nomeComerciante: String,
+    private val matriculaComerciante: String,
+    private val token: String
+) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(InserirvalorViewModel::class.java)) {
-            return InserirvalorViewModel(nomeComerciante) as T
+            return InserirvalorViewModel(nomeComerciante, matriculaComerciante, token) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

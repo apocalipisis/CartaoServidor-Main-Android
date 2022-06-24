@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
         name="viewModel"
         type="com.example.appcartaoservidorv1.viewmodels.servidor.ServidorViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,7 +17,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="125dp"
+            android:layout_height="100dp"
             android:background="@color/primaryColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -24,23 +26,25 @@
             <TextView
                 android:id="@+id/Nome"
                 style="@style/UserTopBarTexto"
-                android:text="@{viewModel.nome}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:layout_marginStart="25dp"
-                android:layout_marginBottom="15dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:text="@{viewModel.nome}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                tools:text="Supermercado Cristal" />
 
             <TextView
+                android:id="@+id/textView2"
                 style="@style/UserTopBarTexto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/ola"
-                app:layout_constraintBottom_toTopOf="@+id/Nome"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/btnSair"
@@ -70,7 +74,7 @@
 
         <LinearLayout
             android:id="@+id/Saldo"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="40dp"
             android:background="@drawable/background_saldo"
@@ -86,7 +90,8 @@
             <TextView
                 android:id="@+id/saldo"
                 style="@style/s_Saldo"
-                android:text="@{viewModel.saldo}" />
+                android:text="@{viewModel.saldo}"
+                tools:text="70,00"/>
 
             <TextView
                 android:id="@+id/saldoLabel"
@@ -113,11 +118,14 @@
             android:id="@+id/saldoMes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
+            android:textSize="15sp"
+            android:textColor="?attr/colorOnSecondary"
             android:text="@{viewModel.descricaoSaldo}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Saldo" />
+            app:layout_constraintTop_toBottomOf="@+id/Saldo"
+            tools:text="Saldo disponivel em junho"/>
 
 
         <Button

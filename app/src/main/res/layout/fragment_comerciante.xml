@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -15,7 +16,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="125dp"
+            android:layout_height="100dp"
             android:background="@color/primaryColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -24,23 +25,25 @@
             <TextView
                 android:id="@+id/Nome"
                 style="@style/UserTopBarTexto"
-                android:text="@{viewModel.nome}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:layout_marginBottom="15dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:layout_marginTop="5dp"
+                android:text="@{viewModel.nome}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                tools:text="Supermercado Cristal" />
 
             <TextView
+                android:id="@+id/textView"
                 style="@style/UserTopBarTexto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/ola"
-                app:layout_constraintBottom_toTopOf="@+id/Nome"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/btnSair"
@@ -51,6 +54,7 @@
                 android:layout_marginEnd="25dp"
                 android:clickable="true"
                 android:focusable="true"
+                android:minHeight="48dp"
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="10dp"
                 android:text="@string/sair"
@@ -70,7 +74,7 @@
 
         <LinearLayout
             android:id="@+id/Saldo"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="40dp"
             android:background="@drawable/background_saldo"
@@ -86,7 +90,8 @@
             <TextView
                 android:id="@+id/faturamento"
                 style="@style/s_Saldo"
-                android:text="@{viewModel.faturamento}" />
+                android:text="@{viewModel.faturamento}"
+                tools:text="70,00"/>
 
             <TextView
                 android:id="@+id/faturamentoLabel"
@@ -113,11 +118,14 @@
             android:id="@+id/saldoMes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
+            android:textSize="15sp"
+            android:textColor="?attr/colorOnSecondary"
             android:text="@{viewModel.descricaoFaturamento}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Saldo" />
+            app:layout_constraintTop_toBottomOf="@+id/Saldo"
+            tools:text="Faturamento no mes de junho"/>
 
 
         <Button

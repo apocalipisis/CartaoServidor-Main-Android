@@ -7,13 +7,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcartaoservidorv1.R
-import com.example.appcartaoservidorv1.databinding.TransacaoItemBinding
+import com.example.appcartaoservidorv1.databinding.TransacaoItemservidorBinding
 import com.example.appcartaoservidorv1.models.Transacao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -67,13 +69,13 @@ class ExtratoservidorAdapter(val clickListener: Transacao_Listener) :
         companion object {
             fun from(parent: ViewGroup): TextViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val view = layoutInflater.inflate(R.layout.transacao_item_header, parent, false)
+                val view = layoutInflater.inflate(R.layout.header_servidor, parent, false)
                 return TextViewHolder(view)
             }
         }
     }
 
-    class ViewHolder private constructor(val binding: TransacaoItemBinding) :
+    class ViewHolder private constructor(val binding: TransacaoItemservidorBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Transacao, clickListener: Transacao_Listener) {
@@ -87,7 +89,7 @@ class ExtratoservidorAdapter(val clickListener: Transacao_Listener) :
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = TransacaoItemBinding.inflate(layoutInflater, parent, false)
+                val binding = TransacaoItemservidorBinding.inflate(layoutInflater, parent, false)
 
                 return ViewHolder(binding)
             }
@@ -95,12 +97,16 @@ class ExtratoservidorAdapter(val clickListener: Transacao_Listener) :
 
         // Função que coloca o saldo no formato adequado e transforma em string
         fun formatSaldo(saldo: Double): String {
-            return DecimalFormat("#,##0.00").format(saldo)
+            val formatter = NumberFormat.getCurrencyInstance(Locale.getDefault()) as DecimalFormat
+            val symbols: DecimalFormatSymbols = formatter.decimalFormatSymbols
+            symbols.setCurrencySymbol("") // Don't use null.
+            formatter.decimalFormatSymbols = symbols
+            return formatter.format(saldo)
         }
 
         // Função que formata a data e retorna o mês em extenso
         fun formatData(data: Date): String {
-            val formatter = SimpleDateFormat("dd/MMMM/yy", Locale("pt", "BR"))
+            val formatter = SimpleDateFormat("dd/MMMM/yy - HH:mm", Locale("pt", "BR"))
             return formatter.format(data)
         }
     }

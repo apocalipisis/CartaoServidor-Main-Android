@@ -1,4 +1,4 @@
-package com.example.appcartaoservidorv1.fragments
+package com.example.appcartaoservidorv1.fragments.servidor
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,9 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.databinding.FragmentTransacaodetalhesBinding
-import com.example.appcartaoservidorv1.viewmodels.LoginViewModel
-import com.example.appcartaoservidorv1.viewmodels.TransacaodetalhesViewModel
-import com.example.appcartaoservidorv1.viewmodels.TransacaodetalhesViewModelFactory
+import com.example.appcartaoservidorv1.viewmodels.servidor.TransacaodetalhesViewModel
+import com.example.appcartaoservidorv1.viewmodels.servidor.TransacaodetalhesViewModelFactory
 
 class TransacaodetalhesFragment: Fragment() {
 
@@ -28,7 +27,9 @@ class TransacaodetalhesFragment: Fragment() {
         // Infla o layout do fragmento
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_transacaodetalhes, container, false)
         // Recupera as variaveis passada para a view
-        args = TransacaodetalhesFragmentArgs.fromBundle(requireArguments())
+        args = TransacaodetalhesFragmentArgs.fromBundle(
+            requireArguments()
+        )
         // Inicializa as variaveis do ViewModel
         viewModelFactory = TransacaodetalhesViewModelFactory(args.transacao)
         viewModel = ViewModelProvider(this, viewModelFactory).get(TransacaodetalhesViewModel::class.java)

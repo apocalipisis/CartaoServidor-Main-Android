@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.example.appcartaoservidorv1.viewmodels.login.UsuarioinativoViewModel" />
@@ -20,7 +20,7 @@
             android:text="@string/usuario_inativo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <!-- A CardView that contains a TextView -->
         <ImageView
@@ -52,13 +52,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
-                    android:text="@{viewModel.mensagem}"
                     android:textAlignment="center"
-                    android:textColor="@color/cinzaDias"
+                    android:textColor="?attr/colorOnSecondary"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Fulaninho"/>
 
                 <TextView
                     android:id="@+id/usuarioInativoText"
@@ -67,7 +67,7 @@
                     android:layout_margin="20dp"
                     android:text="@string/userInativo_text"
                     android:textAlignment="center"
-                    android:textColor="@color/cinzaDias80"
+                    android:textColor="?attr/colorOnSecondary"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
                     android:text="Motivo"
-                    android:textColor="@color/cinzaDias"
+                    android:textColor="?attr/colorOnSecondary"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -92,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:text="Caloteiro"
-                    android:textColor="@color/cinzaDias80"
+                    android:textColor="?attr/colorOnPrimary"
                     android:textSize="30sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

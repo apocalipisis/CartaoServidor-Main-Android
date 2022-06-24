@@ -39,19 +39,33 @@ interface myAndroidApiService {
     @POST(Constantes.ConsultaServidor)
     suspend fun consultaServidor(
         @Header("matricula") matricula: String,
+        @Header("Authorization") token: String,
     ): DTO_Servidor
 
     // Função que consulta o saldo e as informações de um comerciante
     @POST(Constantes.ConsultaComerciante)
     suspend fun consultaComerciante(
         @Header("matricula") matricula: String,
-    ): DTO_Comerciante
+        @Header("Authorization") token: String,
+        ): DTO_Comerciante
+
+    // Função que busca as N 20 transações de uma matricula
+    @POST(Constantes.NTransacoes)
+    suspend fun NTransacoes(
+        @Header("matricula") matricula: String,
+        @Header("nConsulta") nConsulta: Int,
+        @Header("Authorization") token: String,
+        ): List<Transacao>
 
     // Função que consulta o saldo e as informações de um servidor
-    @POST(Constantes.ExtratoServidor)
-    suspend fun extratoServidor(
-        @Header("matricula") matricula: String,
-    ): List<Transacao>
+    @POST(Constantes.InserirVenda)
+    suspend fun InserirVenda(
+        @Header("MatriculaCliente") MatriculaCliente: String,
+        @Header("MatriculaComerciante") MatriculaComerciante: String,
+        @Header("Valor") Valor: String,
+        @Header("SenhaCartao") SenhaCartao: String,
+        @Header("Authorization") token: String,
+        ): DTO_InserirTransacao
 }
 
 object myAndroidApi {

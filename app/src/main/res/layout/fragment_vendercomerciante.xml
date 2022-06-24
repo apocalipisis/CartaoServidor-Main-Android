@@ -13,10 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <TextView
             android:id="@+id/textView3"
-            android:text="@string/vender"
+            android:text="@string/qr_code"
             style="@style/textoTituloBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +25,7 @@
         <ImageView
             android:id="@+id/Image"
             style="@style/imagemTituloBar"
-            android:src="@drawable/icon_add_circle"
+            android:src="@drawable/icon_credit_card"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -36,8 +35,9 @@
             android:id="@+id/Mensagem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:textColor="@color/cinzaDias"
+            android:layout_marginTop="20dp"
+            android:textColor="?attr/colorOnSecondary"
+            android:textSize="15sp"
             android:text="@string/leia_qr_code"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

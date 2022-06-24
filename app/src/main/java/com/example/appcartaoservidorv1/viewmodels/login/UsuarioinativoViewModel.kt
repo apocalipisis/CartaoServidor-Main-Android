@@ -7,12 +7,12 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.appcartaoservidorv1.models.DTO_Login
 
 class UsuarioinativoViewModel (val nome: String): ViewModel(){
-    var _mensagem = MutableLiveData<String>()
+    private var _mensagem = MutableLiveData<String>()
     val mensagem: LiveData<String>
         get() = _mensagem
 
     init {
-        _mensagem.value = "Olá, ${nome}"
+        _mensagem.value = "Olá, $nome"
     }
 
 }

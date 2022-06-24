@@ -6,18 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.NavHostFragment
-import com.example.appcartaoservidorv1.R
+import com.example.appcartaoservidorv1.*
 import com.example.appcartaoservidorv1.databinding.FragmentComercianteBinding
-import com.example.appcartaoservidorv1.fragments.servidor.CompraservidorFragmentArgs
-import com.example.appcartaoservidorv1.fragments.servidor.ServidorFragmentDirections
 import com.example.appcartaoservidorv1.viewmodels.comerciante.ComercianteViewModel
 import com.example.appcartaoservidorv1.viewmodels.comerciante.ComercianteViewModelFactory
-import com.example.appcartaoservidorv1.viewmodels.servidor.CompraservidorViewModel
-import com.example.appcartaoservidorv1.viewmodels.servidor.CompraservidorViewModelFactory
-import com.example.appcartaoservidorv1.viewmodels.servidor.ServidorViewModel
+
 
 class ComercianteFragment : Fragment() {
     // Variavel responsavel pelo binding
@@ -32,135 +26,127 @@ class ComercianteFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Infla o layout do fragmento
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_comerciante, container, false)
         // Recupera as variaveis passada para a view
         args = ComercianteFragmentArgs.fromBundle(requireArguments())
         // Inicializa o ViewModel e passa as variaveis
-        viewModelFactory = ComercianteViewModelFactory(args.matricula, args.nome)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(ComercianteViewModel::class.java)
+        viewModelFactory = ComercianteViewModelFactory(args.matricula, args.nome, args.token)
+        viewModel = ViewModelProvider(this, viewModelFactory)[ComercianteViewModel::class.java]
         // Faz o binding com o viewModel
         binding.viewModel = viewModel
+        // Armazena o contexto em uma variavel
+        val appContext = this.requireContext()
 
         // ClickListener para o botão adicionarVenda
         binding.btnVender.setOnClickListener {
-            goToInserirValorPage(viewModel.nome)
-//            Toast.makeText(context, "Btn comprar Clickado", Toast.LENGTH_LONG).show()
+            if (isNetworkAvailable(appContext)) {
+                fromComercianteToInserirvalor(
+                    this,
+                    viewModel.nome,
+                    viewModel.matricula,
+                    viewModel.token
+                )
+            } else {
+                goToNointernetpage(binding.root)
+            }
+        }
+
+        // ClickListener para o botão Historico
+        binding.btnHistorico.setOnClickListener {
+            if (isNetworkAvailable(appContext)) {
+                fromComercianteToHistoricovendas(
+                    this,
+                    viewModel.matricula,
+                    viewModel.token
+                )
+            } else {
+                goToNointernetpage(binding.root)
+            }
+        }
+
+        // ClickListener para o botão informações
+        binding.btnInfo.setOnClickListener {
+            fromComercianteToInfo(
+                this,
+                viewModel.response.matricula,
+                viewModel.response.nome,
+                viewModel.response.cnpj,
+                viewModel.response.tipoUsuario,
+                viewModel.response.status,
+                viewModel.response.pagementoUsoDoSistema
+            )
         }
 
         // Configura o btn sair
-        binding.btnSair.setOnClickListener { onSair() }
+        binding.btnSair.setOnClickListener { fromComercianteToLogin(this) }
 
         // Coloca a barra de atualização como visivel
-        viewModel.status.observe(
-            viewLifecycleOwner,
-            Observer<ComercianteViewModel.ApiStatus> { status ->
-                when (status) {
-                    ComercianteViewModel.ApiStatus.LOADING -> {
-                        mostrarBarra()
-                        escondeBtns()
-                    }
-                    ComercianteViewModel.ApiStatus.DONE -> {
-                        esconderBarra()
-                        habilitaBtns()
-                        escondeMensagem()
-                        escondeBtnRefresh()
-                    }
-                    ComercianteViewModel.ApiStatus.ERROR -> {
-                        esconderBarra()
-                        desabilitaBtns()
-                        mostraMensagem()
-                        mostraBtnRefresh()
-                    }
+        viewModel.status.observe(viewLifecycleOwner) { status ->
+            when (status) {
+                ComercianteViewModel.ApiStatus.LOADING -> {
+                    estadoCarregando()
                 }
-            })
+                ComercianteViewModel.ApiStatus.DONE -> {
+                    estadoOk()
+                }
+                ComercianteViewModel.ApiStatus.ERROR -> {
+                    estadoErro()
+                }
+            }
+        }
 
         // Configura o ciclo de vida
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
-
-    // Função que executa o logout de um usuário
-    private fun onSair() {
-        val action = ComercianteFragmentDirections.actionComercianteFragmentToLoginFragment()
-        NavHostFragment.findNavController(this).navigate(action)
-    }
-
-    // Função que redireciona o usuario para a pagina Vender
-    private fun goToInserirValorPage(nomeComerciante:String) {
-        val action = ComercianteFragmentDirections.actionComercianteFragmentToInserirvalorFragment(nomeComerciante)
-        NavHostFragment.findNavController(this).navigate(action)
-    }
-
-    // Mostra a barra de loading e esconde os demais campos
-    private fun mostrarBarra() {
+    // Configuração da View para quando tiver carregando a resposta
+    private fun estadoCarregando() {
+        // Views
         binding.Bar.visibility = View.VISIBLE
         binding.faturamento.visibility = View.GONE
         binding.faturamentoLabel.visibility = View.GONE
+        binding.saldoMes.visibility = View.GONE
+        binding.mensagem.visibility = View.GONE
+
+        // Btns
+        binding.btnRefresh.visibility = View.GONE
+        binding.btnHistorico.visibility = View.GONE
+        binding.btnInfo.visibility = View.GONE
+        binding.btnVender.visibility = View.GONE
     }
 
-    // Esconde a barra de loading e mostra os demais campos
-    private fun esconderBarra() {
+    // Configuração da View para quando tiver erro na resposta
+    private fun estadoErro() {
+        // Views
         binding.Bar.visibility = View.GONE
-        binding.faturamento.visibility = View.VISIBLE
-        binding.faturamentoLabel.visibility = View.VISIBLE
-    }
-
-    // Habilita os btns
-    private fun habilitaBtns() {
-        binding.btnHistorico.isEnabled = true
-        binding.btnInfo.isEnabled = true
-        binding.btnVender.isEnabled = true
-    }
-
-    // Desabilita os btns
-    private fun desabilitaBtns() {
-        binding.btnHistorico.isEnabled = false
-        binding.btnInfo.isEnabled = false
-        binding.btnVender.isEnabled = false
-    }
-
-    // Mostra mensagem sobre consulta a API
-    private fun mostraMensagem() {
-        binding.mensagem.visibility = View.VISIBLE
         binding.faturamento.visibility = View.GONE
         binding.faturamentoLabel.visibility = View.GONE
         binding.saldoMes.visibility = View.GONE
-    }
+        binding.mensagem.visibility = View.VISIBLE
 
-    // Esconde mensagem sobre consulta a API
-    private fun escondeMensagem() {
-        binding.mensagem.visibility = View.GONE
-        binding.faturamento.visibility = View.VISIBLE
-        binding.faturamentoLabel.visibility = View.VISIBLE
-        binding.saldoMes.visibility = View.VISIBLE
-    }
-
-    // Mostra btn refresh
-    private fun mostraBtnRefresh() {
+        // Btns
         binding.btnRefresh.visibility = View.VISIBLE
         binding.btnHistorico.visibility = View.GONE
         binding.btnInfo.visibility = View.GONE
         binding.btnVender.visibility = View.GONE
     }
 
-    // Esconde btn refresh
-    private fun escondeBtnRefresh() {
+    // Configuração da View para quando tiver uma resposta OK
+    private fun estadoOk() {
+        // Views
+        binding.Bar.visibility = View.GONE
+        binding.faturamento.visibility = View.VISIBLE
+        binding.faturamentoLabel.visibility = View.VISIBLE
+        binding.saldoMes.visibility = View.VISIBLE
+        binding.mensagem.visibility = View.GONE
+
+        // Btns
         binding.btnRefresh.visibility = View.GONE
         binding.btnHistorico.visibility = View.VISIBLE
         binding.btnInfo.visibility = View.VISIBLE
         binding.btnVender.visibility = View.VISIBLE
     }
-
-    // Esconde todos os btn
-    private fun escondeBtns() {
-        binding.btnRefresh.visibility = View.GONE
-        binding.btnHistorico.visibility = View.GONE
-        binding.btnInfo.visibility = View.GONE
-        binding.btnVender.visibility = View.GONE
-    }
-
-
 }

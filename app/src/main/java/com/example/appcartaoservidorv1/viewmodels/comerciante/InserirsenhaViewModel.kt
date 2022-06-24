@@ -13,7 +13,9 @@ class InserirsenhaViewModel(
     val matricula: String,
     val servidor: String,
     val valor: Float,
-    val nomeComerciante: String
+    val nomeComerciante: String,
+    val matriculaComerciante: String,
+    val token: String,
 ) :
     ViewModel() {
     // Mensagem com o valor da compra
@@ -36,13 +38,12 @@ class InserirsenhaViewModel(
     var senha4: String = ""
 
     init {
-        _ConfirmStr.value = "Confirme sua compra em ${nomeComerciante} no valor de:"
+        _ConfirmStr.value = "Compra em ${nomeComerciante}, valor:"
     }
 
-    fun SenhaCompleta(){
+    fun senhaCompleta(){
         _senhaCompleta.value = senha1+senha2+senha3+senha4
     }
-
 
 
     // Função que formata o numero adicionando pontos(a cada mil) e virgula nas casas decimais
@@ -61,11 +62,13 @@ class InserirsenhaViewModelFactory(
     private val matricula: String,
     private val servidor: String,
     private val valor: Float,
-    private val nomeComerciante: String
+    private val nomeComerciante: String,
+    private val matriculaComerciante: String,
+    private val token: String,
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(InserirsenhaViewModel::class.java)) {
-            return InserirsenhaViewModel(matricula, servidor, valor, nomeComerciante) as T
+            return InserirsenhaViewModel(matricula, servidor, valor, nomeComerciante, matriculaComerciante, token) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

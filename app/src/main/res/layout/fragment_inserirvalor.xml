@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -10,6 +10,7 @@
             type="com.example.appcartaoservidorv1.viewmodels.comerciante.InserirvalorViewModel" />
 
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -26,7 +27,7 @@
         <ImageView
             android:id="@+id/Image"
             style="@style/imagemTituloBar"
-            android:src="@drawable/icon_shopping_basket"
+            android:src="@drawable/icon_credit_card"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -36,8 +37,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:textColor="@color/cinzaDias"
             android:text="@string/digite_o_valor_da_venda"
+            android:textColor="?attr/colorOnSecondary"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Image" />
@@ -47,15 +49,15 @@
             android:id="@+id/valorInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:padding="0dp"
             android:textSize="40sp"
-            android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Mensagem"
             app:suffixText=" R$"
             app:suffixTextAppearance="@style/sufixEntryInserirValor"
-            app:suffixTextColor="@color/primaryColor">
+            app:suffixTextColor="?attr/colorOnPrimary">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/Valor"
@@ -64,14 +66,27 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:gravity="end"
+                android:importantForAutofill="no"
                 android:inputType="numberPassword"
-                android:text="@{viewModel.ValorStr}"
                 android:textDirection="anyRtl" />
+
         </com.google.android.material.textfield.TextInputLayout>
+
+<!--        <EditText-->
+<!--            android:id="@+id/Valor"-->
+<!--            style="@style/EntryInserirValor"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textAlignment="textEnd"-->
+<!--            android:textDirection="anyRtl"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/Mensagem" />-->
 
         <Button
             android:id="@+id/btnAvancar"
             style="@style/ImageBtnStyle"
+            android:textSize="40sp"
             android:layout_width="wrap_content"
             android:drawableTop="@drawable/btn_arrow_foward"
             app:layout_constraintEnd_toEndOf="parent"
