@@ -1,6 +1,7 @@
 package com.example.appcartaoservidorv1.fragments.servidor
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,12 +9,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import com.example.appcartaoservidorv1.*
 import com.example.appcartaoservidorv1.databinding.FragmentServidorBinding
+import com.example.appcartaoservidorv1.services.utilidades.*
 import com.example.appcartaoservidorv1.viewmodels.servidor.ServidorViewModel
 import com.example.appcartaoservidorv1.viewmodels.servidor.ServidorViewModelFactory
 
-class ServidorFragment : Fragment() {
+class ServidorFragment : BaseFragment() {
     // Variavel responsavel pelo binding
     lateinit var binding: FragmentServidorBinding
 
@@ -38,6 +41,7 @@ class ServidorFragment : Fragment() {
         // Faz o binding com o viewModel
         binding.viewModel = viewModel
 
+
         // ClickListener para o botão comprar
         binding.btnComprar.setOnClickListener {
             fromServidorToComprar(this, viewModel.response.matricula, args.nome)
@@ -46,13 +50,13 @@ class ServidorFragment : Fragment() {
         val appContext = this.requireContext()
         // ClickListener para o botão extrato
         binding.btnExtrato.setOnClickListener {
-            if (isNetworkAvailable(appContext)){
-            fromServidorToExtrato(
-                this,
-                viewModel.matricula,
-                viewModel.token,
-            )
-            }else{
+            if (isNetworkAvailable(appContext)) {
+                fromServidorToExtrato(
+                    this,
+                    viewModel.matricula,
+                    viewModel.token,
+                )
+            } else {
                 goToNointernetpage(binding.root)
             }
         }
@@ -73,25 +77,29 @@ class ServidorFragment : Fragment() {
 
         // Coloca a barra de atualização como visivel
         viewModel.status.observe(
-            viewLifecycleOwner,
-            Observer<ServidorViewModel.ApiStatus> { status ->
-                when (status) {
-                    ServidorViewModel.ApiStatus.LOADING -> {
-                        estadoCarregando()
-                    }
-                    ServidorViewModel.ApiStatus.DONE -> {
-                        estadoOk()
-                    }
-                    ServidorViewModel.ApiStatus.ERROR -> {
-                        estadoErro()
-                    }
+            viewLifecycleOwner
+        ) { status ->
+            when (status) {
+                ServidorViewModel.ApiStatus.LOADING -> {
+                    estadoCarregando()
                 }
-            })
+                ServidorViewModel.ApiStatus.DONE -> {
+                    estadoOk()
+                }
+                ServidorViewModel.ApiStatus.ERROR -> {
+                    estadoErro()
+                }
+            }
+        }
+
+        Log.i("Token",viewModel.token)
 
         // Configura o ciclo de vida
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
+
+
 
     // Configuração da View para quando tiver carregando a resposta
     private fun estadoCarregando() {

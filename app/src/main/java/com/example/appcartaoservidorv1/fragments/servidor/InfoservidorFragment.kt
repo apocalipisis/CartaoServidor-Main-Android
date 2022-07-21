@@ -1,18 +1,19 @@
 package com.example.appcartaoservidorv1.fragments.servidor
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.databinding.FragmentInfoservidorBinding
+import com.example.appcartaoservidorv1.services.utilidades.BaseFragment
 import com.example.appcartaoservidorv1.viewmodels.servidor.InfoservidorViewModel
 import com.example.appcartaoservidorv1.viewmodels.servidor.InfoservidorViewModelFactory
 
-class InfoservidorFragment : Fragment() {
+class InfoservidorFragment : BaseFragment() {
     // Variavel responsavel pelo binding
     lateinit var binding: FragmentInfoservidorBinding
 

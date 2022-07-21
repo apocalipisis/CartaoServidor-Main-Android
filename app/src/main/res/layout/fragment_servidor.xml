@@ -152,7 +152,7 @@
             style="@style/ImageBtnStyle"
             android:drawableTop="@drawable/icon_refresh"
             android:text="@string/is_tentar_novamente"
-            android:onClick="@{() -> viewModel.ConsultaServidor(viewModel.matricula)}"
+            android:onClick="@{() -> viewModel.consultaServidor(viewModel.matricula)}"
             android:layout_marginBottom="40dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"

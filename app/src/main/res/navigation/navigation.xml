@@ -421,4 +421,13 @@
             app:argType="string" />
         <argument android:name="token" />
     </fragment>
+    <fragment
+        android:id="@+id/sessaoexpiradaFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.SessaoexpiradaFragment"
+        android:label="SessaoexpiradaFragment" >
+        <action
+            android:id="@+id/action_sessaoexpiradaFragment_to_loginFragment3"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/navigation" />
+    </fragment>
 </navigation>

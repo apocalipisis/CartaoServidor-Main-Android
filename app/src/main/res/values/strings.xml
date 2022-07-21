@@ -78,5 +78,8 @@
     <!--    Pagina Sem Internet    -->
     <string name="sem_internet">No momento seu celular está sem internet, conecte-se para aproveitar o aplicativo.</string>
 
+    <!--    Pagina sessão expirada    -->
+    <string name="sessao_expirada">Sua sessão atingiu o tempo limite, faça login novamente.</string>
+
 
 </resources>

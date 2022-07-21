@@ -18,6 +18,6 @@ data class Transacao(
     @Json(name = "matriculaVendedor") var MatriculaVendedor: String,
     @Json(name = "valor") var Valor: Double,
     @Json(name = "dataVenda") var DataVenda: Date,
-    @Json(name = "descrição") var Descricao: String,
+    @Json(name = "descricao") var Descricao: String,
 ): Parcelable
 

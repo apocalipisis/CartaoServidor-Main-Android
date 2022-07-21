@@ -26,7 +26,7 @@ class InfoservidorViewModel(
     }
 
     // Função que coloca o saldo no formato adequado e transforma em string
-    fun formatDinheiro(entrada: Double): String {
+    private fun formatDinheiro(entrada: Double): String {
         return DecimalFormat("#,##0.00").format(entrada)
     }
 }

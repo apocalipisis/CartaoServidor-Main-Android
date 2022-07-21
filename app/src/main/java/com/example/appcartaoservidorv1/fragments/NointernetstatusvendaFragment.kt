@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.databinding.FragmentNointernetstatusvendaBinding
-import com.example.appcartaoservidorv1.fromNointernetstatusvendapageToComerciante
-import com.example.appcartaoservidorv1.isNetworkAvailable
+import com.example.appcartaoservidorv1.services.utilidades.fromNointernetstatusvendapageToComerciante
+import com.example.appcartaoservidorv1.services.utilidades.isNetworkAvailable
 import com.example.appcartaoservidorv1.viewmodels.NointernetstatusvendaViewModel
 import com.example.appcartaoservidorv1.viewmodels.NointernetstatusvendaViewModelFactory
 

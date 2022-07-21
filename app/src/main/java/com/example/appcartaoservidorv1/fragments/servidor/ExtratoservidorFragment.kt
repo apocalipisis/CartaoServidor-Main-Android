@@ -14,12 +14,13 @@ import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.adapters.ExtratoservidorAdapter
 import com.example.appcartaoservidorv1.adapters.Transacao_Listener
 import com.example.appcartaoservidorv1.databinding.FragmentExtratoservidorBinding
-import com.example.appcartaoservidorv1.fromExtratoToDetalhes
+import com.example.appcartaoservidorv1.services.utilidades.BaseFragment
+import com.example.appcartaoservidorv1.services.utilidades.fromExtratoToDetalhes
 import com.example.appcartaoservidorv1.viewmodels.servidor.ExtratoservidorViewModel
 import com.example.appcartaoservidorv1.viewmodels.servidor.ExtratoservidorViewModelFactory
 import com.example.appcartaoservidorv1.viewmodels.servidor.ServidorViewModel
 
-class ExtratoservidorFragment : Fragment() {
+class ExtratoservidorFragment : BaseFragment() {
 
     // Variavel responsavel pelo binding
     lateinit var binding: FragmentExtratoservidorBinding
@@ -45,7 +46,6 @@ class ExtratoservidorFragment : Fragment() {
             ViewModelProvider(this, viewModelFactory)[ExtratoservidorViewModel::class.java]
         // Faz o binding com o viewModel
         binding.viewModel = viewModel
-
         // Chama o adapter
         val adapter = ExtratoservidorAdapter(Transacao_Listener { transacao ->
             viewModel.onTransacaoClicked(transacao)
@@ -76,7 +76,7 @@ class ExtratoservidorFragment : Fragment() {
                     if (!viewModel.loading) {
                         if (visibleItemCount + pastVisiblesItems >= totalItemCount) {
                             viewModel.loading = true
-                            viewModel.ConsultaExtrato()
+                            viewModel.consultaExtrato()
                         }
                     }
                 }
@@ -122,5 +122,6 @@ class ExtratoservidorFragment : Fragment() {
         binding.Image.visibility = View.VISIBLE
         binding.Bar.visibility = View.INVISIBLE
         binding.Menssagem.visibility = View.VISIBLE
+        binding.ListaExtrato.visibility = View.GONE
     }
 }

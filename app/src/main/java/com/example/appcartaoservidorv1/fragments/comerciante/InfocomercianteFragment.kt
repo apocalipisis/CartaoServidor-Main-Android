@@ -5,14 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.databinding.FragmentInfocomercianteBinding
+import com.example.appcartaoservidorv1.services.utilidades.BaseFragment
 import com.example.appcartaoservidorv1.viewmodels.comerciante.InfocomercianteViewModel
 import com.example.appcartaoservidorv1.viewmodels.comerciante.InfocomercianteViewModelFactory
 
-class InfocomercianteFragment : Fragment() {
+class InfocomercianteFragment : BaseFragment() {
     // Variavel responsavel pelo binding
     lateinit var binding: FragmentInfocomercianteBinding
 

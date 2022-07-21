@@ -14,10 +14,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.appcartaoservidorv1.*
 import com.example.appcartaoservidorv1.databinding.FragmentInserirsenhaBinding
+import com.example.appcartaoservidorv1.services.utilidades.*
 import com.example.appcartaoservidorv1.viewmodels.comerciante.InserirsenhaViewModel
 import com.example.appcartaoservidorv1.viewmodels.comerciante.InserirsenhaViewModelFactory
 
-class InserirsenhaFragment : Fragment() {
+class InserirsenhaFragment : BaseFragment() {
     // Variavel responsavel pelo binding
     lateinit var binding: FragmentInserirsenhaBinding
     lateinit var args: InserirsenhaFragmentArgs
@@ -54,7 +55,7 @@ class InserirsenhaFragment : Fragment() {
         // Configuração da tela inicial
         binding.btnAvancar.isEnabled = false
         binding.senha1.requestFocus()
-        showKeyboard()
+//        showKeyboard()
 
         // Armazena o contexto em uma variavel
         val appContext = this.requireContext()
@@ -228,14 +229,14 @@ class InserirsenhaFragment : Fragment() {
         binding.senha4.setText("")
 
         binding.senha1.requestFocus()
-        showKeyboard()
+//        showKeyboard()
     }
 
-    // Esconde o teclado quando a view for destruida
-    override fun onDestroyView() {
-        super.onDestroyView()
-        hideKeyboard()
-    }
+//    // Esconde o teclado quando a view for destruida
+//    override fun onDestroyView() {
+//        super.onDestroyView()
+//        hideKeyboard()
+//    }
 
     // Essas funções não podem ir para as funções comuns (por algum motiva lá não funcionam)
     // Função que mostra o teclado

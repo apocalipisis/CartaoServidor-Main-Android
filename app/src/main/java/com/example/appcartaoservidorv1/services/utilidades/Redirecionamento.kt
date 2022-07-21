@@ -1,4 +1,4 @@
-package com.example.appcartaoservidorv1
+package com.example.appcartaoservidorv1.services.utilidades
 
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -6,16 +6,37 @@ import androidx.navigation.NavOptions
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.fragments.NointernetstatusvendaFragmentDirections
+import com.example.appcartaoservidorv1.fragments.SessaoexpiradaFragmentDirections
 import com.example.appcartaoservidorv1.fragments.comerciante.*
 import com.example.appcartaoservidorv1.fragments.login.LoginFragmentDirections
 import com.example.appcartaoservidorv1.fragments.servidor.ExtratoservidorFragmentDirections
 import com.example.appcartaoservidorv1.fragments.servidor.ServidorFragmentDirections
 import com.example.appcartaoservidorv1.models.Transacao
 
+
 // ---------------------------------------No internet Page-------------------------------------- //
 fun goToNointernetpage(view: View) {
     view.findNavController().navigate(R.id.nointernetFragment)
+}
+
+// ---------------------------- Sessao Expirada --------------------------------- //
+fun fromSessaoexpiradaToLogin(
+    fragment: Fragment
+) {
+    val action =
+        SessaoexpiradaFragmentDirections.actionSessaoexpiradaFragmentToLoginFragment3()
+    NavHostFragment.findNavController(fragment).navigate(action)
+}
+
+fun fromFragmentToSessaoexpirada(fragment: Fragment) {
+    val navController = NavHostFragment.findNavController(fragment)
+    val startDestination = R.id.sessaoexpiradaFragment
+    val navOptions = NavOptions.Builder()
+        .setPopUpTo(R.id.navigation, false)
+        .build()
+    navController.navigate(startDestination, null, navOptions)
 }
 
 // ---------------------------- No internet Status Venda Page --------------------------------- //
@@ -50,8 +71,18 @@ fun fromNointernetstatusvendapageToComerciante(
 }
 
 // ---------------------------------------Login-------------------------------------- //
-// Função que vai para a página de login e apaga a pilha de navegação
-fun goToLoginPage(view: View) {
+// Função que vai para a página de login a partir de um fragmento e apaga a pilha de navegação
+fun fromFragmentToLogin(fragment: Fragment) {
+    val navController = NavHostFragment.findNavController(fragment)
+    val startDestination = R.id.loginFragment
+    val navOptions = NavOptions.Builder()
+        .setPopUpTo(fragment.id, true)
+        .build()
+    navController.navigate(startDestination, null, navOptions)
+}
+
+// Função que vai para a página de login a partir de uma view e apaga a pilha de navegação
+fun fromViewToLogin(view: View) {
     val navController = findNavController(view)
     val startDestination = navController.graph.startDestinationId
     val navOptions = NavOptions.Builder()

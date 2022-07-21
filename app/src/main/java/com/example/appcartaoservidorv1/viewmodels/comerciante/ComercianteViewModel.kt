@@ -2,8 +2,8 @@ package com.example.appcartaoservidorv1.viewmodels.comerciante
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.appcartaoservidorv1.dataEmMes
-import com.example.appcartaoservidorv1.formatDinheiro
+import com.example.appcartaoservidorv1.services.utilidades.dataEmMes
+import com.example.appcartaoservidorv1.services.utilidades.formatDinheiro
 import com.example.appcartaoservidorv1.models.DTO_Comerciante
 import com.example.appcartaoservidorv1.services.myAndroidApi
 import kotlinx.coroutines.launch

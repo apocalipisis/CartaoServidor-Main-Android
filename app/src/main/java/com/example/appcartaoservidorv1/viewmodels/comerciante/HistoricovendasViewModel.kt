@@ -59,16 +59,18 @@ class HistoricovendasViewModel(val matricula: String, val token: String) :
         _status.value = ServidorViewModel.ApiStatus.LOADING
         viewModelScope.launch {
             try {
-                response = myAndroidApi.retrofitService.NTransacoes(matricula, nConsulta, token)
+                response = myAndroidApi.retrofitService.NTransacoesComerciante(matricula, nConsulta, token)
+                Log.i("Teste",response.toString())
                 _transacoes.value =
                     _transacoes.value?.plus(response.sortedByDescending { it.DataVenda.time })
-                if (!response.isEmpty()) {
+                if (response.isNotEmpty()) {
                     nConsulta++
                     loading = false
                 }
                 _status.value = ServidorViewModel.ApiStatus.DONE
 
             } catch (e: Exception) {
+                Log.i("Teste",e.toString())
                 _mensagemAPI.value = "Problemas no servidor, tente novamente"
                 loading = false
                 _status.value = ServidorViewModel.ApiStatus.ERROR

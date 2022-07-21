@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.appcartaoservidorv1.models.Transacao
+import com.example.appcartaoservidorv1.services.utilidades.dataCompletaMesExtenso
+import com.example.appcartaoservidorv1.services.utilidades.formatDinheiro
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.text.NumberFormat
@@ -21,23 +23,9 @@ class TransacaodetalhesViewModel(val transacao: Transacao): ViewModel() {
     val Data: LiveData<String>
         get() = _data
     init {
-        _valor.value = formatSaldo(transacao.Valor) + " R$"
-        _data.value = formatData(transacao.DataVenda)
+        _valor.value = formatDinheiro(transacao.Valor) + " R$"
+        _data.value = dataCompletaMesExtenso(transacao.DataVenda)
     }
-    // Função que coloca o saldo no formato adequado e transforma em string
-    fun formatSaldo(saldo: Double): String {
-        val formatter = NumberFormat.getCurrencyInstance(Locale.getDefault()) as DecimalFormat
-        val symbols: DecimalFormatSymbols = formatter.decimalFormatSymbols
-        symbols.setCurrencySymbol("") // Don't use null.
-        formatter.decimalFormatSymbols = symbols
-        return formatter.format(saldo)
-    }
-    // Função que formata a data e retorna o mês em extenso
-    fun formatData(data: Date): String {
-        val formatter = SimpleDateFormat("dd/MMMM/yy - HH:mm", Locale("pt", "BR"))
-        return formatter.format(data)
-    }
-
 }
 
 // Configura a factory do ViewModel (Usada para receber os parametros passados para o viewmodel)

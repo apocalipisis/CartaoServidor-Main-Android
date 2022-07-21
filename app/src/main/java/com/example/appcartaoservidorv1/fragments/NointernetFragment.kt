@@ -1,25 +1,17 @@
 package com.example.appcartaoservidorv1.fragments
 
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.Network
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.databinding.FragmentNointernetBinding
-import com.example.appcartaoservidorv1.isNetworkAvailable
+import com.example.appcartaoservidorv1.services.utilidades.isNetworkAvailable
 import com.example.appcartaoservidorv1.viewmodels.NointernetViewModel
 import com.example.appcartaoservidorv1.viewmodels.NointernetViewModelFactory
 
@@ -35,7 +27,7 @@ class NointernetFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Infla o layout do fragmento
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_nointernet, container, false)
         // Recupera as variaveis passada para a view

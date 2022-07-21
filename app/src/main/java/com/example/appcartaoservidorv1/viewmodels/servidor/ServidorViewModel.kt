@@ -1,9 +1,8 @@
 package com.example.appcartaoservidorv1.viewmodels.servidor
 
-import android.util.Log
 import androidx.lifecycle.*
-import com.example.appcartaoservidorv1.dataEmMes
-import com.example.appcartaoservidorv1.formatDinheiro
+import com.example.appcartaoservidorv1.services.utilidades.dataEmMes
+import com.example.appcartaoservidorv1.services.utilidades.formatDinheiro
 import com.example.appcartaoservidorv1.models.DTO_Servidor
 import com.example.appcartaoservidorv1.services.myAndroidApi
 import kotlinx.coroutines.launch
@@ -36,11 +35,11 @@ class ServidorViewModel(val matricula: String, val nome: String, val token: Stri
 
     init {
         _descricaoSaldo.value = "Saldo Disponivel em ${dataEmMes(data)}"
-        ConsultaServidor(matricula)
+        consultaServidor(matricula)
     }
 
     // Consulta a api
-    fun ConsultaServidor(matricula: String) {
+    fun consultaServidor(matricula: String) {
         _status.value = ApiStatus.LOADING
         viewModelScope.launch {
             try {
@@ -53,7 +52,6 @@ class ServidorViewModel(val matricula: String, val nome: String, val token: Stri
             }
         }
     }
-
 }
 
 // Configura a factory do ViewModel (Usada para receber os parametros passados para o viewmodel)

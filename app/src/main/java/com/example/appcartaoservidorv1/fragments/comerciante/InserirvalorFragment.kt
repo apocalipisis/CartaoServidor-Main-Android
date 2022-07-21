@@ -14,7 +14,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.databinding.FragmentInserirvalorBinding
-import com.example.appcartaoservidorv1.fromInserirvalorToVendacomerciante
+import com.example.appcartaoservidorv1.services.utilidades.BaseFragment
+import com.example.appcartaoservidorv1.services.utilidades.fromInserirvalorToVendacomerciante
 import com.example.appcartaoservidorv1.viewmodels.comerciante.InserirvalorViewModel
 import com.example.appcartaoservidorv1.viewmodels.comerciante.InserirvalorViewModelFactory
 import java.text.DecimalFormat
@@ -22,7 +23,7 @@ import java.text.DecimalFormatSymbols
 import java.text.NumberFormat
 import java.util.*
 
-class InserirvalorFragment : Fragment() {
+class InserirvalorFragment : BaseFragment() {
     // Variavel responsavel pelo binding
     lateinit var binding: FragmentInserirvalorBinding
     lateinit var args: InserirvalorFragmentArgs
@@ -79,7 +80,7 @@ class InserirvalorFragment : Fragment() {
 
         // Foca no campo para digitar o valor e abre o teclado
         binding.Valor.requestFocus()
-        showKeyboard()
+//        showKeyboard()
 
         // Formata a entrada do valor em "tempo real"
         binding.Valor.addTextChangedListener(object : TextWatcher {
@@ -137,12 +138,12 @@ class InserirvalorFragment : Fragment() {
         return binding.root
     }
 
-    // Esconde o teclado quando a view for destruida
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding.Valor.requestFocus()
-        hideKeyboard()
-    }
+//    // Esconde o teclado quando a view for destruida
+//    override fun onDestroyView() {
+//        super.onDestroyView()
+//        binding.Valor.requestFocus()
+//        hideKeyboard()
+//    }
 
     // Essas funções não podem ir para as funções comuns (por algum motiva lá não funcionam)
     // Função que mostra o teclado
@@ -156,7 +157,5 @@ class InserirvalorFragment : Fragment() {
         val imm = context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
-
-
 }
 

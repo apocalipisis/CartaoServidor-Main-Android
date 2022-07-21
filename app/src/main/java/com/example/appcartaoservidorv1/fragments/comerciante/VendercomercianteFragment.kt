@@ -23,10 +23,11 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.databinding.FragmentVendercomercianteBinding
-import com.example.appcartaoservidorv1.fromVendacomercianteToInserirsenha
+import com.example.appcartaoservidorv1.services.utilidades.fromVendacomercianteToInserirsenha
 import com.example.appcartaoservidorv1.models.auxiliares.ParStrings
 import com.example.appcartaoservidorv1.services.qrcode.QRCodeFoundListener
 import com.example.appcartaoservidorv1.services.qrcode.QRCodeImageAnalyzer
+import com.example.appcartaoservidorv1.services.utilidades.BaseFragment
 import com.example.appcartaoservidorv1.viewmodels.comerciante.VendercomercianteViewModel
 import com.example.appcartaoservidorv1.viewmodels.comerciante.VendercomercianteViewModelFactory
 import com.google.common.util.concurrent.ListenableFuture
@@ -34,7 +35,7 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
 
-class VendercomercianteFragment : Fragment() {
+class VendercomercianteFragment : BaseFragment() {
     // Variavel responsavel pelo binding
     lateinit var binding: FragmentVendercomercianteBinding
 

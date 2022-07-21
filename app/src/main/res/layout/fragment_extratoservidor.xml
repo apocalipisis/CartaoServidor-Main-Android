@@ -44,16 +44,19 @@
 
         <TextView
             android:id="@+id/Menssagem"
-            android:textAlignment="center"
-            android:textSize="14sp"
-            android:padding="7dp"
+            android:layout_width="166dp"
+            android:layout_height="0dp"
             android:layout_marginHorizontal="20dp"
-            android:textColor="@android:color/holo_red_light"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/Image"
+            android:padding="7dp"
             android:text="@{viewModel.mensagemAPI}"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="14sp"
             android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Image"
             tools:text="Problemas no servidor tente novamente em alguns instantes" />
 
 
@@ -62,19 +65,19 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Menssagem">
+            app:layout_constraintTop_toBottomOf="@+id/Image">
 
-<!--            <androidx.appcompat.widget.SearchView-->
-<!--                android:id="@+id/Pesquisa"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="30dp"-->
-<!--                android:iconifiedByDefault="true"-->
-<!--                android:queryBackground="@android:color/transparent"-->
-<!--                android:queryHint="aaaa"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
+            <!--            <androidx.appcompat.widget.SearchView-->
+            <!--                android:id="@+id/Pesquisa"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="30dp"-->
+            <!--                android:iconifiedByDefault="true"-->
+            <!--                android:queryBackground="@android:color/transparent"-->
+            <!--                android:queryHint="aaaa"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent" />-->
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/ListaExtrato"

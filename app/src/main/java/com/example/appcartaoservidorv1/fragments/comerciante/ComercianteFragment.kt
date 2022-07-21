@@ -1,19 +1,20 @@
 package com.example.appcartaoservidorv1.fragments.comerciante
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.appcartaoservidorv1.*
 import com.example.appcartaoservidorv1.databinding.FragmentComercianteBinding
+import com.example.appcartaoservidorv1.services.utilidades.*
 import com.example.appcartaoservidorv1.viewmodels.comerciante.ComercianteViewModel
 import com.example.appcartaoservidorv1.viewmodels.comerciante.ComercianteViewModelFactory
 
 
-class ComercianteFragment : Fragment() {
+class ComercianteFragment : BaseFragment() {
     // Variavel responsavel pelo binding
     lateinit var binding: FragmentComercianteBinding
     lateinit var args: ComercianteFragmentArgs

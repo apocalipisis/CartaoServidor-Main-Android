@@ -9,10 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.databinding.FragmentCompraservidorBinding
+import com.example.appcartaoservidorv1.services.utilidades.BaseFragment
 import com.example.appcartaoservidorv1.viewmodels.servidor.CompraservidorViewModel
 import com.example.appcartaoservidorv1.viewmodels.servidor.CompraservidorViewModelFactory
 
-class CompraservidorFragment : Fragment() {
+class CompraservidorFragment : BaseFragment() {
     // Variavel responsavel pelo binding
     lateinit var binding: FragmentCompraservidorBinding
     lateinit var args: CompraservidorFragmentArgs

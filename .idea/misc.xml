@@ -53,6 +53,8 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/icon_home_disabled.xml" value="0.327" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/icon_info.xml" value="0.3065" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/icon_info_disabled.xml" value="0.327" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/icon_login.xml" value="0.2075" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/icon_logout.xml" value="0.2075" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/icon_monetization_on.xml" value="0.3065" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/icon_monetization_on_disabled.xml" value="0.327" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/icon_not_interested.xml" value="0.327" />
@@ -91,6 +93,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_nointernet.xml" value="0.271875" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_nointernet_statusvenda.xml" value="0.271875" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_servidor.xml" value="0.25" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_sessaoexpirada.xml" value="0.15" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_statusvenda.xml" value="0.271875" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_transacaodetalhes.xml" value="0.271875" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_usuarioinativo.xml" value="0.27109375" />

@@ -2,7 +2,6 @@ package com.example.appcartaoservidorv1.viewmodels.login
 
 import androidx.lifecycle.*
 import com.example.appcartaoservidorv1.Constantes
-import com.example.appcartaoservidorv1.fromLoginToUsuarioinativo
 import com.example.appcartaoservidorv1.models.DTO_Login
 import com.example.appcartaoservidorv1.services.myAndroidApi
 import kotlinx.coroutines.launch
@@ -93,8 +92,7 @@ class LoginViewModel : ViewModel() {
         when (response.tipoUsuario) {
             "Servidor" -> {_destino.value = "Servidor"}
             "Comerciante" -> {_destino.value = "Comerciante"}
-            "Prefeitura" -> {_destino.value = "NãoAutorizado"}
-            "Admin" -> {_destino.value = "NãoAutorizado"}
+            else -> {_destino.value = "NãoAutorizado"}
         }
     }
 

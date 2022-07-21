@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.appcartaoservidorv1.Constantes
 import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.databinding.FragmentUsuarionaopermitidoBinding
-import com.example.appcartaoservidorv1.goToLoginPage
+import com.example.appcartaoservidorv1.services.utilidades.fromViewToLogin
 import com.example.appcartaoservidorv1.viewmodels.login.UsuarionaopermitidoViewModel
 import com.example.appcartaoservidorv1.viewmodels.login.UsuarionaopermitidoViewModelFactory
 
@@ -53,7 +53,7 @@ class UsuarionaopermitidoFragment : Fragment() {
         // Configura o botão de voltar para ao pressionar voltar para a página login
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                goToLoginPage(binding.root)
+                fromViewToLogin(binding.root)
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)

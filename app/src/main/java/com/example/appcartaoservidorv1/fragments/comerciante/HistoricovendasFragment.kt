@@ -13,13 +13,14 @@ import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.adapters.HistoricocomercianteAdpter
 import com.example.appcartaoservidorv1.adapters.Transacao_Listener
 import com.example.appcartaoservidorv1.databinding.FragmentHistoricovendasBinding
-import com.example.appcartaoservidorv1.fromHistoricovendasToDetalhes
+import com.example.appcartaoservidorv1.services.utilidades.BaseFragment
+import com.example.appcartaoservidorv1.services.utilidades.fromHistoricovendasToDetalhes
 import com.example.appcartaoservidorv1.viewmodels.comerciante.HistoricovendasViewModel
 import com.example.appcartaoservidorv1.viewmodels.comerciante.HistoricovendasViewModelFactory
 import com.example.appcartaoservidorv1.viewmodels.servidor.ServidorViewModel
 
 
-class HistoricovendasFragment : Fragment() {
+class HistoricovendasFragment : BaseFragment() {
     // Variavel responsavel pelo binding
     lateinit var binding: FragmentHistoricovendasBinding
     lateinit var args: HistoricovendasFragmentArgs
@@ -52,12 +53,10 @@ class HistoricovendasFragment : Fragment() {
 
         // Coloca um observer nas transações e atualiza o recycler view
         viewModel.transacoes.observe(viewLifecycleOwner) {
-            it?.let {
-                adapter.addHeaderAndSubmitList(it)
-            }
+            adapter.addHeaderAndSubmitList(it)
         }
         // Coloca um observer para navegar para a página de detalhes
-        viewModel.navigateToTransacaoDetail.observe(viewLifecycleOwner){ transacao ->
+        viewModel.navigateToTransacaoDetail.observe(viewLifecycleOwner) { transacao ->
             transacao?.let {
                 fromHistoricovendasToDetalhes(this, transacao)
                 viewModel.onTransacaoDetailNavigated()
@@ -84,19 +83,19 @@ class HistoricovendasFragment : Fragment() {
         })
 
         // Coloca a barra de atualização como visivel
-        viewModel.status.observe(viewLifecycleOwner){ status ->
-                when (status) {
-                    ServidorViewModel.ApiStatus.LOADING -> {
-                        estadoCarregando()
-                    }
-                    ServidorViewModel.ApiStatus.DONE -> {
-                        estadoOk()
-                    }
-                    ServidorViewModel.ApiStatus.ERROR -> {
-                        estadoErro()
-                    }
+        viewModel.status.observe(viewLifecycleOwner) { status ->
+            when (status) {
+                ServidorViewModel.ApiStatus.LOADING -> {
+                    estadoCarregando()
+                }
+                ServidorViewModel.ApiStatus.DONE -> {
+                    estadoOk()
+                }
+                ServidorViewModel.ApiStatus.ERROR -> {
+                    estadoErro()
                 }
             }
+        }
 
         // Configura o ciclo de vida
         binding.lifecycleOwner = viewLifecycleOwner
@@ -120,5 +119,6 @@ class HistoricovendasFragment : Fragment() {
         binding.Image.visibility = View.VISIBLE
         binding.Bar.visibility = View.INVISIBLE
         binding.Menssagem.visibility = View.VISIBLE
+        binding.ListaExtrato.visibility = View.GONE
     }
 }

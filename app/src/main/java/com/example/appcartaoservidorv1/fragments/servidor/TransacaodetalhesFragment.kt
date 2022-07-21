@@ -5,17 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.databinding.FragmentTransacaodetalhesBinding
+import com.example.appcartaoservidorv1.services.utilidades.BaseFragment
 import com.example.appcartaoservidorv1.viewmodels.servidor.TransacaodetalhesViewModel
 import com.example.appcartaoservidorv1.viewmodels.servidor.TransacaodetalhesViewModelFactory
 
-class TransacaodetalhesFragment: Fragment() {
+class TransacaodetalhesFragment : BaseFragment() {
 
     lateinit var binding: FragmentTransacaodetalhesBinding
-    lateinit var args : TransacaodetalhesFragmentArgs
+    lateinit var args: TransacaodetalhesFragmentArgs
 
     private lateinit var viewModel: TransacaodetalhesViewModel
     private lateinit var viewModelFactory: TransacaodetalhesViewModelFactory
@@ -23,16 +23,18 @@ class TransacaodetalhesFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Infla o layout do fragmento
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_transacaodetalhes, container, false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_transacaodetalhes, container, false)
         // Recupera as variaveis passada para a view
         args = TransacaodetalhesFragmentArgs.fromBundle(
             requireArguments()
         )
         // Inicializa as variaveis do ViewModel
         viewModelFactory = TransacaodetalhesViewModelFactory(args.transacao)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(TransacaodetalhesViewModel::class.java)
+        viewModel =
+            ViewModelProvider(this, viewModelFactory)[TransacaodetalhesViewModel::class.java]
         // Faz o binding com o viewModel
         binding.viewModel = viewModel
         // Configura o ciclo de vida

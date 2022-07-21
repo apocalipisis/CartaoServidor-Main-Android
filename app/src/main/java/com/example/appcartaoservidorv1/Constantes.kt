@@ -2,12 +2,15 @@ package com.example.appcartaoservidorv1
 
 object Constantes {
     // API
+//    const val CaminhoAPI: String = "https://cartaoservidor.com/ApiAndroid/"
+//    const val CaminhoAPI: String = "http://cartaoservidor-env.eba-7fjzc8id.sa-east-1.elasticbeanstalk.com/ApiAndroid/"
     const val CaminhoAPI: String = "https://da1teste.herokuapp.com/ApiAndroid/"
-    const val ConsultaLogin: String = "loginandroid/"
+    const val ConsultaLogin: String = "LoginAndroid/"
     const val ConsultaServidor: String = "InfoServidor/"
     const val ConsultaComerciante: String = "InfoComerciante/"
     const val InserirVenda: String = "InserirVendaAndroid/"
-    const val NTransacoes: String = "NTransacoes/"
+    const val NTransacoesServidor: String = "NTransacoesServidor/"
+    const val NTransacoesComerciante: String = "NTransacoesComerciante/"
     // Resposta de error
     const val Erro1 = "Problemas ao tentar acessar o servidor"
     const val Erro2 = "Credenciais Incorretas"

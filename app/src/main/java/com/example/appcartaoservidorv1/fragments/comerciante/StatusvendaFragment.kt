@@ -9,11 +9,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.appcartaoservidorv1.*
+import com.example.appcartaoservidorv1.services.utilidades.isNetworkAvailable
 import com.example.appcartaoservidorv1.databinding.FragmentStatusvendaBinding
+import com.example.appcartaoservidorv1.services.utilidades.BaseFragment
+import com.example.appcartaoservidorv1.services.utilidades.fromStatusvendaToComerciante
+import com.example.appcartaoservidorv1.services.utilidades.goToNointernetstatusvendapage
 import com.example.appcartaoservidorv1.viewmodels.comerciante.StatusvendaViewModel
 import com.example.appcartaoservidorv1.viewmodels.comerciante.StatusvendaViewModelFactory
 
-class StatusvendaFragment : Fragment() {
+class StatusvendaFragment : BaseFragment() {
     // Variavel responsavel pelo binding
     lateinit var binding: FragmentStatusvendaBinding
     lateinit var args: StatusvendaFragmentArgs

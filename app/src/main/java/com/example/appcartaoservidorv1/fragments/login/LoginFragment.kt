@@ -17,15 +17,18 @@ import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.appcartaoservidorv1.*
+import com.example.appcartaoservidorv1.Constantes
+import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.databinding.FragmentLoginBinding
+import com.example.appcartaoservidorv1.services.utilidades.*
 import com.example.appcartaoservidorv1.viewmodels.login.LoginViewModel
 import com.example.appcartaoservidorv1.viewmodels.login.LoginViewModelFactory
 import com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE
 import java.io.File
 import java.util.concurrent.Executor
 
-class LoginFragment : Fragment() {
+
+class LoginFragment : BaseFragment() {
     // Variavel responsavel pelo binding
     lateinit var binding: FragmentLoginBinding
 
@@ -75,6 +78,8 @@ class LoginFragment : Fragment() {
                 "Servidor" -> {
                     salvarPreferencias(applicationContext, arquivoSharedPreferences)
 
+                    App.iniciarSessao()
+
                     fromLoginToServidor(
                         this,
                         viewModel.nome,
@@ -84,6 +89,8 @@ class LoginFragment : Fragment() {
                 }
                 "Comerciante" -> {
                     salvarPreferencias(applicationContext, arquivoSharedPreferences)
+
+                    App.iniciarSessao()
 
                     fromLoginToComerciante(
                         this,
@@ -221,11 +228,19 @@ class LoginFragment : Fragment() {
             .setAllowedAuthenticators(BIOMETRIC_WEAK or DEVICE_CREDENTIAL)
             .build()
 
+        val fm = fragmentManager
+        for (entry in 0 until fm!!.backStackEntryCount) {
+            Log.i("Navigation", "Found fragment: " + fm.getBackStackEntryAt(entry).id)
+        }
+
+
 
         // Ciclo de vida do fragment
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
+
+
 
     // Mostra a barra de loading e esconde os demais campos
     private fun mostrarBarra() {

@@ -49,13 +49,21 @@ interface myAndroidApiService {
         @Header("Authorization") token: String,
         ): DTO_Comerciante
 
-    // Função que busca as N 20 transações de uma matricula
-    @POST(Constantes.NTransacoes)
-    suspend fun NTransacoes(
+    // Função que busca as N 20 transações de uma matricula servidor
+    @POST(Constantes.NTransacoesServidor)
+    suspend fun NTransacoesServidor(
         @Header("matricula") matricula: String,
         @Header("nConsulta") nConsulta: Int,
         @Header("Authorization") token: String,
         ): List<Transacao>
+
+    // Função que busca as N 20 transações de uma matricula servidor
+    @POST(Constantes.NTransacoesComerciante)
+    suspend fun NTransacoesComerciante(
+        @Header("matricula") matricula: String,
+        @Header("nConsulta") nConsulta: Int,
+        @Header("Authorization") token: String,
+    ): List<Transacao>
 
     // Função que consulta o saldo e as informações de um servidor
     @POST(Constantes.InserirVenda)

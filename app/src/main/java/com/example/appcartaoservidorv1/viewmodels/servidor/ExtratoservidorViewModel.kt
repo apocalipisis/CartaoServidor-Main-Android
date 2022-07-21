@@ -4,12 +4,11 @@ import androidx.lifecycle.*
 import com.example.appcartaoservidorv1.models.Transacao
 import com.example.appcartaoservidorv1.services.myAndroidApi
 import kotlinx.coroutines.launch
-import java.util.*
 
 class ExtratoservidorViewModel(val matricula: String,val token: String) :
     ViewModel() {
     //  Contador do numero de consultas
-    var nConsulta: Int = 0
+    private var nConsulta: Int = 0
 
     // Verifica se uma solicitação foi enviada
     var loading = false
@@ -27,7 +26,7 @@ class ExtratoservidorViewModel(val matricula: String,val token: String) :
         get() = _mensagemAPI
 
     // Resposta da API
-    lateinit var response: List<Transacao>
+    private lateinit var response: List<Transacao>
 
     // Controla a navegação para uma página de detalhes
     private val _navigateToTransacaoDetail = MutableLiveData<Transacao>()
@@ -51,17 +50,17 @@ class ExtratoservidorViewModel(val matricula: String,val token: String) :
 
     init {
         _transacoes.value = listOf()
-        ConsultaExtrato()
+        consultaExtrato()
     }
 
-    fun ConsultaExtrato() {
+    fun consultaExtrato() {
         _status.value = ServidorViewModel.ApiStatus.LOADING
         viewModelScope.launch {
             try {
-                response = myAndroidApi.retrofitService.NTransacoes(matricula, nConsulta, token)
+                response = myAndroidApi.retrofitService.NTransacoesServidor(matricula, nConsulta, token)
                 _transacoes.value =
                     _transacoes.value?.plus(response.sortedByDescending { it.DataVenda.time })
-                if (!response.isEmpty()) {
+                if (response.isNotEmpty()) {
                     nConsulta++
                     loading = false
                 }
