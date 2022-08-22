@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.appcartaoservidorv1.viewmodels.comerciante.FuncionarioscomercianteViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView3"
+                style="@style/textoTituloBar"
+                android:text="@string/colaboradores"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/Image"
+                style="@style/imagemTituloBar"
+                android:src="@drawable/icon_account_box"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/CardGerente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/marginHorizontalCard"
+                android:layout_marginVertical="@dimen/marginVerticalCard"
+                app:layout_constraintBottom_toTopOf="@+id/CardFuncionarios"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Image">
+
+                <LinearLayout
+                    style="@style/Card"
+                    android:orientation="vertical"
+                    app:cardCornerRadius="@dimen/cornerRadiusCard"
+                    app:cardElevation="@dimen/elevationCard">
+
+                    <Button
+                        android:id="@+id/btnGerentes"
+                        style="@style/ImageBtnStyle"
+                        android:layout_marginVertical="15dp"
+                        android:layout_gravity="center"
+                        android:drawableTop="@drawable/btn_supervisor_account"
+                        android:text="@string/gerentes" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textAlignment="center"
+                        android:layout_marginBottom="15dp"
+                        android:text="Controle os perfis do tipo gerente" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/CardFuncionarios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/marginHorizontalCard"
+                android:layout_marginVertical="@dimen/marginVerticalCard"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CardGerente">
+
+                <LinearLayout
+                    style="@style/Card"
+                    android:orientation="vertical"
+                    app:cardCornerRadius="@dimen/cornerRadiusCard"
+                    app:cardElevation="@dimen/elevationCard">
+
+                    <Button
+                        android:id="@+id/btnFuncionarios"
+                        style="@style/ImageBtnStyle"
+                        android:layout_gravity="center"
+                        android:layout_marginVertical="15dp"
+                        android:drawableTop="@drawable/btn_person"
+                        android:text="@string/funcionarios" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textAlignment="center"
+                        android:layout_marginBottom="15dp"
+                        android:text="Controle os perfis do tipo funcionário" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

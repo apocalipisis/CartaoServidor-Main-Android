@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.appcartaoservidorv1.dialogsviewmodels.DialogDeletarfuncionariocomercianteViewModel" />
+
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_dialog"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <ImageButton
+                android:id="@+id/btnSair"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:src="@drawable/icon_close_disabled_small"
+                android:layout_margin="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/pergunta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="15dp"
+            android:layout_marginBottom="15dp"
+            android:text="@string/deletarFuncionario"
+            android:layout_gravity="center" />
+
+
+        <LinearLayout android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:id="@+id/EstadoNormal">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:drawableStart="@drawable/icon_warning"
+                android:text="@string/Sim"
+                android:textColor="@color/cinzaDias"
+                android:layout_marginEnd="15dp"
+                style="?android:attr/buttonBarButtonStyle" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnNao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:drawableStart="@drawable/icon_close_disabled_small"
+                android:text="@string/Não"
+                android:layout_marginStart="15dp"
+                style="?android:attr/buttonBarButtonStyle" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/Bar"
+            style="@style/ProgressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_gravity="center" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginVertical="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:id="@+id/resultados">
+
+            <ImageView
+                android:id="@+id/ImageStatusSucess"
+                style="@style/imagemStatus"
+                android:visibility="gone"
+                android:src="@drawable/icon_check"/>
+
+            <ImageView
+                android:id="@+id/ImageStatusError"
+                style="@style/imagemStatus"
+                android:visibility="gone"
+                android:src="@drawable/icon_close"/>
+
+            <TextView
+                android:id="@+id/usuarioDeletado"
+                style="@style/resultStatus"
+                android:textSize="12sp"
+                android:visibility="gone"
+                android:layout_marginTop="5dp"
+                android:text="@string/Sucesso"/>
+
+            <TextView
+                android:id="@+id/usuarioNaoDeletado"
+                style="@style/resultStatus"
+                android:textSize="12sp"
+                android:visibility="gone"
+                android:layout_marginTop="15dp"
+                android:text="@string/algoDeuErrado"/>
+
+            <TextView
+                android:id="@+id/result"
+                style="@style/resultStatus"
+                android:visibility="invisible"
+                android:layout_marginVertical="20dp"
+                android:text="@{viewModel.response.S}"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

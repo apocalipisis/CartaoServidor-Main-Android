@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="funcionario"
+            type="com.example.appcartaoservidorv1.models.Funcionario" />
+        <variable
+            name="clickListener"
+            type="com.example.appcartaoservidorv1.adapters.FuncionarioListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:onClick="@{() -> clickListener.onClick(funcionario)}">
+
+        <ImageView
+            android:id="@+id/Image"
+            android:layout_width="34dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:gravity="center"
+            android:src="@drawable/icon_person"
+            app:layout_constraintBottom_toBottomOf="@+id/Status"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Icon" />
+
+        <TextView
+            android:id="@+id/Nome"
+            style="@style/ti_NomeVendedor"
+            android:layout_marginStart="15dp"
+            app:layout_constraintEnd_toStartOf="@+id/Status"
+            app:layout_constraintStart_toEndOf="@+id/Image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Fulano da Silva" />
+
+        <TextView
+            android:id="@+id/Matricula"
+            style="@style/ti_Valor"
+            app:layout_constraintEnd_toEndOf="@+id/Nome"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/Nome"
+            app:layout_constraintTop_toBottomOf="@+id/Nome"
+            tools:text="00000000001" />
+
+        <TextView
+            android:id="@+id/Status"
+            style="@style/ti_Data"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/Matricula"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/Nome"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Ativo" />
+
+        <View
+            android:id="@+id/linhaAmarela"
+            style="@style/ti_Linha"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Status" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
