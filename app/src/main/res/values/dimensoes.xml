@@ -54,6 +54,15 @@
     <!--    Animações (an_)   -->
     <dimen name="an_duration">800</dimen>
 
+    <!--    Animações (an_)   -->
+    <dimen name="btn_corpo_largura">35dp</dimen>
+    <dimen name="btn_corpo_altura">35dp</dimen>
+
+    <dimen name="btn_cabeça_largura">50dp</dimen>
+    <dimen name="btn_cabeça_altura">50dp</dimen>
+
+    <dimen name="btn_cabeça_margem">-31dp</dimen>
+
 
 
 

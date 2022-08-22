@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -75,7 +74,7 @@ class HistoricovendasFragment : BaseFragment() {
                     if (!viewModel.loading) {
                         if (visibleItemCount + pastVisiblesItems >= totalItemCount) {
                             viewModel.loading = true
-                            viewModel.HistoricoDeVendas()
+                            viewModel.historicoDeVendas()
                         }
                     }
                 }
@@ -100,6 +99,13 @@ class HistoricovendasFragment : BaseFragment() {
         // Configura o ciclo de vida
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+
+        viewModel.reloadList()
     }
 
     private fun estadoCarregando() {

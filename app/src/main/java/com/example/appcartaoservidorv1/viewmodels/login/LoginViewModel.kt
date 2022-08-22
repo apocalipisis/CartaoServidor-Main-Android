@@ -31,7 +31,6 @@ class LoginViewModel : ViewModel() {
     val destino: LiveData<String>
         get() = _destino
 
-
     // Matricula digitada pelo usuario
     var matricula = MutableLiveData<String>()
 

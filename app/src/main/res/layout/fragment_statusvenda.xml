@@ -86,7 +86,7 @@
             android:id="@+id/btnHome"
             style="@style/ImageBtnStyle"
             android:layout_marginBottom="40dp"
-            android:drawableTop="@drawable/btn_home"
+            android:drawableTop="@drawable/selector_home"
             android:text="Pagina principal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

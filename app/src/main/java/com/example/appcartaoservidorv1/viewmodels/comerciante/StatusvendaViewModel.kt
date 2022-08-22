@@ -57,6 +57,7 @@ class StatusvendaViewModel(
                 response = myAndroidApi.retrofitService.InserirVenda(
                     matricula,
                     matriculaComerciante,
+                    matriculaComerciante,
                     valor.toString(),
                     senha,
                     token,
@@ -70,11 +71,13 @@ class StatusvendaViewModel(
                 else {
                     if (!response.bancoDeDadosOk){
                         sucessResultMotivo(false, "Venda não inserida", "Problemas no servidor, tente novamente")
+                    } else if (!response.prefeituraAtivo){
+                        sucessResultMotivo(false, "Venda não inserida", "O serviço prestado a essa prefeitura está inativo no momento")
                     } else if (!response.valorValido){
                         sucessResultMotivo(false, "Venda não inserida", "Valor Inválido")
                     } else if (!response.servidorExiste){
                         sucessResultMotivo(false, "Venda não inserida", "Servidor não Existe")
-                    }else if (!response.senhaCorreta){
+                    } else if (!response.senhaCorreta){
                         sucessResultMotivo(false, "Venda não inserida", "Senha Incorreta")
                     } else if (!response.servidorAtivo){
                         sucessResultMotivo(false, "Venda não inserida", "Servidor Inativo")

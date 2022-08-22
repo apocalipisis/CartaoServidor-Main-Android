@@ -80,7 +80,7 @@ class ExtratoservidorAdapter(val clickListener: Transacao_Listener) :
 
         fun bind(item: Transacao, clickListener: Transacao_Listener) {
             binding.transacao = item
-            binding.NomeVendedor.text = item.NomeVendedor
+            binding.NomeComerciante.text = item.NomeComerciante
             binding.Valor.text = formatSaldo(item.Valor) + " R$"
             binding.Data.text = formatData(item.DataVenda)
             binding.clickListener = clickListener

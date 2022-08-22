@@ -67,6 +67,16 @@ class ComercianteFragment : BaseFragment() {
             }
         }
 
+
+        // ClickListener para o botão funcionarios
+        binding.btnFuncionarios.setOnClickListener {
+            if (isNetworkAvailable(appContext)) {
+                fromComercianteToFuncionarios(this, args.matricula, args.token)
+            } else {
+                goToNointernetpage(binding.root)
+            }
+        }
+
         // ClickListener para o botão informações
         binding.btnInfo.setOnClickListener {
             fromComercianteToInfo(
@@ -82,6 +92,8 @@ class ComercianteFragment : BaseFragment() {
 
         // Configura o btn sair
         binding.btnSair.setOnClickListener { fromComercianteToLogin(this) }
+
+
 
         // Coloca a barra de atualização como visivel
         viewModel.status.observe(viewLifecycleOwner) { status ->

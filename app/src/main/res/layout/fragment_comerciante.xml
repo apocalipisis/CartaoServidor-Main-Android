@@ -65,7 +65,7 @@
         <Button
             android:id="@+id/btnVender"
             style="@style/ImageBtnStyle"
-            android:layout_marginTop="-30dp"
+            android:layout_marginTop="@dimen/btn_cabeça_margem"
             android:drawableTop="@drawable/btn_add_circle"
             android:text="@string/vender"
             app:layout_constraintEnd_toEndOf="parent"
@@ -85,7 +85,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
             app:layout_constraintVertical_bias="0.27">
-
 
             <TextView
                 android:id="@+id/faturamento"
@@ -111,7 +110,6 @@
                 android:layout_gravity="center"
                 style="@style/ProgressBarStyle"
                 android:visibility="gone"/>
-
         </LinearLayout>
 
         <TextView
@@ -133,10 +131,19 @@
             style="@style/ImageBtnStyle"
             android:drawableTop="@drawable/btn_monetization_on"
             android:layout_marginBottom="40dp"
-            android:text="@string/historico_vendas"
+            android:text="@string/vendas"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnInfo"
+            app:layout_constraintEnd_toStartOf="@+id/btnFuncionarios"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btnFuncionarios"
+            style="@style/ImageBtnStyle"
+            android:drawableTop="@drawable/btn_account_box"
+            android:text="@string/colaboradores"
+            app:layout_constraintEnd_toStartOf="@+id/btnInfo"
+            app:layout_constraintStart_toEndOf="@+id/btnHistorico"
+            app:layout_constraintTop_toTopOf="@+id/btnHistorico" />
 
         <Button
             android:id="@+id/btnInfo"
@@ -144,7 +151,7 @@
             android:drawableTop="@drawable/btn_info"
             android:text="@string/info"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btnHistorico"
+            app:layout_constraintStart_toEndOf="@+id/btnFuncionarios"
             app:layout_constraintTop_toTopOf="@+id/btnHistorico" />
 
         <Button

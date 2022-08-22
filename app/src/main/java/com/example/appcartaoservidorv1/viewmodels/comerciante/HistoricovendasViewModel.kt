@@ -1,7 +1,7 @@
 package com.example.appcartaoservidorv1.viewmodels.comerciante
 
-import android.util.Log
 import androidx.lifecycle.*
+import com.example.appcartaoservidorv1.models.Gerente
 import com.example.appcartaoservidorv1.models.Transacao
 import com.example.appcartaoservidorv1.services.myAndroidApi
 import com.example.appcartaoservidorv1.viewmodels.servidor.ServidorViewModel
@@ -52,15 +52,13 @@ class HistoricovendasViewModel(val matricula: String, val token: String) :
 
     init {
         _transacoes.value = listOf()
-        HistoricoDeVendas()
     }
 
-    fun HistoricoDeVendas() {
+    fun historicoDeVendas() {
         _status.value = ServidorViewModel.ApiStatus.LOADING
         viewModelScope.launch {
             try {
                 response = myAndroidApi.retrofitService.NTransacoesComerciante(matricula, nConsulta, token)
-                Log.i("Teste",response.toString())
                 _transacoes.value =
                     _transacoes.value?.plus(response.sortedByDescending { it.DataVenda.time })
                 if (response.isNotEmpty()) {
@@ -70,7 +68,6 @@ class HistoricovendasViewModel(val matricula: String, val token: String) :
                 _status.value = ServidorViewModel.ApiStatus.DONE
 
             } catch (e: Exception) {
-                Log.i("Teste",e.toString())
                 _mensagemAPI.value = "Problemas no servidor, tente novamente"
                 loading = false
                 _status.value = ServidorViewModel.ApiStatus.ERROR
@@ -78,16 +75,25 @@ class HistoricovendasViewModel(val matricula: String, val token: String) :
         }
     }
 
+    fun reloadList() {
+        nConsulta = 0
+
+        val list: List<Transacao> = listOf()
+        _transacoes.value = list
+
+        historicoDeVendas()
+    }
+
 }
 
 // Configura a factory do ViewModel (Usada para receber os parametros passados para o viewmodel)
 class HistoricovendasViewModelFactory(
-    private val matricula: String,
+    private val matriculaMae: String,
     private val token: String,
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(HistoricovendasViewModel::class.java)) {
-            return HistoricovendasViewModel(matricula, token) as T
+            return HistoricovendasViewModel(matriculaMae, token) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

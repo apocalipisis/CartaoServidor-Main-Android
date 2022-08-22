@@ -127,7 +127,6 @@
             app:layout_constraintTop_toBottomOf="@+id/Saldo"
             tools:text="Saldo disponivel em junho"/>
 
-
         <Button
             android:id="@+id/btnExtrato"
             style="@style/ImageBtnStyle"
@@ -135,8 +134,17 @@
             android:layout_marginBottom="40dp"
             android:text="@string/extrato"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnInfo"
+            app:layout_constraintEnd_toStartOf="@+id/btnFuncionarios"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btnFuncionarios"
+            style="@style/ImageBtnStyle"
+            android:drawableTop="@drawable/btn_credit_card"
+            android:text="@string/cartões"
+            app:layout_constraintEnd_toStartOf="@+id/btnInfo"
+            app:layout_constraintStart_toEndOf="@+id/btnExtrato"
+            app:layout_constraintTop_toTopOf="@+id/btnExtrato" />
 
         <Button
             android:id="@+id/btnInfo"
@@ -144,8 +152,10 @@
             android:drawableTop="@drawable/btn_info"
             android:text="@string/info"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btnExtrato"
+            app:layout_constraintStart_toEndOf="@+id/btnFuncionarios"
             app:layout_constraintTop_toTopOf="@+id/btnExtrato" />
+
+
 
         <Button
             android:id="@+id/btnRefresh"

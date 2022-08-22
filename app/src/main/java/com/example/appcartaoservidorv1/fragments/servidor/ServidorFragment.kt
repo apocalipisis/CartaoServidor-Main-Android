@@ -75,6 +75,8 @@ class ServidorFragment : BaseFragment() {
             )
         }
 
+        viewModel.consultaServidor(args.matricula)
+
         // Coloca a barra de atualização como visivel
         viewModel.status.observe(
             viewLifecycleOwner
@@ -91,8 +93,6 @@ class ServidorFragment : BaseFragment() {
                 }
             }
         }
-
-        Log.i("Token",viewModel.token)
 
         // Configura o ciclo de vida
         binding.lifecycleOwner = viewLifecycleOwner

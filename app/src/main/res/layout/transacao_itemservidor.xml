@@ -24,14 +24,14 @@
             android:layout_height="0dp"
             android:layout_marginStart="10dp"
             android:gravity="center"
-            android:src="@drawable/icon_credit_card"
+            android:src="@drawable/icon_shopping_cart"
             app:layout_constraintBottom_toBottomOf="@+id/Valor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Icon" />
 
         <TextView
-            android:id="@+id/NomeVendedor"
+            android:id="@+id/NomeComerciante"
             style="@style/ti_NomeVendedor"
             android:layout_marginStart="15dp"
             app:layout_constraintEnd_toStartOf="@+id/Data"
@@ -42,10 +42,10 @@
         <TextView
             android:id="@+id/Valor"
             style="@style/ti_Valor"
-            app:layout_constraintEnd_toEndOf="@+id/NomeVendedor"
+            app:layout_constraintEnd_toEndOf="@+id/NomeComerciante"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/NomeVendedor"
-            app:layout_constraintTop_toBottomOf="@+id/NomeVendedor"
+            app:layout_constraintStart_toStartOf="@+id/NomeComerciante"
+            app:layout_constraintTop_toBottomOf="@+id/NomeComerciante"
             tools:text="20.00R$" />
 
         <TextView
@@ -55,7 +55,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/Valor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/NomeVendedor"
+            app:layout_constraintStart_toEndOf="@+id/NomeComerciante"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="20/10/2022" />
 

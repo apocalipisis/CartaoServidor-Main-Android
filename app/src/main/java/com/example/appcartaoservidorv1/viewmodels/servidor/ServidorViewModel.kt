@@ -35,7 +35,7 @@ class ServidorViewModel(val matricula: String, val nome: String, val token: Stri
 
     init {
         _descricaoSaldo.value = "Saldo Disponivel em ${dataEmMes(data)}"
-        consultaServidor(matricula)
+//        consultaServidor(matricula)
     }
 
     // Consulta a api
