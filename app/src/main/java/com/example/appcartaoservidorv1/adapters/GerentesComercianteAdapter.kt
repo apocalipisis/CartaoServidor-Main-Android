@@ -99,28 +99,3 @@ class GerentesComercianteAdapter (val clickListener: GerenteListener) :
 }
 
 
-class GerenteDiffCallback : DiffUtil.ItemCallback<GerenteDados>() {
-    override fun areItemsTheSame(oldItem: GerenteDados, newItem: GerenteDados): Boolean {
-        return oldItem.id == newItem.id
-    }
-
-    override fun areContentsTheSame(oldItem: GerenteDados, newItem: GerenteDados): Boolean {
-        return oldItem == newItem
-    }
-}
-
-sealed class GerenteDados {
-    abstract val id: Long
-
-    data class GerenteItem(val gerente: Gerente) : GerenteDados() {
-        override val id = gerente.Id
-    }
-
-    object Header : GerenteDados() {
-        override val id = Long.MIN_VALUE
-    }
-}
-
-class GerenteListener(val clickListener: (nGerente: Gerente) -> Unit) {
-    fun onClick(gerente: Gerente) = clickListener(gerente)
-}

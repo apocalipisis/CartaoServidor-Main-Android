@@ -6,14 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.appcartaoservidorv1.*
-import com.example.appcartaoservidorv1.services.utilidades.isNetworkAvailable
+import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.databinding.FragmentStatusvendaBinding
 import com.example.appcartaoservidorv1.services.utilidades.BaseFragment
 import com.example.appcartaoservidorv1.services.utilidades.fromStatusvendaToComerciante
-import com.example.appcartaoservidorv1.services.utilidades.goToNointernetstatusvendapage
 import com.example.appcartaoservidorv1.viewmodels.comerciante.StatusvendaViewModel
 import com.example.appcartaoservidorv1.viewmodels.comerciante.StatusvendaViewModelFactory
 
@@ -54,21 +51,12 @@ class StatusvendaFragment : BaseFragment() {
         val appContext = this.requireContext()
 
         binding.btnHome.setOnClickListener {
-            if (isNetworkAvailable(appContext)) {
-                fromStatusvendaToComerciante(
-                    fragment,
-                    args.nomeComerciante,
-                    viewModel.matriculaComerciante,
-                    viewModel.token
-                )
-            } else {
-                goToNointernetstatusvendapage(
-                    fragment,
-                    args.nomeComerciante,
-                    viewModel.matriculaComerciante,
-                    viewModel.token
-                )
-            }
+            fromStatusvendaToComerciante(
+                fragment,
+                args.nomeComerciante,
+                viewModel.matriculaComerciante,
+                viewModel.token
+            )
         }
 
         // Coloca a barra de atualização como visivel
@@ -96,21 +84,12 @@ class StatusvendaFragment : BaseFragment() {
         // Configura o botão de voltar para ao pressionar voltar para a página login
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if (isNetworkAvailable(appContext)) {
-                    fromStatusvendaToComerciante(
-                        fragment,
-                        args.nomeComerciante,
-                        viewModel.matriculaComerciante,
-                        viewModel.token
-                    )
-                } else {
-                    goToNointernetstatusvendapage(
-                        fragment,
-                        args.nomeComerciante,
-                        viewModel.matriculaComerciante,
-                        viewModel.token
-                    )
-                }
+                fromStatusvendaToComerciante(
+                    fragment,
+                    args.nomeComerciante,
+                    viewModel.matriculaComerciante,
+                    viewModel.token
+                )
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(

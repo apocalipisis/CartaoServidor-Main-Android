@@ -18,7 +18,7 @@
         <TextView
             android:id="@+id/textView3"
             style="@style/textoTituloBar"
-            android:text="@string/inserir_valor"
+            android:text="@string/Preço"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/digite_o_valor_da_venda"
+            android:text="@string/digitePreço"
             android:textColor="?attr/colorOnSecondary"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"

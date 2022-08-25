@@ -50,15 +50,11 @@ class ServidorFragment : BaseFragment() {
         val appContext = this.requireContext()
         // ClickListener para o botão extrato
         binding.btnExtrato.setOnClickListener {
-            if (isNetworkAvailable(appContext)) {
-                fromServidorToExtrato(
-                    this,
-                    viewModel.matricula,
-                    viewModel.token,
-                )
-            } else {
-                goToNointernetpage(binding.root)
-            }
+            fromServidorToExtrato(
+                this,
+                viewModel.matricula,
+                viewModel.token,
+            )
         }
 
         // ClickListener para o botão informações
@@ -98,7 +94,6 @@ class ServidorFragment : BaseFragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
-
 
 
     // Configuração da View para quando tiver carregando a resposta

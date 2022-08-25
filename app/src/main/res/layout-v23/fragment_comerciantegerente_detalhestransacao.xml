@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.appcartaoservidorv1.viewmodels.comerciantegerente.ComeciantegerenteDetalhestransacaoViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView3"
+            style="@style/textoTituloBar"
+            android:text="@string/detalhevenda"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- A CardView that contains a TextView -->
+        <ImageView
+            android:id="@+id/Image"
+            style="@style/imagemTituloBar"
+            android:src="@drawable/icon_shopping_cart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            android:scrollbars="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Image">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/CardCliente"
+                    style="@style/Card"
+                    android:layout_marginHorizontal="@dimen/marginHorizontalCard"
+                    android:layout_marginVertical="@dimen/marginVerticalCard"
+                    app:cardCornerRadius="@dimen/cornerRadiusCard"
+                    app:cardElevation="@dimen/elevationCard"
+                    app:layout_constraintBottom_toTopOf="@id/CardDetalhes"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/paddingCard">
+
+                        <TextView
+                            android:id="@+id/ComercianteLabel"
+                            style="@style/CardTitulo"
+                            android:text="@string/Cliente"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:id="@+id/linhaComerciante"
+                            style="@style/CardLiha"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/ComercianteLabel" />
+                        <!-- ________________________________________________________ -->
+
+                        <TextView
+                            android:id="@+id/labelNomeComerciante"
+                            style="@style/CardLabel"
+                            android:text="@string/nome"
+                            app:layout_constraintEnd_toStartOf="@+id/labelMatriculaComerciante"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/linhaComerciante" />
+
+                        <TextView
+                            android:id="@+id/labelMatriculaComerciante"
+                            style="@style/CardLabel"
+                            android:text="@string/is_matricula"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/labelNomeComerciante"
+                            app:layout_constraintTop_toBottomOf="@+id/linhaComerciante" />
+
+                        <TextView
+                            android:id="@+id/NomeComerciante"
+                            style="@style/CardItem"
+                            android:text="@{viewModel.transacao.nomeComprador}"
+                            app:layout_constraintEnd_toStartOf="@+id/labelMatriculaComerciante"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/labelNomeComerciante" />
+
+                        <TextView
+                            android:id="@+id/MatriculaComerciante"
+                            style="@style/CardItem"
+                            android:text="@{viewModel.transacao.matriculaComprador}"
+                            app:layout_constraintBottom_toBottomOf="@+id/NomeComerciante"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/labelNomeComerciante"
+                            app:layout_constraintTop_toBottomOf="@+id/labelMatriculaComerciante" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/CardDetalhes"
+                    style="@style/Card"
+                    android:layout_marginHorizontal="@dimen/marginHorizontalCard"
+                    android:layout_marginVertical="@dimen/marginVerticalCard"
+                    app:cardCornerRadius="@dimen/cornerRadiusCard"
+                    app:cardElevation="@dimen/elevationCard"
+                    app:layout_constraintBottom_toTopOf="@id/CardVendedor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/CardCliente">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/paddingCard">
+
+                        <TextView
+                            android:id="@+id/Detalhes"
+                            style="@style/CardTitulo"
+                            android:text="@string/detalhes"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:id="@+id/linhaVenda"
+                            style="@style/CardLiha"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/Detalhes" />
+
+
+                        <TextView
+                            android:id="@+id/labelValor"
+                            style="@style/CardLabel"
+                            android:text="@string/valor"
+                            app:layout_constraintEnd_toStartOf="@+id/labelData"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/linhaVenda" />
+
+                        <TextView
+                            android:id="@+id/labelData"
+                            style="@style/CardLabel"
+                            android:text="@string/data"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/labelValor"
+                            app:layout_constraintTop_toBottomOf="@id/linhaVenda" />
+
+                        <TextView
+                            android:id="@+id/Valor"
+                            style="@style/is_SubItem"
+                            android:gravity="center"
+                            android:text="@{viewModel.valor}"
+                            app:layout_constraintEnd_toStartOf="@+id/labelData"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/labelValor" />
+
+                        <TextView
+                            android:id="@+id/Data"
+                            style="@style/is_SubItem"
+                            android:gravity="center"
+                            android:text="@{viewModel.Data}"
+                            app:layout_constraintBottom_toBottomOf="@+id/Valor"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/labelValor"
+                            app:layout_constraintTop_toBottomOf="@+id/labelData" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/CardVendedor"
+                    style="@style/Card"
+                    android:layout_marginHorizontal="@dimen/marginHorizontalCard"
+                    android:layout_marginVertical="@dimen/marginVerticalCard"
+                    app:cardCornerRadius="@dimen/cornerRadiusCard"
+                    app:cardElevation="@dimen/elevationCard"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/CardDetalhes">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/paddingCard">
+
+                        <TextView
+                            android:id="@+id/VendedorLabel"
+                            style="@style/CardTitulo"
+                            android:text="@string/Vendedor"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:id="@+id/linhaVendedor"
+                            style="@style/CardLiha"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/VendedorLabel" />
+                        <!-- ________________________________________________________ -->
+
+                        <TextView
+                            android:id="@+id/labelNomeVendedor"
+                            style="@style/CardLabel"
+                            android:text="@string/nome"
+                            app:layout_constraintEnd_toStartOf="@+id/labelMatriculaVendedor"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/linhaVendedor" />
+
+                        <TextView
+                            android:id="@+id/labelMatriculaVendedor"
+                            style="@style/CardLabel"
+                            android:text="@string/is_matricula"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/labelNomeVendedor"
+                            app:layout_constraintTop_toBottomOf="@+id/linhaVendedor" />
+
+                        <TextView
+                            android:id="@+id/NomeVendedor"
+                            style="@style/CardItem"
+                            android:text="@{viewModel.transacao.nomeVendedor}"
+                            app:layout_constraintEnd_toStartOf="@+id/labelMatriculaVendedor"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/labelNomeVendedor" />
+
+                        <TextView
+                            android:id="@+id/MatriculaVendedor"
+                            style="@style/CardItem"
+                            android:text="@{viewModel.transacao.matriculaVendedor}"
+                            app:layout_constraintBottom_toBottomOf="@+id/NomeVendedor"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/labelNomeVendedor"
+                            app:layout_constraintTop_toBottomOf="@+id/labelMatriculaVendedor" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

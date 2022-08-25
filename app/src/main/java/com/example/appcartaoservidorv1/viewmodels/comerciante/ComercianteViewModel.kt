@@ -2,10 +2,10 @@ package com.example.appcartaoservidorv1.viewmodels.comerciante
 
 import android.util.Log
 import androidx.lifecycle.*
+import com.example.appcartaoservidorv1.models.DTO_Comerciante
+import com.example.appcartaoservidorv1.services.api.APIComerciante
 import com.example.appcartaoservidorv1.services.utilidades.dataEmMes
 import com.example.appcartaoservidorv1.services.utilidades.formatDinheiro
-import com.example.appcartaoservidorv1.models.DTO_Comerciante
-import com.example.appcartaoservidorv1.services.myAndroidApi
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -37,16 +37,16 @@ class ComercianteViewModel(val matricula: String, val nome: String, val token: S
 
     init {
         _descricaoFaturamento.value = "Faturamento no mês de ${dataEmMes(data)}"
-        ConsultaComerciante(matricula)
+        consultaComerciante(matricula)
 //        response.matricula = "00002"
     }
 
     // Consulta a api
-    fun ConsultaComerciante(matricula: String) {
+    fun consultaComerciante(matricula: String) {
         _status.value = ApiStatus.LOADING
         viewModelScope.launch {
             try {
-                response = myAndroidApi.retrofitService.consultaComerciante(matricula, token)
+                response = APIComerciante.APIComercianteService.consultaComerciante(matricula, token)
 //                _faturamento.value = formatDinheiro(response.faturamento)
                 _faturamento.value = formatDinheiro(response.faturamento)
                 _status.value = ApiStatus.DONE

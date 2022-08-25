@@ -1,7 +1,6 @@
 package com.example.appcartaoservidorv1.fragments.comerciante
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,39 +41,26 @@ class ComercianteFragment : BaseFragment() {
 
         // ClickListener para o botão adicionarVenda
         binding.btnVender.setOnClickListener {
-            if (isNetworkAvailable(appContext)) {
-                fromComercianteToInserirvalor(
-                    this,
-                    viewModel.nome,
-                    viewModel.matricula,
-                    viewModel.token
-                )
-            } else {
-                goToNointernetpage(binding.root)
-            }
+            fromComercianteToInserirvalor(
+                this,
+                viewModel.nome,
+                viewModel.matricula,
+                viewModel.token
+            )
         }
 
         // ClickListener para o botão Historico
         binding.btnHistorico.setOnClickListener {
-            if (isNetworkAvailable(appContext)) {
-                fromComercianteToHistoricovendas(
-                    this,
-                    viewModel.matricula,
-                    viewModel.token
-                )
-            } else {
-                goToNointernetpage(binding.root)
-            }
+            fromComercianteToHistoricovendas(
+                this,
+                viewModel.matricula,
+                viewModel.token
+            )
         }
-
 
         // ClickListener para o botão funcionarios
         binding.btnFuncionarios.setOnClickListener {
-            if (isNetworkAvailable(appContext)) {
-                fromComercianteToFuncionarios(this, args.matricula, args.token)
-            } else {
-                goToNointernetpage(binding.root)
-            }
+            fromComercianteToFuncionarios(this, args.matricula, args.token)
         }
 
         // ClickListener para o botão informações
@@ -92,7 +78,6 @@ class ComercianteFragment : BaseFragment() {
 
         // Configura o btn sair
         binding.btnSair.setOnClickListener { fromComercianteToLogin(this) }
-
 
 
         // Coloca a barra de atualização como visivel
@@ -113,6 +98,11 @@ class ComercianteFragment : BaseFragment() {
         // Configura o ciclo de vida
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.consultaComerciante(viewModel.matricula)
     }
 
     // Configuração da View para quando tiver carregando a resposta

@@ -2,7 +2,7 @@ package com.example.appcartaoservidorv1.viewmodels.comerciante
 
 import androidx.lifecycle.*
 import com.example.appcartaoservidorv1.models.Gerente
-import com.example.appcartaoservidorv1.services.myAndroidApi
+import com.example.appcartaoservidorv1.services.api.APIComerciante
 import com.example.appcartaoservidorv1.viewmodels.servidor.ServidorViewModel
 import kotlinx.coroutines.launch
 
@@ -58,7 +58,7 @@ class GerentecomercianteViewModel(val matricula: String, val token: String) : Vi
         viewModelScope.launch {
             try {
                 response =
-                    myAndroidApi.retrofitService.nConsultarGerentes(matricula, nConsulta, token)
+                    APIComerciante.APIComercianteService.nConsultarGerentesComerciante(matricula, nConsulta, token)
                 _gerentes.value = _gerentes.value?.plus(response)
                 if (response.isNotEmpty()) {
                     loading = false

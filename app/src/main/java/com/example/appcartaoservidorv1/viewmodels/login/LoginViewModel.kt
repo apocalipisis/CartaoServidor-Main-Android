@@ -3,12 +3,13 @@ package com.example.appcartaoservidorv1.viewmodels.login
 import androidx.lifecycle.*
 import com.example.appcartaoservidorv1.Constantes
 import com.example.appcartaoservidorv1.models.DTO_Login
-import com.example.appcartaoservidorv1.services.myAndroidApi
+import com.example.appcartaoservidorv1.services.APIAndroid
 import kotlinx.coroutines.launch
 
 class LoginViewModel : ViewModel() {
     // Resposta da API
-    private lateinit var response:DTO_Login
+    private lateinit var response: DTO_Login
+
     // Status da consulta a API
     enum class ApiStatus { LOADING, ERROR, DONE }
 
@@ -38,17 +39,17 @@ class LoginViewModel : ViewModel() {
     var senha = MutableLiveData<String>()
 
     //Nome do usuário
-    var nome : String = ""
+    var nome: String = ""
 
     //Token do usuário
-    var token : String = ""
+    var token: String = ""
 
-    fun getApiResponse(matricula: String, senha: String)  {
+    fun getApiResponse(matricula: String, senha: String) {
 
         _status.value = ApiStatus.LOADING
         viewModelScope.launch {
             try {
-                response = myAndroidApi.retrofitService.verificaLogin(
+                response = APIAndroid.APIAndroidService.verificaLogin(
                     matricula,
                     senha,
                 )
@@ -56,13 +57,12 @@ class LoginViewModel : ViewModel() {
                 _status.value = ApiStatus.DONE
             } catch (e: Exception) {
                 _motivoLoginFail.value = Constantes.Erro1
-//                _motivoLoginFail.value = e.toString()
                 _status.value = ApiStatus.ERROR
             }
         }
     }
 
-    private fun analisaResposta(response:DTO_Login) {
+    private fun analisaResposta(response: DTO_Login) {
         if (!response.bancoDeDadosOk) {
             _loginSucess.value = false
             _motivoLoginFail.value = Constantes.Erro1
@@ -89,9 +89,18 @@ class LoginViewModel : ViewModel() {
         }
 
         when (response.tipoUsuario) {
-            "Servidor" -> {_destino.value = "Servidor"}
-            "Comerciante" -> {_destino.value = "Comerciante"}
-            else -> {_destino.value = "NãoAutorizado"}
+            "Servidor" -> {
+                _destino.value = "Servidor"
+            }
+            "Comerciante" -> {
+                _destino.value = "Comerciante"
+            }
+            "ComercianteGerente" -> {
+                _destino.value = "ComercianteGerente"
+            }
+            else -> {
+                _destino.value = "NãoAutorizado"
+            }
         }
     }
 

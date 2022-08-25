@@ -99,6 +99,18 @@ class LoginFragment : BaseFragment() {
                         viewModel.token
                     )
                 }
+                "ComercianteGerente" -> {
+                    salvarPreferencias(applicationContext, arquivoSharedPreferences)
+
+                    App.iniciarSessao()
+
+                    fromLoginToComerciantegerente(
+                        this,
+                        viewModel.nome,
+                        viewModel.matricula.value.toString(),
+                        viewModel.token
+                    )
+                }
                 "NãoAutorizado" -> {
                     fromLoginToUsuarionaopermitido(this)
                 }
@@ -144,23 +156,19 @@ class LoginFragment : BaseFragment() {
         // ClickListener para o botão login
         binding.btnEntrar.setOnClickListener {
             binding.Mensagem.visibility = View.INVISIBLE
-            if (isNetworkAvailable(this.requireContext())) {
-                when (biometriaOn) {
-                    true -> {
-                        viewModel.matricula.value = matriculaBiometria
-                        viewModel.senha.value = senhaBiometria
-                        biometricPrompt.authenticate(promptInfo)
-                    }
-                    false -> {
-                        viewModel.getApiResponse(
-                            viewModel.matricula.value.toString(),
-                            viewModel.senha.value.toString()
-                        )
-
-                    }
+            when (biometriaOn) {
+                true -> {
+                    viewModel.matricula.value = matriculaBiometria
+                    viewModel.senha.value = senhaBiometria
+                    biometricPrompt.authenticate(promptInfo)
                 }
-            } else {
-                goToNointernetpage(binding.root)
+                false -> {
+                    viewModel.getApiResponse(
+                        viewModel.matricula.value.toString(),
+                        viewModel.senha.value.toString()
+                    )
+
+                }
             }
         }
 
@@ -234,12 +242,10 @@ class LoginFragment : BaseFragment() {
         }
 
 
-
         // Ciclo de vida do fragment
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
-
 
 
     // Mostra a barra de loading e esconde os demais campos

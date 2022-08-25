@@ -9,12 +9,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.databinding.FragmentFuncionarioscomercianteBinding
+import com.example.appcartaoservidorv1.services.utilidades.BaseFragment
 import com.example.appcartaoservidorv1.services.utilidades.fromFuncionariosToFuncionario
 import com.example.appcartaoservidorv1.services.utilidades.fromFuncionariosToGerentes
 import com.example.appcartaoservidorv1.viewmodels.comerciante.FuncionarioscomercianteViewModel
 import com.example.appcartaoservidorv1.viewmodels.comerciante.FuncionarioscomercianteViewModelFactory
 
-class FuncionarioscomercianteFragment : Fragment() {
+class FuncionarioscomercianteFragment : BaseFragment() {
     // Variavel responsavel pelo binding
     lateinit var binding: FragmentFuncionarioscomercianteBinding
     lateinit var args: HistoricovendasFragmentArgs

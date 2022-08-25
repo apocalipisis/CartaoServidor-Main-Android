@@ -112,13 +112,19 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/selector_supervisor_account.xml" value="0.2075" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/drawable/teste.xml" value="0.3365" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout-v23/fragment_comerciante.xml" value="0.3625" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout-v23/fragment_comerciantegerente_detalhestransacao.xml" value="0.25" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout-v23/fragment_transacaodetalhes_comerciante.xml" value="0.271875" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout-v23/fragment_transacaodetalhescomerciante.xml" value="0.271875" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout-v23/header_comerciante.xml" value="0.271875" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout-v23/header_comerciantegerente_vendas.xml" value="0.16417272338606242" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout-v23/item_transacaocomerciantegerente.xml" value="0.16417272338606242" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout-v23/transacao_item_comerciante.xml" value="0.271875" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout-v23/transacao_itemcomerciante.xml" value="0.271875" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout-v29/fragment_login.xml" value="0.3625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/activity_main.xml" value="0.15" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/dialog_comerciantegerente_funcionario_criar.xml" value="0.2975630611372381" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/dialog_comerciantegerente_funcionario_deletar.xml" value="0.2975630611372381" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/dialog_comerciantegerente_funcionario_editar.xml" value="0.2975630611372381" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/dialog_criarfuncionariocomerciante.xml" value="0.2975630611372381" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/dialog_criargerentecomerciante.xml" value="0.25" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/dialog_deletarfuncionariocomerciante.xml" value="0.2967079948696024" />
@@ -126,6 +132,17 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/dialog_editarfuncionariocomerciante.xml" value="0.2975630611372381" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/dialog_editargerentecomerciante.xml" value="0.29379485014774165" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_comerciante.xml" value="0.29379485014774165" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_comerciantegerente.xml" value="0.2975630611372381" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_comerciantegerente_funcionario.xml" value="0.2967079948696024" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_comerciantegerente_funcionario_detalhes.xml" value="0.2975630611372381" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_comerciantegerente_funcionarios.xml" value="0.2975630611372381" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_comerciantegerente_historicovendas.xml" value="0.16417272338606242" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_comerciantegerente_info.xml" value="0.24610591900311526" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_comerciantegerente_venda_nointernet.xml" value="0.2975630611372381" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_comerciantegerente_venda_qrcode.xml" value="0.2975630611372381" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_comerciantegerente_venda_senha.xml" value="0.2975630611372381" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_comerciantegerente_venda_status.xml" value="0.2975630611372381" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_comerciantegerente_venda_valor.xml" value="0.2975630611372381" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_compraservidor.xml" value="0.20935792349726776" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_criargerentecomerciante.xml" value="0.24375" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_escolhasfuncionariocomerciante.xml" value="0.25" />
@@ -144,6 +161,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_login.xml" value="0.271875" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_nointernet.xml" value="0.271875" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_nointernet_statusvenda.xml" value="0.271875" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_nointernetstatusvenda.xml" value="0.2975630611372381" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_servidor.xml" value="0.15" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_sessaoexpirada.xml" value="0.15" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AppCartaoServidorV1/app/src/main/res/layout/fragment_statusvenda.xml" value="0.271875" />

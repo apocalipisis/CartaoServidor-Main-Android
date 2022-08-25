@@ -1,10 +1,10 @@
 package com.example.appcartaoservidorv1.viewmodels.servidor
 
 import androidx.lifecycle.*
+import com.example.appcartaoservidorv1.models.DTO_Servidor
+import com.example.appcartaoservidorv1.services.api.APIServidor
 import com.example.appcartaoservidorv1.services.utilidades.dataEmMes
 import com.example.appcartaoservidorv1.services.utilidades.formatDinheiro
-import com.example.appcartaoservidorv1.models.DTO_Servidor
-import com.example.appcartaoservidorv1.services.myAndroidApi
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -43,7 +43,7 @@ class ServidorViewModel(val matricula: String, val nome: String, val token: Stri
         _status.value = ApiStatus.LOADING
         viewModelScope.launch {
             try {
-                response = myAndroidApi.retrofitService.consultaServidor(matricula, token)
+                response = APIServidor.APIServidorService.consultaServidor(matricula, token)
                 _saldo.value = formatDinheiro(response.saldo)
                 _status.value = ApiStatus.DONE
             } catch (e: Exception) {

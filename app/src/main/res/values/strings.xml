@@ -104,12 +104,11 @@
 
     <!--    Pagina sessão expirada    -->
     <string name="sessao_expirada">Sua sessão atingiu o tempo limite, faça login novamente.</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="GerencieUmPerfil">Edite ou delete um perfil já existente</string>
     <string name="CrieUmPerfil">Crie um novo perfil</string>
     <string name="Nome">Nome</string>
-    <string name="Cpf">Cpf</string>
+    <string name="Cpf">CPF</string>
 
     <string name="Salvar">Salvar</string>
     <string name="Deletar">Deletar</string>
@@ -127,5 +126,19 @@
     <string name="deletarGerente">Deletar gerente?</string>
     <string name="deletarFuncionario">Deletar funcionário?</string>
 
+    <string name="Comercio">Comércio</string>
+
+    <string name="CNPJ">CNPJ</string>
+
+    <string name="Gerente">Gerente</string>
+    <string name="Cliente">Cliente</string>
+    <string name="Vendedor">Vendedor</string>
+
+    <string name="Preço">Preço</string>
+    <string name="digitePreço">Digite o preço</string>
+
+    <string name="Confirma">Confirma</string>
+    <string name="Cancela">Cancela</string>
+    <string name="Corrige">Corrige</string>
 
 </resources>

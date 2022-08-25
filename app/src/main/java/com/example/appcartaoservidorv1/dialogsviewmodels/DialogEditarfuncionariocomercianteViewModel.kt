@@ -2,7 +2,7 @@ package com.example.appcartaoservidorv1.dialogsviewmodels
 
 import androidx.lifecycle.*
 import com.example.appcartaoservidorv1.models.auxiliares.ParBoolString
-import com.example.appcartaoservidorv1.services.myAndroidApi
+import com.example.appcartaoservidorv1.services.api.APIComerciante
 import kotlinx.coroutines.launch
 
 class DialogEditarfuncionariocomercianteViewModel(val matricula: String, val token: String) : ViewModel() {
@@ -28,7 +28,7 @@ class DialogEditarfuncionariocomercianteViewModel(val matricula: String, val tok
         viewModelScope.launch {
             try {
                 _response.value =
-                    myAndroidApi.retrofitService.editarFuncionario(
+                    APIComerciante.APIComercianteService.editarFuncionarioComerciante(
                         matricula,
                         isAtivo,
                         token,

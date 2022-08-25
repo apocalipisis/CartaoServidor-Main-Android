@@ -15,13 +15,14 @@ import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.adapters.FuncionarioComercianteAdapter
 import com.example.appcartaoservidorv1.adapters.FuncionarioListener
 import com.example.appcartaoservidorv1.databinding.FragmentFuncionariocomercianteBinding
+import com.example.appcartaoservidorv1.services.utilidades.BaseFragment
 import com.example.appcartaoservidorv1.services.utilidades.fromFuncionarioToCriarFuncionario
 import com.example.appcartaoservidorv1.services.utilidades.fromFuncionarioToDetalhes
 import com.example.appcartaoservidorv1.viewmodels.comerciante.FuncionariocomercianteViewModel
 import com.example.appcartaoservidorv1.viewmodels.comerciante.FuncionariocomercianteViewModelModelFactory
 import com.example.appcartaoservidorv1.viewmodels.servidor.ServidorViewModel
 
-class FuncionariocomercianteFragment : Fragment() {
+class FuncionariocomercianteFragment : BaseFragment() {
     // Variavel responsavel pelo binding
     lateinit var binding: FragmentFuncionariocomercianteBinding
     lateinit var args: HistoricovendasFragmentArgs

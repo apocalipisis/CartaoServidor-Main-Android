@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg_dialog">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.appcartaoservidorv1.dialogsviewmodels.comerciantegerente.DialogComerciantegerenteFuncionarioCriarViewModel" />
+
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <ImageButton
+                android:id="@+id/btnSair"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/icon_close_disabled_small"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btnCriar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="15dp"
+                android:background="@android:color/transparent"
+                android:drawableEnd="@drawable/icon_add"
+                android:text="@string/criar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <LinearLayout
+            android:id="@+id/EstadoNormal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/Nome"
+                style="@style/EntradaDeTextoMedio"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="20dp"
+                android:hint="@string/Nome"
+                android:inputType="text"
+                android:paddingHorizontal="15dp"
+                android:text="@={viewModel.nome}" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="2dp"
+                android:text="@={viewModel.isNomeValido}"
+                android:textAlignment="center"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="13sp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="15dp"
+                android:layout_marginBottom="15dp"
+                android:text="@string/status"
+                android:textAlignment="center" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioAtivo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:checked="true"
+                    android:text="Ativo"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/radioInativo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:text="Inativo"
+                    android:textColor="?attr/colorOnSecondary"
+                    android:textSize="16sp" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/Bar"
+            style="@style/ProgressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/resultados"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="20dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/ImageStatusSucess"
+                style="@style/imagemStatus"
+                android:src="@drawable/icon_check"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/ImageStatusError"
+                style="@style/imagemStatus"
+                android:src="@drawable/icon_close"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/usuarioInserido"
+                style="@style/resultStatus"
+                android:layout_marginTop="5dp"
+                android:text="@string/Sucesso"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/usuarioNaoInserido"
+                style="@style/resultStatus"
+                android:layout_marginTop="15dp"
+                android:text="@string/algoDeuErrado"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/result"
+                style="@style/resultStatus"
+                android:layout_marginVertical="20dp"
+                android:text="@{viewModel.response.S}"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

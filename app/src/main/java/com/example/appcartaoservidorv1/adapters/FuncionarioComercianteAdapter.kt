@@ -101,29 +101,3 @@ class FuncionarioComercianteAdapter(val clickListener: FuncionarioListener) :
 
 }
 
-
-class FuncionarioDiffCallback : DiffUtil.ItemCallback<FuncionarioDados>() {
-    override fun areItemsTheSame(oldItem: FuncionarioDados, newItem: FuncionarioDados): Boolean {
-        return oldItem.id == newItem.id
-    }
-
-    override fun areContentsTheSame(oldItem: FuncionarioDados, newItem: FuncionarioDados): Boolean {
-        return oldItem == newItem
-    }
-}
-
-sealed class FuncionarioDados {
-    abstract val id: Long
-
-    data class FuncionarioItem(val funcionario: Funcionario) : FuncionarioDados() {
-        override val id = funcionario.Id
-    }
-
-    object Header : FuncionarioDados() {
-        override val id = Long.MIN_VALUE
-    }
-}
-
-class FuncionarioListener(val clickListener: (nFuncionario: Funcionario) -> Unit) {
-    fun onClick(funcionario: Funcionario) = clickListener(funcionario)
-}

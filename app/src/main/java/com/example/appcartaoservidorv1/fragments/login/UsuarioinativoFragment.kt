@@ -13,12 +13,13 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.appcartaoservidorv1.Constantes
 import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.databinding.FragmentUsuarioinativoBinding
+import com.example.appcartaoservidorv1.services.utilidades.BaseFragment
 import com.example.appcartaoservidorv1.services.utilidades.fromViewToLogin
 import com.example.appcartaoservidorv1.viewmodels.login.UsuarioinativoViewModel
 import com.example.appcartaoservidorv1.viewmodels.login.UsuarioinativoViewModelFactory
 
 
-class UsuarioinativoFragment : Fragment() {
+class UsuarioinativoFragment : BaseFragment() {
     // Variavel responsavel pelo binding
     lateinit var binding: FragmentUsuarioinativoBinding
     lateinit var args: UsuarioinativoFragmentArgs

@@ -14,13 +14,14 @@ import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.adapters.GerenteListener
 import com.example.appcartaoservidorv1.adapters.GerentesComercianteAdapter
 import com.example.appcartaoservidorv1.databinding.FragmentGerentecomercianteBinding
+import com.example.appcartaoservidorv1.services.utilidades.BaseFragment
 import com.example.appcartaoservidorv1.services.utilidades.fromEscolhasgerentecomercianteToDialog
 import com.example.appcartaoservidorv1.services.utilidades.fromGerenteToDetalhes
 import com.example.appcartaoservidorv1.viewmodels.comerciante.GerentecomercianteViewModel
 import com.example.appcartaoservidorv1.viewmodels.comerciante.GerentecomercianteViewModelFactory
 import com.example.appcartaoservidorv1.viewmodels.servidor.ServidorViewModel
 
-class GerentecomercianteFragment : Fragment() {
+class GerentecomercianteFragment : BaseFragment() {
     // Variavel responsavel pelo binding
     lateinit var binding: FragmentGerentecomercianteBinding
     lateinit var args: HistoricovendasFragmentArgs

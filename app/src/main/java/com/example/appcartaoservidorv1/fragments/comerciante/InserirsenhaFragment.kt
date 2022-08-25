@@ -62,15 +62,11 @@ class InserirsenhaFragment : BaseFragment() {
 
         // ClickListener para o botão avançar
         binding.btnAvancar.setOnClickListener {
-            if (isNetworkAvailable(appContext)) {
-                viewModel.senhaCompleta.value?.let { it1 ->
-                    fromInserirsenhaToStatusvenda(
-                        this, viewModel.valor, viewModel.matricula, viewModel.matriculaComerciante,
-                        it1, viewModel.nomeComerciante, viewModel.token
-                    )
-                }
-            } else {
-                goToNointernetpage(binding.root)
+            viewModel.senhaCompleta.value?.let { it1 ->
+                fromInserirsenhaToStatusvenda(
+                    this, viewModel.valor, viewModel.matricula, viewModel.matriculaComerciante,
+                    it1, viewModel.nomeComerciante, viewModel.token
+                )
             }
         }
 
@@ -82,16 +78,12 @@ class InserirsenhaFragment : BaseFragment() {
 
         // ClickListener para o botão Cancelar
         binding.btnCancela.setOnClickListener {
-            if (isNetworkAvailable(appContext)) {
-                fromInserirsenhaToComerciante(
-                    this,
-                    viewModel.nomeComerciante,
-                    viewModel.matriculaComerciante,
-                    viewModel.token
-                )
-            } else {
-                goToNointernetpage(binding.root)
-            }
+            fromInserirsenhaToComerciante(
+                this,
+                viewModel.nomeComerciante,
+                viewModel.matriculaComerciante,
+                viewModel.token
+            )
         }
 
         // Obserca se a senha contem os 4 digitos e permite avançar

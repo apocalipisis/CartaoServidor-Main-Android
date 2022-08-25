@@ -112,30 +112,3 @@ class ExtratoservidorAdapter(val clickListener: Transacao_Listener) :
     }
 
 }
-
-class TransacaoDiffCallback : DiffUtil.ItemCallback<DataItem>() {
-    override fun areItemsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
-        return oldItem.id == newItem.id
-    }
-
-    override fun areContentsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
-        return oldItem == newItem
-    }
-}
-
-sealed class DataItem {
-    abstract val id: Long
-
-    data class TransacaoItem(val transacao: Transacao) : DataItem() {
-        override val id = transacao.Id
-    }
-
-    object Header : DataItem() {
-        override val id = Long.MIN_VALUE
-    }
-}
-
-class Transacao_Listener(val clickListener: (nTransacao: Transacao) -> Unit) {
-    fun onClick(transacao: Transacao) = clickListener(transacao)
-}
-

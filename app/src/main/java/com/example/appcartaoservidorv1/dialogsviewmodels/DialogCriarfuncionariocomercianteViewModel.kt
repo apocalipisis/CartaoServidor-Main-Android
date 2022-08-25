@@ -1,10 +1,8 @@
 package com.example.appcartaoservidorv1.dialogsviewmodels
 
-import android.util.Log
-import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.*
 import com.example.appcartaoservidorv1.models.auxiliares.ParBoolString
-import com.example.appcartaoservidorv1.services.myAndroidApi
+import com.example.appcartaoservidorv1.services.api.APIComerciante
 import kotlinx.coroutines.launch
 
 class DialogCriarfuncionariocomercianteViewModel(val matricula: String, val token: String) : ViewModel() {
@@ -53,13 +51,12 @@ class DialogCriarfuncionariocomercianteViewModel(val matricula: String, val toke
         viewModelScope.launch {
             try {
                 _response.value =
-                    myAndroidApi.retrofitService.inserirFuncionario(
+                    APIComerciante.APIComercianteService.inserirFuncionarioComerciante(
                         nome,
                         isAtivo,
                         matriculaMae,
                         token
                     )
-                _response.value = ParBoolString(true, "Usuario inserido com Sucesso")
                 _status.value = ApiStatus.DONE
             } catch (e: Exception) {
                 _response.value = ParBoolString(false, "Problemas no servidor, tente novamente")

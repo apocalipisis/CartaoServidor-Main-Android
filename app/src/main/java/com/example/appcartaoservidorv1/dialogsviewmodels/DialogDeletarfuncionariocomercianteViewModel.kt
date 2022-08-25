@@ -2,7 +2,7 @@ package com.example.appcartaoservidorv1.dialogsviewmodels
 
 import androidx.lifecycle.*
 import com.example.appcartaoservidorv1.models.auxiliares.ParBoolString
-import com.example.appcartaoservidorv1.services.myAndroidApi
+import com.example.appcartaoservidorv1.services.api.APIComerciante
 import kotlinx.coroutines.launch
 
 class DialogDeletarfuncionariocomercianteViewModel(val matricula: String, val token: String) :
@@ -31,11 +31,10 @@ class DialogDeletarfuncionariocomercianteViewModel(val matricula: String, val to
         viewModelScope.launch {
             try {
                 _response.value =
-                    myAndroidApi.retrofitService.deletarFuncionario(
+                    APIComerciante.APIComercianteService.deletarFuncionarioComerciante(
                         matricula,
                         token
                     )
-//                _response.value = ParBoolString(true, "Usuario deletado com Sucesso")
                 _status.value = ApiStatus.DONE
             } catch (e: Exception) {
                 _response.value = ParBoolString(false, "Problemas no servidor, tente novamente")

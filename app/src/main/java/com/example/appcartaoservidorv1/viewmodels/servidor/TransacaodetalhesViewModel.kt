@@ -13,15 +13,17 @@ import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
-class TransacaodetalhesViewModel(val transacao: Transacao): ViewModel() {
+class TransacaodetalhesViewModel(val transacao: Transacao) : ViewModel() {
     // Variavel usada para foramtar o valor
     private val _valor = MutableLiveData<String>()
     val valor: LiveData<String>
         get() = _valor
+
     // Variavel usada para formatar a data em string
     private val _data = MutableLiveData<String>()
     val Data: LiveData<String>
         get() = _data
+
     init {
         _valor.value = formatDinheiro(transacao.Valor) + " R$"
         _data.value = dataCompletaMesExtenso(transacao.DataVenda)
@@ -29,7 +31,8 @@ class TransacaodetalhesViewModel(val transacao: Transacao): ViewModel() {
 }
 
 // Configura a factory do ViewModel (Usada para receber os parametros passados para o viewmodel)
-class TransacaodetalhesViewModelFactory(private val transacao: Transacao) : ViewModelProvider.Factory {
+class TransacaodetalhesViewModelFactory(private val transacao: Transacao) :
+    ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(TransacaodetalhesViewModel::class.java)) {
             return TransacaodetalhesViewModel(transacao) as T

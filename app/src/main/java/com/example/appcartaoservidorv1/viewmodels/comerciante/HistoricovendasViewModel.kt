@@ -1,9 +1,8 @@
 package com.example.appcartaoservidorv1.viewmodels.comerciante
 
 import androidx.lifecycle.*
-import com.example.appcartaoservidorv1.models.Gerente
 import com.example.appcartaoservidorv1.models.Transacao
-import com.example.appcartaoservidorv1.services.myAndroidApi
+import com.example.appcartaoservidorv1.services.api.APIComerciante
 import com.example.appcartaoservidorv1.viewmodels.servidor.ServidorViewModel
 import kotlinx.coroutines.launch
 
@@ -58,7 +57,7 @@ class HistoricovendasViewModel(val matricula: String, val token: String) :
         _status.value = ServidorViewModel.ApiStatus.LOADING
         viewModelScope.launch {
             try {
-                response = myAndroidApi.retrofitService.NTransacoesComerciante(matricula, nConsulta, token)
+                response = APIComerciante.APIComercianteService.nTransacoesComerciante(matricula, nConsulta, token)
                 _transacoes.value =
                     _transacoes.value?.plus(response.sortedByDescending { it.DataVenda.time })
                 if (response.isNotEmpty()) {

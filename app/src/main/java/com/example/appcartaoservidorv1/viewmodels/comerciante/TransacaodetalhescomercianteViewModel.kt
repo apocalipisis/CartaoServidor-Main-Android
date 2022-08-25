@@ -7,11 +7,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.appcartaoservidorv1.models.Transacao
 import com.example.appcartaoservidorv1.services.utilidades.dataCompletaMesExtenso
 import com.example.appcartaoservidorv1.services.utilidades.formatDinheiro
-import java.text.DecimalFormat
-import java.text.DecimalFormatSymbols
-import java.text.NumberFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
 class TransacaodetalhescomercianteViewModel(val transacao: Transacao): ViewModel() {
     // Variavel usada para foramtar o valor

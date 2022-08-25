@@ -13,12 +13,13 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.appcartaoservidorv1.Constantes
 import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.databinding.FragmentUsuarionaopermitidoBinding
+import com.example.appcartaoservidorv1.services.utilidades.BaseFragment
 import com.example.appcartaoservidorv1.services.utilidades.fromViewToLogin
 import com.example.appcartaoservidorv1.viewmodels.login.UsuarionaopermitidoViewModel
 import com.example.appcartaoservidorv1.viewmodels.login.UsuarionaopermitidoViewModelFactory
 
 
-class UsuarionaopermitidoFragment : Fragment() {
+class UsuarionaopermitidoFragment : BaseFragment() {
     // Variavel responsavel pelo binding
     lateinit var binding: FragmentUsuarionaopermitidoBinding
 

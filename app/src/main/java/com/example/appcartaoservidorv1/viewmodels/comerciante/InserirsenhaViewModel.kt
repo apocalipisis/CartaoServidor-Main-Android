@@ -45,12 +45,11 @@ class InserirsenhaViewModel(
         _senhaCompleta.value = senha1+senha2+senha3+senha4
     }
 
-
     // Função que formata o numero adicionando pontos(a cada mil) e virgula nas casas decimais
     private fun formataString(numb: Number): String {
         val formatter = NumberFormat.getCurrencyInstance(Locale.getDefault()) as DecimalFormat
         val symbols: DecimalFormatSymbols = formatter.decimalFormatSymbols
-        symbols.setCurrencySymbol("") // Don't use null.
+        symbols.setCurrencySymbol("")
         formatter.decimalFormatSymbols = symbols
         return formatter.format(numb)
     }

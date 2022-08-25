@@ -2,8 +2,7 @@ package com.example.appcartaoservidorv1.viewmodels.comerciante
 
 import androidx.lifecycle.*
 import com.example.appcartaoservidorv1.models.DTO_InserirTransacao
-import com.example.appcartaoservidorv1.services.myAndroidApi
-import kotlinx.coroutines.delay
+import com.example.appcartaoservidorv1.services.api.APIComerciante
 import kotlinx.coroutines.launch
 
 class StatusvendaViewModel(
@@ -54,7 +53,7 @@ class StatusvendaViewModel(
         _status.value = ApiStatus.LOADING
         viewModelScope.launch {
             try {
-                response = myAndroidApi.retrofitService.InserirVenda(
+                response = APIComerciante.APIComercianteService.inserirVendaComerciante(
                     matricula,
                     matriculaComerciante,
                     matriculaComerciante,

@@ -14,12 +14,18 @@ open class BaseFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        val appContext = this.requireContext()
+
         if (doNavigation)
             fromFragmentToSessaoexpirada(this)
+
+        if(!isNetworkAvailable(appContext))
+        {
+            goToNointernetpage(view!!)
+        }
     }
 
     private var doNavigation = false
-
 
     fun encerrarSessao() {
         doNavigation = true

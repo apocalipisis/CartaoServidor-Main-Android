@@ -1,8 +1,9 @@
-package com.example.appcartaoservidorv1.services
+package com.example.appcartaoservidorv1.services.api
 
 import com.example.appcartaoservidorv1.Constantes
 import com.example.appcartaoservidorv1.models.*
 import com.example.appcartaoservidorv1.models.auxiliares.ParBoolString
+import com.example.appcartaoservidorv1.services.CustomDateAdapter
 import com.squareup.moshi.*
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -12,8 +13,7 @@ import retrofit2.http.POST
 import java.text.SimpleDateFormat
 import java.util.*
 
-
-private const val BASE_URL = Constantes.CaminhoAPI
+private const val BASE_URL = Constantes.CaminhoAPIComerciante
 
 // Inicializa o moshi (reponssavel por colocar os resultados de Json para <T>)
 private val moshi = Moshi.Builder()
@@ -27,58 +27,36 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 
-interface myAndroidApiService {
-    // Função que verifica o status de login de um usuário
-    @POST(Constantes.ConsultaLogin)
-    suspend fun verificaLogin(
-        @Header("matricula") matricula: String,
-        @Header("senha") senha: String
-    ): DTO_Login
-
-    // Função que consulta o saldo e as informações de um servidor
-    @POST(Constantes.ConsultaServidor)
-    suspend fun consultaServidor(
-        @Header("matricula") matricula: String,
-        @Header("Authorization") token: String,
-    ): DTO_Servidor
-
-    // Função que consulta o saldo e as informações de um comerciante
+interface IAPIComerciante {
+    // Função que consulta o faturamento e as informações de um comerciante
     @POST(Constantes.ConsultaComerciante)
     suspend fun consultaComerciante(
         @Header("matricula") matricula: String,
         @Header("Authorization") token: String,
-        ): DTO_Comerciante
-
-    // Função que busca as N 20 transações de uma matricula servidor
-    @POST(Constantes.NTransacoesServidor)
-    suspend fun NTransacoesServidor(
-        @Header("matricula") matricula: String,
-        @Header("nConsulta") nConsulta: Int,
-        @Header("Authorization") token: String,
-        ): List<Transacao>
+    ): DTO_Comerciante
 
     // Função que busca as N 20 transações de uma matricula servidor
     @POST(Constantes.NTransacoesComerciante)
-    suspend fun NTransacoesComerciante(
+    suspend fun nTransacoesComerciante(
         @Header("matricula") matricula: String,
         @Header("nConsulta") nConsulta: Int,
         @Header("Authorization") token: String,
     ): List<Transacao>
 
     // Função que consulta o saldo e as informações de um servidor
-    @POST(Constantes.InserirVenda)
-    suspend fun InserirVenda(
+    @POST(Constantes.InserirVendaComerciante)
+    suspend fun inserirVendaComerciante(
         @Header("MatriculaCliente") MatriculaCliente: String,
         @Header("MatriculaComerciante") MatriculaComerciante: String,
         @Header("MatriculaVendedor") MatriculaVendedor: String,
         @Header("Valor") Valor: String,
         @Header("SenhaCartao") SenhaCartao: String,
         @Header("Authorization") token: String,
-        ): DTO_InserirTransacao
+    ): DTO_InserirTransacao
 
     // Função que busca os N 20 gerentes de uma matricula comerciante
     @POST(Constantes.NConsultarGerentesComerciante)
-    suspend fun nConsultarGerentes(
+    suspend fun nConsultarGerentesComerciante(
         @Header("MatriculaMae") MatriculaMae: String,
         @Header("nConsulta") nConsulta: Int,
         @Header("Authorization") token: String,
@@ -86,7 +64,7 @@ interface myAndroidApiService {
 
     // Função que cadastra um gerente no banco de dados
     @POST(Constantes.InserirGerenteComerciante)
-    suspend fun inserirGerente(
+    suspend fun inserirGerenteComerciante(
         @Header("Nome") Nome: String,
         @Header("Cpf") Cpf: String,
         @Header("IsAtivo") IsAtivo: Boolean,
@@ -96,7 +74,7 @@ interface myAndroidApiService {
 
     // Função que edita um gerente no banco de dados
     @POST(Constantes.EditarGerenteComerciante)
-    suspend fun editarGerente(
+    suspend fun editarGerenteComerciante(
         @Header("Matricula") Matricula: String,
         @Header("IsAtivo") IsAtivo: Boolean,
         @Header("Authorization") token: String,
@@ -104,14 +82,14 @@ interface myAndroidApiService {
 
     // Função que edita um gerente no banco de dados
     @POST(Constantes.DeletarGerenteComerciante)
-    suspend fun deletarGerente(
+    suspend fun deletarGerenteComerciante(
         @Header("Matricula") Matricula: String,
         @Header("Authorization") token: String,
     ): ParBoolString
 
     // Função que busca as N 20 transações de uma matricula servidor
     @POST(Constantes.NConsultarFuncionarioComerciante)
-    suspend fun nConsultarFuncionarios(
+    suspend fun nConsultarFuncionariosComerciante(
         @Header("MatriculaMae") MatriculaMae: String,
         @Header("nConsulta") nConsulta: Int,
         @Header("Authorization") token: String,
@@ -119,7 +97,7 @@ interface myAndroidApiService {
 
     // Função que cadastra um gerente no banco de dados
     @POST(Constantes.InserirFuncionarioComerciante)
-    suspend fun inserirFuncionario(
+    suspend fun inserirFuncionarioComerciante(
         @Header("Nome") Nome: String,
         @Header("IsAtivo") IsAtivo: Boolean,
         @Header("MatriculaMae") MatriculaMae: String,
@@ -128,7 +106,7 @@ interface myAndroidApiService {
 
     // Função que edita um funcionario no banco de dados
     @POST(Constantes.EditarFuncionarioComerciante)
-    suspend fun editarFuncionario(
+    suspend fun editarFuncionarioComerciante(
         @Header("Matricula") Matricula: String,
         @Header("IsAtivo") IsAtivo: Boolean,
         @Header("Authorization") token: String,
@@ -136,64 +114,15 @@ interface myAndroidApiService {
 
     // Função que edita um gerente no banco de dados
     @POST(Constantes.DeletarFuncionarioComerciante)
-    suspend fun deletarFuncionario(
+    suspend fun deletarFuncionarioComerciante(
         @Header("Matricula") Matricula: String,
         @Header("Authorization") token: String,
     ): ParBoolString
 
 }
 
-object myAndroidApi {
-    val retrofitService: myAndroidApiService by lazy {
-        retrofit.create(myAndroidApiService::class.java)
+object APIComerciante {
+    val APIComercianteService: IAPIComerciante by lazy {
+        retrofit.create(IAPIComerciante::class.java)
     }
 }
-
-class CustomDateAdapter : JsonAdapter<Date>() {
-    private val dateFormat = SimpleDateFormat(SERVER_FORMAT, Locale.getDefault())
-
-    @FromJson
-    override fun fromJson(reader: JsonReader): Date? {
-        return try {
-            val dateAsString = reader.nextString()
-            synchronized(dateFormat) {
-                dateFormat.parse(dateAsString)
-            }
-        } catch (e: Exception) {
-            null
-        }
-    }
-
-    @ToJson
-    override fun toJson(writer: JsonWriter, value: Date?) {
-        if (value != null) {
-            synchronized(dateFormat) {
-                writer.value(value.toString())
-            }
-        }
-    }
-
-    companion object {
-        const val SERVER_FORMAT = ("yyyy-MM-dd'T'HH:mm") // define your server format here
-    }
-}
-
-//@Retention(AnnotationRetention.RUNTIME)
-//@JsonQualifier
-//annotation class WrappedRepoList
-//
-//@JsonClass(generateAdapter = true)
-//data class TransacaoList(val items: List<Transacao>)
-//
-//class TransacaoListJsonAdapter {
-//    @WrappedRepoList
-//    @FromJson
-//    fun fromJson(json: TransacaoList): List<Transacao> {
-//        return json.items
-//    }
-//
-//    @ToJson
-//    fun toJson(@WrappedRepoList value: List<Transacao>): TransacaoList {
-//        throw UnsupportedOperationException()
-//    }
-//}

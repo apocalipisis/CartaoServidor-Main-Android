@@ -13,7 +13,7 @@ class InfocomercianteViewModel (
     val cnpj: String,
     val tipoUsuario: String,
     val status: String,
-    val pagamentoUsoSistema: Float
+    private val pagamentoUsoSistema: Float
 ) : ViewModel() {
     // pagamentoUsoSistema
     private val _pagamentoUso = MutableLiveData<String>()
@@ -21,7 +21,7 @@ class InfocomercianteViewModel (
         get() = _pagamentoUso
 
     init {
-        _pagamentoUso.value = pagamentoUsoSistema.toString() + "%"
+        _pagamentoUso.value = "$pagamentoUsoSistema%"
     }
 }
 
@@ -47,6 +47,4 @@ class InfocomercianteViewModelFactory(
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
-
-
 }
