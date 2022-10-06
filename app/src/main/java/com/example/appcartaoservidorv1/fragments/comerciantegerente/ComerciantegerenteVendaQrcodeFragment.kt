@@ -2,7 +2,6 @@ package com.example.appcartaoservidorv1.fragments.comerciantegerente
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Size
 import android.view.LayoutInflater
@@ -19,9 +18,10 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.databinding.FragmentComerciantegerenteVendaQrcodeBinding
-import com.example.appcartaoservidorv1.models.auxiliares.ParStrings
+import com.example.appcartaoservidorv1.models.auxiliares.TStrings
 import com.example.appcartaoservidorv1.services.qrcode.QRCodeFoundListener
 import com.example.appcartaoservidorv1.services.qrcode.QRCodeImageAnalyzer
 import com.example.appcartaoservidorv1.services.utilidades.BaseFragment
@@ -52,7 +52,12 @@ class ComerciantegerenteVendaQrcodeFragment : BaseFragment() {
     ): View {
         // Infla o layout do fragmento
         binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_comerciantegerente_venda_qrcode, container, false)
+            DataBindingUtil.inflate(
+                inflater,
+                R.layout.fragment_comerciantegerente_venda_qrcode,
+                container,
+                false
+            )
         // Recupera as variaveis passada para a view
 
         args = ComerciantegerenteVendaQrcodeFragmentArgs.fromBundle(requireArguments())
@@ -66,7 +71,10 @@ class ComerciantegerenteVendaQrcodeFragment : BaseFragment() {
             args.token
         )
         viewModel =
-            ViewModelProvider(this, viewModelFactory)[ComerciantegerenteVendaQrcodeViewModel::class.java]
+            ViewModelProvider(
+                this,
+                viewModelFactory
+            )[ComerciantegerenteVendaQrcodeViewModel::class.java]
         // Faz o binding com o viewModel
         binding.viewModel = viewModel
 
@@ -75,6 +83,10 @@ class ComerciantegerenteVendaQrcodeFragment : BaseFragment() {
         previewView = binding.activityMainPreviewView
         requestCamera()
 
+        // Botão Voltar
+        binding.btnVoltar.setOnClickListener {
+            findNavController().navigateUp()
+        }
         // Configura o ciclo de vida
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
@@ -163,19 +175,21 @@ class ComerciantegerenteVendaQrcodeFragment : BaseFragment() {
             QRCodeImageAnalyzer(object : QRCodeFoundListener {
                 override fun onQRCodeFound(qrCode: String) {
                     try {
-                        val obj = Json.decodeFromString<ParStrings>(qrCode)
-                        val nomeCliente = obj.str1
-                        val matriculaCliente = obj.str2
+                        val obj = Json.decodeFromString<TStrings>(qrCode)
+                        val nome = obj.str1
+                        val matricula = obj.str2
+                        val cartao = obj.str3
 
                         fromComerciantegerenteQrcodeToInserirsenha(
                             fragment,
-                            matriculaCliente,
-                            nomeCliente,
+                            matricula,
+                            nome,
                             viewModel.valor,
                             viewModel.matriculaComerciante,
                             viewModel.nomeComerciante,
                             viewModel.matriculaVendedor,
                             viewModel.nomeVendedor,
+                            cartao,
                             viewModel.token,
                         )
                     } catch (e: Exception) {
@@ -199,9 +213,8 @@ class ComerciantegerenteVendaQrcodeFragment : BaseFragment() {
     }
 
     private fun setTextQRcodeInvalido() {
-        if (binding.status.text != getString(R.string.qrcode_invalido)) {
-            binding.status.text = getString(R.string.qrcode_invalido)
-            binding.status.setTextColor(Color.parseColor("#FF0000"))
+        if (binding.status.text != getString(R.string.QrCodeInvalido)) {
+            binding.status.text = getString(R.string.QrCodeInvalido)
         }
     }
 }

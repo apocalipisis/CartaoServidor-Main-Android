@@ -10,8 +10,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.Header
 import retrofit2.http.POST
-import java.text.SimpleDateFormat
-import java.util.*
 
 private const val BASE_URL = Constantes.CaminhoAPIComerciante
 
@@ -33,7 +31,7 @@ interface IAPIComerciante {
     suspend fun consultaComerciante(
         @Header("matricula") matricula: String,
         @Header("Authorization") token: String,
-    ): DTO_Comerciante
+    ): DTOComerciante
 
     // Função que busca as N 20 transações de uma matricula servidor
     @POST(Constantes.NTransacoesComerciante)
@@ -50,9 +48,10 @@ interface IAPIComerciante {
         @Header("MatriculaComerciante") MatriculaComerciante: String,
         @Header("MatriculaVendedor") MatriculaVendedor: String,
         @Header("Valor") Valor: String,
+        @Header("NumeroCartao") NumeroCartao: String,
         @Header("SenhaCartao") SenhaCartao: String,
         @Header("Authorization") token: String,
-    ): DTO_InserirTransacao
+    ): ParBoolString
 
     // Função que busca os N 20 gerentes de uma matricula comerciante
     @POST(Constantes.NConsultarGerentesComerciante)
@@ -67,7 +66,6 @@ interface IAPIComerciante {
     suspend fun inserirGerenteComerciante(
         @Header("Nome") Nome: String,
         @Header("Cpf") Cpf: String,
-        @Header("IsAtivo") IsAtivo: Boolean,
         @Header("MatriculaMae") MatriculaMae: String,
         @Header("Authorization") token: String,
     ): ParBoolString
@@ -99,7 +97,6 @@ interface IAPIComerciante {
     @POST(Constantes.InserirFuncionarioComerciante)
     suspend fun inserirFuncionarioComerciante(
         @Header("Nome") Nome: String,
-        @Header("IsAtivo") IsAtivo: Boolean,
         @Header("MatriculaMae") MatriculaMae: String,
         @Header("Authorization") token: String,
     ): ParBoolString

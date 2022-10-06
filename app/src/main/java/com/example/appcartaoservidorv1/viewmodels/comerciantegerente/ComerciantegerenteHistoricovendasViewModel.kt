@@ -1,10 +1,12 @@
 package com.example.appcartaoservidorv1.viewmodels.comerciantegerente
 
 import androidx.lifecycle.*
+import com.example.appcartaoservidorv1.Constantes
 import com.example.appcartaoservidorv1.models.Transacao
 import com.example.appcartaoservidorv1.services.api.APIComerciante
 import com.example.appcartaoservidorv1.services.api.APIComercianteGerente
 import com.example.appcartaoservidorv1.viewmodels.comerciante.HistoricovendasViewModel
+import com.example.appcartaoservidorv1.viewmodels.comerciantefuncionario.ComercianteFuncionarioHistoricovendasViewModel
 import com.example.appcartaoservidorv1.viewmodels.servidor.ServidorViewModel
 import kotlinx.coroutines.launch
 
@@ -18,10 +20,15 @@ class ComerciantegerenteHistoricovendasViewModel(val matricula: String, val toke
 
     // Status da consulta a API
     enum class ApiStatus { LOADING, ERROR, DONE }
+    enum class ApiStatusLista { LOADING, ERROR, DONE }
 
     private val _status = MutableLiveData<ApiStatus>()
     val status: LiveData<ApiStatus>
         get() = _status
+
+    private val _statusLista = MutableLiveData<ApiStatusLista>()
+    val statusLista: LiveData<ApiStatusLista>
+        get() = _statusLista
 
     // Mensagem sobre consulta a API
     private val _mensagemAPI = MutableLiveData<String>()
@@ -55,8 +62,12 @@ class ComerciantegerenteHistoricovendasViewModel(val matricula: String, val toke
         _transacoes.value = listOf()
     }
 
-    fun historicoDeVendas() {
-        _status.value = ApiStatus.LOADING
+    fun historicoDeVendas(isLista: Boolean) {
+        if (isLista) {
+            _statusLista.value = ApiStatusLista.LOADING
+        } else {
+            _status.value = ApiStatus.LOADING
+        }
         viewModelScope.launch {
             try {
                 response = APIComercianteGerente.APIComercianteGerenteService.nTransacoesComerciantegerente(
@@ -70,23 +81,30 @@ class ComerciantegerenteHistoricovendasViewModel(val matricula: String, val toke
                     nConsulta++
                     loading = false
                 }
-                _status.value = ApiStatus.DONE
-
+                if (isLista){
+                    _statusLista.value = ApiStatusLista.DONE
+                }else{
+                    _status.value = ApiStatus.DONE
+                }
             } catch (e: Exception) {
-                _mensagemAPI.value = "Problemas no servidor, tente novamente"
+                _mensagemAPI.value = Constantes.Erro4
                 loading = false
-                _status.value = ApiStatus.ERROR
+                if (isLista){
+                    _statusLista.value = ApiStatusLista.ERROR
+                }else{
+                    _status.value = ApiStatus.ERROR
+                }
             }
         }
     }
 
-    fun reloadList() {
+    fun reloadList(isLista: Boolean) {
         nConsulta = 0
 
         val list: List<Transacao> = listOf()
         _transacoes.value = list
 
-        historicoDeVendas()
+        historicoDeVendas(isLista)
     }
 }
 

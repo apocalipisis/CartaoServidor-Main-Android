@@ -1,13 +1,16 @@
 package com.example.appcartaoservidorv1.viewmodels.comerciante
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
-class InserirvalorViewModel(val nomeComerciante: String, val matriculaComerciante: String, val token: String) :
+class InserirvalorViewModel(
+    val nomeComerciante: String,
+    val matriculaComerciante: String,
+    val token: String
+) :
     ViewModel() {
-//    var valor: Double = 0.0
+    //    var valor: Double = 0.0
     val valor = MutableLiveData<Double>()
 
     init {

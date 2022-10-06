@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--?xml version="1.0" encoding="UTF-8"?-->
-    <color name="primaryColor">#104a57</color>
-    <color name="primaryLightColor">#437684</color>
-    <color name="primaryDarkColor">#00222e</color>
-    <color name="secondaryColor">#fa6a31</color>
-    <color name="secondaryLightColor">#ff9b5f</color>
-    <color name="secondaryDarkColor">#c03900</color>
-    <color name="primaryTextColor">#ffffff</color>
-    <color name="secondaryTextColor">#ffffff</color>
+    <!-- Paleta de cores -->
+    <color name="cor1">#3db2ff</color>
+    <color name="cor2">#FF2442</color>
+    <color name="cor3">#FFB830</color>
+    <color name="cor4">#FFEDDA</color>
+
+    <!-- Cor Principal -->
+    <color name="claridade_azul_62">#3db2ff</color>
+    <!-- Cor Principal Claro -->
+    <color name="claridade_azul_75">#80ccff</color>
+    <!-- Cor Principal Escuro -->
+    <color name="claridade_azul_45">#008ae6</color>
+    <!-- Cor secundaria (Contraste com a cor primaria)-->
+    <color name="claridade_laranja_62">#ff8b3d</color>
+    <!-- Cor secundaria Clara-->
+    <color name="claridade_laranja_75">#ffb380</color>
+    <!-- Cor secundaria Escuro-->
+    <color name="claridade_laranja_40">#cc5200</color>
+    <!-- Cor Texts -->
+    <color name="preto">#000000</color>
+    <color name="branco">#ffffff</color>
 
     <!--    Cores padrões -->
     <color name="Branco">#ffffff</color>
@@ -19,5 +31,4 @@
     <color name="cinzaDias20">#0D424242</color>
     <color name="VerdeDias20">#B3104a57</color>
     <color name="VerdeDias">#104a57</color>
-
 </resources>

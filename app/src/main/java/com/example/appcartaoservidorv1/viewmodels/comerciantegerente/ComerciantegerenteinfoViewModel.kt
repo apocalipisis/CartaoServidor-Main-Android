@@ -11,7 +11,8 @@ class ComerciantegerenteinfoViewModel(
     val cpf: String,
     val matriculaMae: String,
     val cnpj: String,
-) : ViewModel()  {
+    val nomeComerciante: String,
+) : ViewModel() {
 
 }
 
@@ -24,6 +25,7 @@ class ComerciantegerenteinfoViewModelFactory(
     private val cpf: String,
     private val matriculaMae: String,
     private val cnpj: String,
+    private val nomeComerciante: String,
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ComerciantegerenteinfoViewModel::class.java)) {
@@ -35,6 +37,7 @@ class ComerciantegerenteinfoViewModelFactory(
                 cpf,
                 matriculaMae,
                 cnpj,
+                nomeComerciante,
             ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

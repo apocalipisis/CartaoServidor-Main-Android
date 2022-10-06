@@ -1,14 +1,16 @@
 package com.example.appcartaoservidorv1.dialogsviewmodels.comerciantegerente
 
 import androidx.lifecycle.*
+import com.example.appcartaoservidorv1.Constantes
 import com.example.appcartaoservidorv1.models.auxiliares.ParBoolString
 import com.example.appcartaoservidorv1.services.api.APIComercianteGerente
 import kotlinx.coroutines.launch
 
-class DialogComerciantegerenteFuncionarioDeletarViewModel(val matricula: String, val token: String) :
-    ViewModel()  {
-
-
+class DialogComerciantegerenteFuncionarioDeletarViewModel(
+    val matricula: String,
+    val token: String
+) :
+    ViewModel() {
     // Resposta da API
     private val _response = MutableLiveData<ParBoolString>()
     val response: LiveData<ParBoolString>
@@ -20,8 +22,6 @@ class DialogComerciantegerenteFuncionarioDeletarViewModel(val matricula: String,
     private val _status = MutableLiveData<ApiStatus>()
     val status: LiveData<ApiStatus>
         get() = _status
-
-    var deletado: Boolean = false
 
     fun deletarFuncionario(
         matricula: String,
@@ -37,7 +37,7 @@ class DialogComerciantegerenteFuncionarioDeletarViewModel(val matricula: String,
                     )
                 _status.value = ApiStatus.DONE
             } catch (e: Exception) {
-                _response.value = ParBoolString(false, "Problemas no servidor, tente novamente")
+                _response.value = ParBoolString(false, Constantes.Erro4)
                 _status.value = ApiStatus.ERROR
             }
         }

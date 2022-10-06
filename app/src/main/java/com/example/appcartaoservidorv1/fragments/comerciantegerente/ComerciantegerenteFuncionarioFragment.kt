@@ -7,15 +7,16 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.adapters.FuncionarioComercianteAdapter
 import com.example.appcartaoservidorv1.adapters.FuncionarioListener
 import com.example.appcartaoservidorv1.databinding.FragmentComerciantegerenteFuncionarioBinding
+import com.example.appcartaoservidorv1.services.redirecionamento.fromFuncionariosToCriarDialog
+import com.example.appcartaoservidorv1.services.redirecionamento.fromFuncionariosToDeletarDialog
 import com.example.appcartaoservidorv1.services.utilidades.BaseFragment
-import com.example.appcartaoservidorv1.services.utilidades.fromComerciantegerenteFuncionarioToCriarFuncionario
-import com.example.appcartaoservidorv1.services.utilidades.fromComerciantegerenteFuncionarioToDetalhes
 import com.example.appcartaoservidorv1.viewmodels.comerciantegerente.ComerciantegerenteFuncionarioViewModel
 import com.example.appcartaoservidorv1.viewmodels.comerciantegerente.ComerciantegerenteFuncionarioViewModelFactory
 
@@ -52,44 +53,57 @@ class ComerciantegerenteFuncionarioFragment : BaseFragment() {
             )[ComerciantegerenteFuncionarioViewModel::class.java]
         // Faz o binding com o viewModel
         binding.viewModel = viewModel
+        //------------------------------------------------------------------------------------------
 
         // Btn que traz o dialog para criar um novo perfil
         binding.btnCriar.setOnClickListener {
-            fromComerciantegerenteFuncionarioToCriarFuncionario(
+            fromFuncionariosToCriarDialog(
                 this,
                 viewModel.matricula,
                 viewModel.token
             )
         }
-
+        //------------------------------------------------------------------------------------------
+        // Botão Voltar
+        binding.btnVoltar.setOnClickListener {
+            findNavController().navigateUp()
+        }
+        //------------------------------------------------------------------------------------------
         // Chama o adapter
         val adapter = FuncionarioComercianteAdapter(FuncionarioListener { funcionario ->
-            viewModel.onFuncionarioClicked(funcionario)
+            viewModel.onStatusChangeClicked(funcionario)
+        }, FuncionarioListener { funcionario ->
+            fromFuncionariosToDeletarDialog(
+                this,
+                funcionario.Matricula,
+                viewModel.token
+            )
         })
-        binding.ListaFuncionarios.adapter = adapter
-
+        binding.Lista.adapter = adapter
+        //------------------------------------------------------------------------------------------
         // Coloca um observer na consulta aos gerentes e atualiza o recycler view
         viewModel.funcionarios.observe(viewLifecycleOwner) {
             adapter.addHeaderAndSubmitList(it)
-        }
-
-        // Coloca um observer para navegar para a página de detalhes
-        viewModel.navigateToFuncionarioDetail.observe(viewLifecycleOwner) { funcionario ->
-            funcionario?.let {
-                fromComerciantegerenteFuncionarioToDetalhes(this, funcionario, viewModel.token)
-                viewModel.onFuncionarioDetailNavigated()
+            if (viewModel.notify) {
+                adapter.notifyItemChanged(viewModel.item + 1)
+                viewModel.notify = false
             }
         }
-
-        // Escuta mudanças no dialog de criar o funcionario
-        setFragmentResultListener("DialogCriarfuncionarioComerciantegerente") { _, _ ->
-            viewModel.reloadList()
+        //------------------------------------------------------------------------------------------
+        // Escuta mudanças no dialog de criar o gerente
+        setFragmentResultListener("DialogCriarFuncionarioGerenteComerciante") { _, _ ->
+            viewModel.reloadList(false)
         }
 
+        // Escuta mudanças no dialog de deletar o gerente
+        setFragmentResultListener("DialogDeletarFuncionarioGerenteComerciante") { _, _ ->
+            viewModel.reloadList(false)
+        }
+        //------------------------------------------------------------------------------------------
         val layoutManager = LinearLayoutManager(this.requireContext())
-        binding.ListaFuncionarios.layoutManager = layoutManager
+        binding.Lista.layoutManager = layoutManager
         // Adi
-        binding.ListaFuncionarios.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        binding.Lista.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 if (dy > 0) { //check for scroll down
                     val visibleItemCount = layoutManager.childCount
@@ -98,12 +112,13 @@ class ComerciantegerenteFuncionarioFragment : BaseFragment() {
                     if (!viewModel.loading) {
                         if (visibleItemCount + pastVisiblesItems >= totalItemCount) {
                             viewModel.loading = true
-                            viewModel.consultarFuncionarios()
+                            viewModel.consultarFuncionarios(true)
                         }
                     }
                 }
             }
         })
+        //------------------------------------------------------------------------------------------
 
         // Coloca a barra de atualização como visivel
         viewModel.status.observe(viewLifecycleOwner) { status ->
@@ -114,39 +129,62 @@ class ComerciantegerenteFuncionarioFragment : BaseFragment() {
                 ComerciantegerenteFuncionarioViewModel.ApiStatus.DONE -> {
                     estadoOk()
                 }
-                ComerciantegerenteFuncionarioViewModel.ApiStatus.ERROR -> {
+                else -> {
                     estadoErro()
                 }
             }
         }
+        //------------------------------------------------------------------------------------------
+        // Coloca a barra de atualização como visivel
+        viewModel.statusUpdateRequest.observe(viewLifecycleOwner) { status ->
+            when (status) {
+                ComerciantegerenteFuncionarioViewModel.ApiStatusUpdateRequest.LOADING -> {
+                    barraStatus(true)
+                }
+                ComerciantegerenteFuncionarioViewModel.ApiStatusUpdateRequest.DONE -> {
+                    barraStatus(false)
+                }
+                ComerciantegerenteFuncionarioViewModel.ApiStatusUpdateRequest.ERROR -> {
+                    barraStatus(false)
+                }
+                else -> {
+
+                }
+            }
+        }
+        //------------------------------------------------------------------------------------------
 
         // Configura o ciclo de vida
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
+    // ---------------------------------------------------------------------------------------------
     override fun onResume() {
         super.onResume()
-        viewModel.reloadList()
+        viewModel.reloadList(false)
     }
 
+    // ---------------------------------------------------------------------------------------------
+    private fun barraStatus(isVisible: Boolean) {
+        if (isVisible) {
+            binding.barraStatus.visibility = View.VISIBLE
+        } else {
+            binding.barraStatus.visibility = View.INVISIBLE
+        }
+    }
+    // ---------------------------------------------------------------------------------------------
+
     private fun estadoCarregando() {
-        binding.Image.visibility = View.INVISIBLE
-        binding.Bar.visibility = View.VISIBLE
-        binding.Menssagem.visibility = View.GONE
 
     }
 
     private fun estadoOk() {
-        binding.Image.visibility = View.VISIBLE
-        binding.Bar.visibility = View.INVISIBLE
-        binding.Menssagem.visibility = View.GONE
+
     }
 
     private fun estadoErro() {
-        binding.Image.visibility = View.VISIBLE
-        binding.Bar.visibility = View.INVISIBLE
-        binding.Menssagem.visibility = View.VISIBLE
-        binding.ListaFuncionarios.visibility = View.GONE
+
+        binding.Lista.visibility = View.GONE
     }
 }

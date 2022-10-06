@@ -2,7 +2,6 @@ package com.example.appcartaoservidorv1.dialogs
 
 import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.databinding.DialogDeletargerentecomercianteBinding
 import com.example.appcartaoservidorv1.dialogsviewmodels.DialogDeletargerentecomercianteViewModel
@@ -44,14 +42,20 @@ class DialogDeletargerentecomerciante : BottomSheetDialogFragment() {
         args = DialogDeletargerentecomercianteArgs.fromBundle(requireArguments())
 
         // Inicializa o ViewModel e passa as variaveis
-        viewModelFactory = DialogDeletargerentecomercianteViewModelFactory(args.matricula, args.token)
+        viewModelFactory =
+            DialogDeletargerentecomercianteViewModelFactory(args.matricula, args.token)
         viewModel =
-            ViewModelProvider(this, viewModelFactory)[DialogDeletargerentecomercianteViewModel::class.java]
+            ViewModelProvider(
+                this,
+                viewModelFactory
+            )[DialogDeletargerentecomercianteViewModel::class.java]
         // Faz o binding com o viewModel
         binding.viewModel = viewModel
+        //------------------------------------------------------------------------------------------
 
         // Fecha o Dialog
-        binding.btnSair.setOnClickListener { dialog?.dismiss() }
+        binding.btnVoltar.setOnClickListener { dialog?.dismiss() }
+        //------------------------------------------------------------------------------------------
 
         // Deletar gerente
         binding.btnSim.setOnClickListener {
@@ -60,8 +64,10 @@ class DialogDeletargerentecomerciante : BottomSheetDialogFragment() {
                 viewModel.token,
             )
         }
+        //------------------------------------------------------------------------------------------
 
         binding.btnNao.setOnClickListener { dialog?.dismiss() }
+        //------------------------------------------------------------------------------------------
 
         // Coloca a barra de atualização como visivel
         viewModel.status.observe(viewLifecycleOwner) { status ->
@@ -70,64 +76,91 @@ class DialogDeletargerentecomerciante : BottomSheetDialogFragment() {
                     estadoCarregando()
                 }
                 DialogDeletargerentecomercianteViewModel.ApiStatus.DONE -> {
-                    estadoResultados(viewModel.response.value?.b)
+                    estadoResultados(viewModel.response.value!!.b, viewModel.response.value!!.s)
                 }
                 DialogDeletargerentecomercianteViewModel.ApiStatus.ERROR -> {
-                    estadoResultados(viewModel.response.value?.b)
+                    estadoResultados(viewModel.response.value!!.b, viewModel.response.value!!.s)
                 }
             }
         }
+        //------------------------------------------------------------------------------------------
 
         // Configura o ciclo de vida
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
-    private fun estadoCarregando() {
-        binding.Bar.visibility = View.VISIBLE
-        binding.pergunta.visibility = View.GONE
-        binding.EstadoNormal.visibility = View.GONE
-        binding.resultados.visibility = View.GONE
-    }
-
-    private fun estadoResultados(usuarioDeletado: Boolean?) {
-        binding.Bar.visibility = View.GONE
-
-        binding.btnSim.visibility = View.GONE
-        binding.btnNao.visibility = View.GONE
-
-        binding.EstadoNormal.visibility = View.GONE
-        binding.pergunta.visibility = View.GONE
-        binding.resultados.visibility = View.VISIBLE
-        binding.result.visibility = View.INVISIBLE
-
-        if (usuarioDeletado!!) {
-            binding.ImageStatusSucess.visibility = View.VISIBLE
-            binding.ImageStatusSucess.animate().apply {
-                duration = 1000
-                rotationYBy(360f)
-            }.withEndAction {
-                binding.usuarioDeletado.visibility = View.VISIBLE
-                binding.result.visibility = View.VISIBLE
-                viewModel.deletado = true
-            }
-        } else {
-            binding.ImageStatusError.visibility = View.VISIBLE
-            binding.ImageStatusError.animate().apply {
-                duration = 1000
-                rotationYBy(360f)
-            }.withEndAction {
-                binding.usuarioNaoDeletado.visibility = View.VISIBLE
-                binding.result.visibility = View.VISIBLE
-            }
-        }
-    }
-
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
-        if (viewModel.deletado){
-            setFragmentResult("dialogDeletarGerente", bundleOf("bundleDialogDeletarGerente" to true))
+
+        val response = viewModel.response.value
+        if (response != null) {
+            if (response.b)
+                setFragmentResult("DialogDeletarGerente", bundleOf("_" to "_"))
         }
     }
+
+    //----------------------------------------------------------------------------------------------
+    private fun btnContainer() {
+        binding.btnContainer.visibility = View.GONE
+    }
+
+    //----------------------------------------------------------------------------------------------
+    private fun cardContainer() {
+        binding.CardContainer.visibility = View.VISIBLE
+    }
+
+    //----------------------------------------------------------------------------------------------
+    private fun bar(isVisible: Boolean) {
+        if (isVisible) {
+            binding.Bar.visibility = View.VISIBLE
+        } else {
+            binding.Bar.visibility = View.GONE
+        }
+    }
+
+    //----------------------------------------------------------------------------------------------
+    private fun resultados(isVisible: Boolean) {
+        if (isVisible) {
+            binding.Resultados.visibility = View.VISIBLE
+        } else {
+            binding.Resultados.visibility = View.GONE
+        }
+    }
+
+    //----------------------------------------------------------------------------------------------
+    private fun iconSucesso() {
+        binding.iconSucesso.visibility = View.VISIBLE
+    }
+
+    //----------------------------------------------------------------------------------------------
+    private fun iconError() {
+        binding.iconError.visibility = View.VISIBLE
+    }
+
+    //----------------------------------------------------------------------------------------------
+    private fun mensagem(text: String) {
+        binding.mensagem.text = text
+    }
+    //----------------------------------------------------------------------------------------------
+
+    private fun estadoCarregando() {
+        btnContainer()
+        cardContainer()
+        bar(true)
+        resultados(false)
+    }
+
+    private fun estadoResultados(usuarioInserido: Boolean, text: String) {
+        bar(false)
+        resultados(true)
+        mensagem(text)
+        if (usuarioInserido) {
+            iconSucesso()
+        } else {
+            iconError()
+        }
+    }
+
 
 }

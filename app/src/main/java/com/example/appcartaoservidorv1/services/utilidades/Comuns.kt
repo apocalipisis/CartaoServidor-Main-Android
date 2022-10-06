@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.util.Log
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.text.NumberFormat
@@ -49,4 +50,14 @@ fun isNetworkAvailable(context: Context): Boolean {
     } else {
         return connectivityManager.activeNetworkInfo?.isConnected ?: false
     }
+}
+
+fun formataCartaoCredito(string : String) : String{
+    return string.replace("\\B(?=(\\d{4})+(?!\\d))".toRegex(), "-")
+}
+
+fun formataStatusToBloqueado(status : String) : String{
+    if (status == "Ativo")
+        return "Desbloqueado"
+    return "Bloqueado"
 }

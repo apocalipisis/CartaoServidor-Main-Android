@@ -10,20 +10,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.biometric.BiometricManager
-import androidx.biometric.BiometricManager.Authenticators.*
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.appcartaoservidorv1.Constantes
 import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.databinding.FragmentLoginBinding
+import com.example.appcartaoservidorv1.models.dto.DTOLogin
 import com.example.appcartaoservidorv1.services.utilidades.*
 import com.example.appcartaoservidorv1.viewmodels.login.LoginViewModel
 import com.example.appcartaoservidorv1.viewmodels.login.LoginViewModelFactory
-import com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE
+import com.google.zxing.integration.android.IntentIntegrator
 import java.io.File
 import java.util.concurrent.Executor
 
@@ -43,6 +41,7 @@ class LoginFragment : BaseFragment() {
 
     private var saveBiometrics = false // Verifica se o usuário quer começar a entrar por biometria
     private var biometriaOn = false // Verifica se já havia a configuração para entrar por biometria
+
     private val arquivoSharedPreferences = Constantes.NomeArquivoSharedPreferences
     private var showBiometricOption: Boolean = true
 
@@ -63,113 +62,160 @@ class LoginFragment : BaseFragment() {
         // Faz o binding com o viewModel
         binding.viewModel = viewModel
 
+        // Display o estado de erro
+        viewModel.isCardStateErro.observe(viewLifecycleOwner) { isErro ->
+            estadoCard(isErro)
+        }
+
         val applicationContext = this.requireContext()
 
-        // Redireciona o usuário
-        viewModel.destino.observe(viewLifecycleOwner) { destino ->
-            when (destino) {
-                "UsuarioInativo" -> {
+        // Coloca a barra de atualização como visivel
+        viewModel.response.observe(viewLifecycleOwner) { response ->
+            if (response.b) {
+                viewModel.setCardStateErro(false)
+            } else {
+                viewModel.setCardStateErro(true)
+            }
+        }
+
+        fun processResponse(response: DTOLogin) {
+            Log.i("Teste", "Processando a resposta")
+            if (response.b) {
+                if (!response.usuarioAtivo) {
                     fromLoginToUsuarioinativo(
                         this,
-                        viewModel.nome,
+                        response.nomeUsuario,
                         viewModel.matricula.value.toString()
                     )
                 }
-                "Servidor" -> {
-                    salvarPreferencias(applicationContext, arquivoSharedPreferences)
 
-                    App.iniciarSessao()
+                salvarPreferencias(applicationContext, arquivoSharedPreferences)
+                App.iniciarSessao()
 
-                    fromLoginToServidor(
-                        this,
-                        viewModel.nome,
-                        viewModel.matricula.value.toString(),
-                        viewModel.token
-                    )
+                when (response.tipoUsuario) {
+                    "Servidor" -> {
+                        fromLoginToServidor(
+                            this,
+                            response.nomeUsuario,
+                            viewModel.matricula.value.toString(),
+                            response.token
+                        )
+                    }
+                    "Comerciante" -> {
+                        fromLoginToComerciante(
+                            this,
+                            response.nomeUsuario,
+                            viewModel.matricula.value.toString(),
+                            response.token
+                        )
+                    }
+                    "ComercianteGerente" -> {
+                        fromLoginToComerciantegerente(
+                            this,
+                            response.nomeUsuario,
+                            viewModel.matricula.value.toString(),
+                            response.token
+                        )
+                    }
+                    "ComercianteFuncionario" -> {
+                        fromLoginToComerciantefuncionario(
+                            this,
+                            response.nomeUsuario,
+                            viewModel.matricula.value.toString(),
+                            response.token
+                        )
+                    }
+                    else -> {
+                        fromLoginToUsuarionaopermitido(this)
+                    }
                 }
-                "Comerciante" -> {
-                    salvarPreferencias(applicationContext, arquivoSharedPreferences)
-
-                    App.iniciarSessao()
-
-                    fromLoginToComerciante(
-                        this,
-                        viewModel.nome,
-                        viewModel.matricula.value.toString(),
-                        viewModel.token
-                    )
-                }
-                "ComercianteGerente" -> {
-                    salvarPreferencias(applicationContext, arquivoSharedPreferences)
-
-                    App.iniciarSessao()
-
-                    fromLoginToComerciantegerente(
-                        this,
-                        viewModel.nome,
-                        viewModel.matricula.value.toString(),
-                        viewModel.token
-                    )
-                }
-                "NãoAutorizado" -> {
-                    fromLoginToUsuarionaopermitido(this)
+            } else {
+                viewModel.setCardStateErro(true)
+                if (biometriaOn) {
+                    estadoOkTextBiometrics(nomeBiometria)
+                } else {
+                    estadoOkTextFields()
                 }
             }
         }
 
-        // Caso de erro no login exibe o motivo
-        viewModel.motivoLoginFail.observe(viewLifecycleOwner) { motivoLoginFail ->
-            binding.Mensagem.text = motivoLoginFail
-        }
-
-
-        // Observa as consulta a API e muda o status da barra
+        // Coloca a barra de atualização como visivel
         viewModel.status.observe(viewLifecycleOwner) { status ->
             when (status) {
                 LoginViewModel.ApiStatus.LOADING -> {
-                    mostrarBarra()
+                    estadoCarregando()
                 }
                 LoginViewModel.ApiStatus.DONE -> {
-                    when (biometriaOn) {
-                        true -> {
-                            layoutBiometrics(nomeBiometria)
-                        }
-                        false -> {
-                            layoutNormal()
-                        }
-                    }
+                    processResponse(viewModel.response.value!!)
                 }
-                LoginViewModel.ApiStatus.ERROR -> {
-                    when (biometriaOn) {
-                        true -> {
-                            layoutBiometrics(nomeBiometria)
-                        }
-                        false -> {
-                            layoutNormal()
-                        }
+                else -> {
+                    viewModel.setCardStateErro(true)
+                    if (biometriaOn) {
+                        estadoOkTextBiometrics(nomeBiometria)
+                    } else {
+                        estadoOkTextFields()
                     }
                 }
             }
         }
-        checkBiometria(applicationContext, arquivoSharedPreferences)
+
+        fun matriculaOk(): Boolean {
+            if (viewModel.matricula.value?.length != 5)
+                return false
+
+
+            return true
+        }
+
+        fun senhaOk(): Boolean {
+            if (viewModel.senha.value.isNullOrEmpty())
+                return false
+
+            return true
+        }
 
         // ClickListener para o botão login
         binding.btnEntrar.setOnClickListener {
-            binding.Mensagem.visibility = View.INVISIBLE
-            when (biometriaOn) {
-                true -> {
-                    viewModel.matricula.value = matriculaBiometria
-                    viewModel.senha.value = senhaBiometria
-                    biometricPrompt.authenticate(promptInfo)
-                }
-                false -> {
-                    viewModel.getApiResponse(
-                        viewModel.matricula.value.toString(),
-                        viewModel.senha.value.toString()
-                    )
-
-                }
-            }
+//            estadoCard(false)
+//            var isOk = true
+//
+//            when (biometriaOn) {
+//                true -> {
+//                    viewModel.matricula.value = matriculaBiometria
+//                    viewModel.senha.value = senhaBiometria
+//                    biometricPrompt.authenticate(promptInfo)
+//                }
+//                false -> {
+//
+//                    if (!matriculaOk()) {
+//                        viewModel.setMensagem(Constantes.Erro5)
+//                        viewModel.setCardStateErro(true)
+//                        isOk = false
+//                    }
+//
+//                    if (isOk) {
+//                        if (!senhaOk()) {
+//                            viewModel.setMensagem(Constantes.Erro6)
+//                            viewModel.setCardStateErro(true)
+//                            isOk = false
+//                        }
+//                    }
+//
+//                    if (isOk) {
+//                        viewModel.request(
+//                            viewModel.matricula.value.toString(),
+//                            viewModel.senha.value.toString()
+//                        )
+//
+//                    }
+//                }
+//            }
+            viewModel.matricula.value = "00002"
+            viewModel.senha.value = "1234"
+            viewModel.request(
+                viewModel.matricula.value.toString(),
+                viewModel.senha.value.toString()
+            )
         }
 
         binding.btnTrocarUsuario.setOnClickListener {
@@ -177,16 +223,17 @@ class LoginFragment : BaseFragment() {
             biometriaOn = false
             viewModel.matricula.value = ""
             viewModel.senha.value = ""
-            layoutNormal()
+            estadoOkTextFields()
         }
 
         binding.Biometria.setOnCheckedChangeListener { _, isChecked ->
             saveBiometrics = isChecked
         }
+        checkBiometria(applicationContext, arquivoSharedPreferences)
 
         // Biometrics
         val biometricManager = BiometricManager.from(applicationContext)
-        when (biometricManager.canAuthenticate(BIOMETRIC_STRONG or DEVICE_CREDENTIAL)) {
+        when (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL)) {
             BiometricManager.BIOMETRIC_SUCCESS ->
                 Log.d("MY_APP_TAG", "App can authenticate using biometrics.")
             BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE ->
@@ -198,10 +245,10 @@ class LoginFragment : BaseFragment() {
                 val enrollIntent = Intent(Settings.ACTION_BIOMETRIC_ENROLL).apply {
                     putExtra(
                         Settings.EXTRA_BIOMETRIC_AUTHENTICATORS_ALLOWED,
-                        BIOMETRIC_STRONG or DEVICE_CREDENTIAL
+                        BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL
                     )
                 }
-                startActivityForResult(enrollIntent, REQUEST_CODE)
+                startActivityForResult(enrollIntent, IntentIntegrator.REQUEST_CODE)
             }
         }
 
@@ -219,7 +266,7 @@ class LoginFragment : BaseFragment() {
                 ) {
                     super.onAuthenticationSucceeded(result)
 
-                    viewModel.getApiResponse(
+                    viewModel.request(
                         viewModel.matricula.value.toString(),
                         viewModel.senha.value.toString()
                     )
@@ -233,7 +280,7 @@ class LoginFragment : BaseFragment() {
         promptInfo = BiometricPrompt.PromptInfo.Builder()
             .setTitle(Constantes.NomeSistema)
             .setSubtitle("Desbloqueie seu celular")
-            .setAllowedAuthenticators(BIOMETRIC_WEAK or DEVICE_CREDENTIAL)
+            .setAllowedAuthenticators(BiometricManager.Authenticators.BIOMETRIC_WEAK or BiometricManager.Authenticators.DEVICE_CREDENTIAL)
             .build()
 
         val fm = fragmentManager
@@ -247,72 +294,109 @@ class LoginFragment : BaseFragment() {
         return binding.root
     }
 
-
-    // Mostra a barra de loading e esconde os demais campos
-    private fun mostrarBarra() {
-        // Barra
-        binding.Bar.visibility = View.VISIBLE
-
-        // Parte Normal
-        binding.ImagemDigital.visibility = View.GONE
-        binding.Matricula.visibility = View.GONE
-        binding.Senha.visibility = View.GONE
-        binding.Biometria.visibility = View.GONE
-
-        // Parte Biometria
-        binding.ImagemDigital.visibility = View.GONE
-        binding.NomeBiometria.visibility = View.GONE
-        binding.layoutTrocarUsuario.visibility = View.GONE
-
-        // Btn Entrar e mensagem
-        binding.Mensagem.visibility = View.GONE
-        binding.btnEntrar.visibility = View.GONE
+    //----------------------------------------------------------------------------------------------
+    private fun estadoCard(isErro: Boolean) {
+        if (isErro) {
+            binding.cardCentral.strokeWidth = 3
+            binding.mensagem.visibility = View.VISIBLE
+        } else {
+            binding.cardCentral.strokeWidth = 0
+            binding.mensagem.visibility = View.INVISIBLE
+        }
     }
 
-    // Layout quando o usuário não marcou a opção usar biometria
-    private fun layoutNormal() {
-        // Barra
-        binding.Bar.visibility = View.GONE
-
-        // Parte Normal
-        binding.ImagemDigital.visibility = View.VISIBLE
-        binding.Matricula.visibility = View.VISIBLE
-        binding.Senha.visibility = View.VISIBLE
-        binding.Biometria.isVisible = showBiometricOption
-
-        // Parte Biometria
-        binding.ImagemDigital.visibility = View.GONE
-        binding.NomeBiometria.visibility = View.GONE
-        binding.layoutTrocarUsuario.visibility = View.GONE
-
-        // Btn Entrar e mensagem
-        binding.Mensagem.visibility = View.VISIBLE
-        binding.btnEntrar.visibility = View.VISIBLE
+    //----------------------------------------------------------------------------------------------
+    private fun layoutOkTextFields(isVisible: Boolean) {
+        if (isVisible) {
+            binding.layoutOkTextFields.visibility = View.VISIBLE
+        } else {
+            binding.layoutOkTextFields.visibility = View.GONE
+        }
     }
 
-    // Layout quando o usuário marcou a opção usar biometria
-    private fun layoutBiometrics(nomeBiometria: String) {
-        // Barra
-        binding.Bar.visibility = View.GONE
-
-        // Parte Normal
-        binding.ImagemDigital.visibility = View.GONE
-        binding.Matricula.visibility = View.GONE
-        binding.Senha.visibility = View.GONE
-        binding.Biometria.visibility = View.GONE
-
-        // Parte Biometria
-        binding.ImagemDigital.visibility = View.VISIBLE
-        binding.NomeBiometria.visibility = View.VISIBLE
-        binding.NomeBiometria.text = "Olá, $nomeBiometria"
-        binding.textTrocarUsuario.text = "Não é ${nomeBiometria}?"
-        binding.layoutTrocarUsuario.visibility = View.VISIBLE
-
-        // Btn Entrar e mensagem
-        binding.Mensagem.visibility = View.VISIBLE
-        binding.btnEntrar.visibility = View.VISIBLE
+    //----------------------------------------------------------------------------------------------
+    private fun layoutOkBiometrics(isVisible: Boolean) {
+        if (isVisible) {
+            binding.layoutOkBiometrics.visibility = View.VISIBLE
+        } else {
+            binding.layoutOkBiometrics.visibility = View.GONE
+        }
     }
 
+    //----------------------------------------------------------------------------------------------
+    private fun layoutCarregando(isVisible: Boolean) {
+        if (isVisible) {
+            binding.layoutCarregando.visibility = View.VISIBLE
+        } else {
+            binding.layoutCarregando.visibility = View.GONE
+        }
+    }
+
+    //----------------------------------------------------------------------------------------------
+    private fun layoutBtnBiometrics(isVisible: Boolean) {
+        if (isVisible) {
+            binding.layoutBtnBiometrics.visibility = View.VISIBLE
+        } else {
+            binding.layoutBtnBiometrics.visibility = View.GONE
+        }
+    }
+
+    //----------------------------------------------------------------------------------------------
+    private fun layoutBtnTrocarUsuario(isVisible: Boolean) {
+        if (isVisible) {
+            binding.layoutBtnTrocarUsuario.visibility = View.VISIBLE
+        } else {
+            binding.layoutBtnTrocarUsuario.visibility = View.GONE
+        }
+    }
+
+    //----------------------------------------------------------------------------------------------
+    private fun btnEntrar(isVisible: Boolean) {
+        if (isVisible) {
+            binding.btnEntrar.visibility = View.VISIBLE
+        } else {
+            binding.btnEntrar.visibility = View.GONE
+        }
+    }
+
+    //----------------------------------------------------------------------------------------------
+    private fun mensagem(isVisible: Boolean) {
+        if (isVisible) {
+            binding.mensagem.visibility = View.VISIBLE
+        } else {
+            binding.mensagem.visibility = View.INVISIBLE
+        }
+    }
+    //----------------------------------------------------------------------------------------------
+
+    private fun estadoCarregando() {
+        layoutOkTextFields(false)
+        layoutOkBiometrics(false)
+        layoutCarregando(true)
+        layoutBtnBiometrics(false)
+        layoutBtnTrocarUsuario(false)
+        btnEntrar(false)
+    }
+
+    private fun estadoOkTextFields() {
+        layoutOkTextFields(true)
+        layoutOkBiometrics(false)
+        layoutCarregando(false)
+        layoutBtnBiometrics(true)
+        layoutBtnTrocarUsuario(false)
+        btnEntrar(true)
+    }
+
+    private fun estadoOkTextBiometrics(nome: String) {
+        layoutOkTextFields(false)
+        layoutOkBiometrics(true)
+        layoutCarregando(false)
+        layoutBtnBiometrics(false)
+        layoutBtnTrocarUsuario(true)
+        btnEntrar(true)
+
+        binding.nomeBiometrics.text = nome
+    }
 
     // Muda o layout da pagina de acordo com o que o usuário escolheu
     private fun checkBiometria(context: Context, name: String) {
@@ -320,11 +404,11 @@ class LoginFragment : BaseFragment() {
             true -> {
                 biometriaOn = true
                 getVariablesBiometria(context, name)
-                layoutBiometrics(nomeBiometria)
+                estadoOkTextBiometrics(nomeBiometria)
             }
             false -> {
                 biometriaOn = false
-                layoutNormal()
+                estadoOkTextFields()
             }
         }
     }
@@ -350,7 +434,7 @@ class LoginFragment : BaseFragment() {
         with(sharedPref.edit())
         {
             putBoolean("BiometriaOn", true)
-            putString("Nome", viewModel.nome)
+            putString("Nome", viewModel.response.value?.nomeUsuario)
             putString("Senha", viewModel.senha.value)
             putString("Matricula", viewModel.matricula.value)
             apply()
@@ -359,12 +443,12 @@ class LoginFragment : BaseFragment() {
 
     // Salva as prefderencias no shared preference
     private fun deletarPreferencias(context: Context, name: String): Boolean {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return context.deleteSharedPreferences(name)
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            context.deleteSharedPreferences(name)
         } else {
-            context.getSharedPreferences(name, Context.MODE_PRIVATE).edit().clear().commit()
+            context.getSharedPreferences(name, Context.MODE_PRIVATE).edit().clear().apply()
             val dir = File(context.applicationInfo.dataDir, "shared_prefs")
-            return File(dir, "$name.xml").delete()
+            File(dir, "$name.xml").delete()
         }
     }
 

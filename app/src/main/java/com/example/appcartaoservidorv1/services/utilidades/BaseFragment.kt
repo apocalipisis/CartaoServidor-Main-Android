@@ -21,7 +21,7 @@ open class BaseFragment : Fragment() {
 
         if(!isNetworkAvailable(appContext))
         {
-            goToNointernetpage(view!!)
+            goToNointernetpage(requireView())
         }
     }
 

@@ -1,7 +1,7 @@
 package com.example.appcartaoservidorv1.services
 
 import com.example.appcartaoservidorv1.Constantes
-import com.example.appcartaoservidorv1.models.DTO_Login
+import com.example.appcartaoservidorv1.models.dto.DTOLogin
 import com.squareup.moshi.*
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -32,7 +32,7 @@ interface IAPIAndroid {
     suspend fun verificaLogin(
         @Header("matricula") matricula: String,
         @Header("senha") senha: String
-    ): DTO_Login
+    ): DTOLogin
 }
 
 object APIAndroid {

@@ -48,9 +48,10 @@ interface IAPIComercianteGerente {
         @Header("MatriculaComerciante") MatriculaComerciante: String,
         @Header("MatriculaVendedor") MatriculaVendedor: String,
         @Header("Valor") Valor: String,
+        @Header("NumeroCartao") NumeroCartao: String,
         @Header("SenhaCartao") SenhaCartao: String,
         @Header("Authorization") token: String,
-    ): DTO_InserirTransacao
+    ): ParBoolString
 
     // Função que busca as N 20 transações de uma matricula servidor
     @POST(Constantes.NConsultarFuncionarioComercianteGerente)
@@ -64,7 +65,6 @@ interface IAPIComercianteGerente {
     @POST(Constantes.InserirFuncionarioComercianteGerente)
     suspend fun inserirFuncionarioComercianteGerente(
         @Header("Nome") Nome: String,
-        @Header("IsAtivo") IsAtivo: Boolean,
         @Header("Matricula") Matricula: String,
         @Header("Authorization") token: String,
     ): ParBoolString

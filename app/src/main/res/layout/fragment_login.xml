@@ -11,167 +11,214 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/FragmentoStyle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/VerdeDias">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="0dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginHorizontal="70dp"
-            android:src="@drawable/logo_dias"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView"
+            style="@style/Card.AppCartaoServidorV1.Login.Superior"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-<!--        <TextView-->
-<!--            android:id="@+id/textView4"-->
-<!--            style="@style/TituloStyle"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="15dp"-->
-<!--            android:text="@string/seja_bem_vindo"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/logo" />-->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/logo"
+                style="@style/Image.AppCartaoServidorV1.Login.Logo"
+                android:layout_marginVertical="@dimen/AppCartaoServidorV1.Image.Login.Logo.VerticalMargin"
+                android:src="@drawable/img_empresa_logo_completo_letras_pretas" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginVertical="25dp"
-            android:background="@android:color/transparent"
-            android:orientation="vertical"
-            android:padding="15dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardCentral"
+            style="@style/Card.AppCartaoServidorV1.Login.Central"
+            android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+            app:layout_constraintBottom_toTopOf="@+id/materialCardView2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/logo">
-
-            <ProgressBar
-                android:id="@+id/Bar"
-                style="@style/ProgressBarStyleLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="25dp"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/NomeBiometria"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:textAlignment="center"
-                android:textColor="@color/Branco"
-                android:textSize="20sp"
-                tools:text="Olá, Fulaninho" />
-
-                        <Switch
-                            android:id="@+id/Biometria"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginHorizontal="10dp"
-                            android:layout_marginBottom="7dp"
-                            android:checked="false"
-                            android:textColor="@color/Branco"
-                            android:text="Ativar Biometria"
-                            tools:ignore="UseSwitchCompatOrMaterialXml" />
-
-                        <EditText
-                            android:id="@+id/Matricula"
-                            style="@style/EntryStyleLogin"
-                            android:layout_width="match_parent"
-                            android:layout_height="48dp"
-                            android:layout_marginHorizontal="30dp"
-                            android:layout_marginBottom="7dp"
-                            android:hint="@string/matricula"
-                            android:inputType="number"
-                            android:maxLength="5"
-                            android:paddingHorizontal="15dp"
-                            android:text="@={viewModel.Matricula}" />
-
-                        <EditText
-                            android:id="@+id/Senha"
-                            style="@style/EntryStyleLogin"
-                            android:layout_width="match_parent"
-                            android:layout_height="48dp"
-                            android:layout_marginHorizontal="30dp"
-                            android:layout_marginBottom="7dp"
-                            android:hint="@string/senha"
-                            android:inputType="textPassword"
-                            android:paddingHorizontal="15dp"
-                            android:text="@={viewModel.Senha}" />
-
-            <TextView
-                android:id="@+id/Mensagem"
-                style="@style/erroStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                tools:text="Problemas no servidor, aguarde e tente novamente" />
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:orientation="horizontal">
-                <!-- A CardView that contains a TextView -->
-                <ImageView
-                    android:id="@+id/ImagemDigital"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+                android:layout_marginVertical="@dimen/AppCartaoServidorV1.Basic.VerticalMargin"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <!-- Estado input -->
+                <LinearLayout
+                    android:id="@+id/layoutOkTextFields"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/MatriculaContainer"
+                        style="@style/Widget.AppCartaoServidorV1.Login.Matricula.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/Matricula">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/Matricula"
+                            style="@style/Widget.AppCartaoServidorV1.Login.Matricula.EditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@={viewModel.matricula}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/SenhaContainer"
+                        style="@style/Widget.AppCartaoServidorV1.Login.Senha.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/Senha.DoisPontos">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/Senha"
+                            style="@style/Widget.AppCartaoServidorV1.Login.Senha.EditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@={viewModel.senha}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutOkBiometrics"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/Text.AppCartaoServidorV1.Login.Legenda"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Ola" />
+
+                    <TextView
+                        android:id="@+id/nomeBiometrics"
+                        style="@style/Text.AppCartaoServidorV1.Login.Nome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        style="@style/Text.AppCartaoServidorV1.Login.Legenda"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/AppCartaoServidorV1.Basic.VerticalMargin"
+                        android:text="@string/SejaBemVindo"
+                        android:textAlignment="textEnd" />
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/Text.AppCartaoServidorV1.Login.Mensagem"
+                    android:id="@+id/mensagem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_fingerprint"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="15dp"
-                    android:visibility="gone"/>
+                    android:layout_gravity="end"
+                    android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.VerticalMargin"
+                    android:text="@{viewModel.mensagem}"
+                    android:visibility="visible"
+                    tools:text="Credenciais incorretas" />
+            </LinearLayout>
+            <!-- Estado carregando -->
+            <LinearLayout
+                android:id="@+id/layoutCarregando"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="5dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
 
-                <Button
-                    android:id="@+id/btnEntrar"
-                    style="@style/LoginImageBtnStyle"
-                    android:background="@android:color/transparent"
-                    android:drawableEnd="@drawable/icon_arrow_forward_ios"
-                    android:text="@string/entrar" />
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:indeterminate="true" />
 
             </LinearLayout>
-        </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/layoutTrocarUsuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginStart="10dp"
-            android:layout_marginBottom="5dp"
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView2"
+            style="@style/Card.AppCartaoServidorV1.Login.Inferior"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
-            <!-- A CardView that contains a TextView -->
-            <TextView
-                android:id="@+id/textTrocarUsuario"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/Branco"
-                android:layout_gravity="start"
-                android:textSize="11sp"
-                tools:text="Não é fulaninho?" />
 
-            <Button
-                android:id="@+id/btnTrocarUsuario"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_gravity="start"
-                android:background="@android:color/transparent"
-                android:drawableEnd="@drawable/icon_swap_horizontal_circle"
-                android:padding="0dp"
-                android:text="Trocar usuário"
-                android:textColor="@color/Branco"
-                android:textSize="11sp" />
-        </LinearLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
+                <LinearLayout
+                    android:id="@+id/layoutBtnBiometrics"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+                    android:orientation="horizontal"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        style="@style/Image.AppCartaoServidorV1.Icon.Login.Biometrics"
+                        android:src="@drawable/ic_outline_fingerprint_24" />
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/Biometria"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutBtnTrocarUsuario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnTrocarUsuario"
+                        style="@style/Widget.AppCartaoServidorV1.Btn.Login"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/TrocarUsuário"
+                        app:icon="@drawable/ic_outline_switch_account_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </LinearLayout>
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEntrar"
+                    style="@style/Widget.AppCartaoServidorV1.Btn.Login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_outline_login_24"
+                    android:text="@string/Entrar"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

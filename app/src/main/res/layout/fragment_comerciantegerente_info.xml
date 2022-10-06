@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -9,233 +10,170 @@
             type="com.example.appcartaoservidorv1.viewmodels.comerciantegerente.ComerciantegerenteinfoViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/Informações"
-            style="@style/textoTituloBar"
-            android:text="@string/info"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!-- A CardView that contains a TextView -->
-        <ImageView
-            android:id="@+id/Image"
-            style="@style/imagemTituloBar"
-            android:src="@drawable/icon_info"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Informações" />
-
-        <ScrollView
-            android:id="@+id/scrollView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:fillViewport="true"
-            android:scrollbars="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Image">
+        <com.google.android.material.card.MaterialCardView style="@style/Card.AppCartaoServidorV1.Superior">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/CardConta"
-                    style="@style/Card"
-                    android:layout_marginHorizontal="@dimen/marginHorizontalCard"
-                    android:layout_marginVertical="@dimen/marginVerticalCard"
-                    app:cardCornerRadius="@dimen/cornerRadiusCard"
-                    app:cardElevation="@dimen/elevationCard"
-                    app:layout_constraintBottom_toTopOf="@id/CardFinanceiro"
-                    app:layout_constraintEnd_toEndOf="parent"
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnVoltar"
+                    style="@style/Widget.AppCartaoServidorV1.CardSuperior.BtnVoltar"
+                    android:layout_marginStart="@dimen/AppCartaoServidorV1.Card.Superior.Margin.btnVoltar"
+                    app:icon="@drawable/ic_outline_arrow_back_ios_36"
+                    app:iconGravity="textStart"
+                    app:iconPadding="0dp"
+                    app:iconTint="?attr/colorOnSurface"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/paddingCard">
-
-                        <TextView
-                            android:id="@+id/ComercianteLabel"
-                            style="@style/CardTitulo"
-                            android:text="@{viewModel.nome}"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <View
-                            android:id="@+id/linhaComerciante"
-                            style="@style/CardLiha"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/ComercianteLabel" />
-                        <!-- ________________________________________________________ -->
-
-                        <TextView
-                            android:id="@+id/labelMatricula"
-                            style="@style/CardLabel"
-                            android:text="@string/matricula"
-                            app:layout_constraintEnd_toStartOf="@+id/labelTipoUsuario"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/linhaComerciante" />
-
-                        <TextView
-                            android:id="@+id/labelTipoUsuario"
-                            style="@style/CardLabel"
-                            android:text="@string/is_tipo_de_usu_rio"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toEndOf="@+id/labelMatricula"
-                            app:layout_constraintTop_toBottomOf="@+id/linhaComerciante" />
-
-                        <TextView
-                            android:id="@+id/Matricula"
-                            style="@style/CardItem"
-                            android:text="@{viewModel.matricula}"
-                            app:layout_constraintEnd_toStartOf="@+id/labelTipoUsuario"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/labelMatricula" />
-
-                        <TextView
-                            android:id="@+id/TipoUsuario"
-                            style="@style/CardItem"
-                            android:text="@string/Gerente"
-                            app:layout_constraintBottom_toBottomOf="@+id/Matricula"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toEndOf="@+id/labelMatricula"
-                            app:layout_constraintTop_toBottomOf="@+id/labelTipoUsuario" />
-                        <!-- ________________________________________________________ -->
-
-                        <TextView
-                            android:id="@+id/labelStatus"
-                            style="@style/CardLabel"
-                            android:text="@string/status"
-                            app:layout_constraintEnd_toEndOf="@+id/Matricula"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/TipoUsuario" />
-
-
-                        <TextView
-                            android:id="@+id/Status"
-                            style="@style/CardItem"
-                            android:text="@{viewModel.status}"
-                            app:layout_constraintEnd_toEndOf="@+id/labelStatus"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/labelStatus" />
-
-
-                        <TextView
-                            android:id="@+id/labelCpf"
-                            style="@style/CardLabel"
-                            android:text="@string/Cpf"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toEndOf="@+id/labelStatus"
-                            app:layout_constraintTop_toBottomOf="@+id/TipoUsuario" />
-
-                        <TextView
-                            android:id="@+id/Cpf"
-                            style="@style/CardItem"
-                            android:text="@{viewModel.cpf}"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toEndOf="@+id/Status"
-                            app:layout_constraintTop_toBottomOf="@+id/labelCpf" />
-
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.cardview.widget.CardView>
-
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/CardFinanceiro"
-                    style="@style/Card"
-                    android:layout_marginHorizontal="@dimen/marginHorizontalCard"
-                    android:layout_marginVertical="@dimen/marginVerticalCard"
-                    app:cardCornerRadius="@dimen/cornerRadiusCard"
-                    app:cardElevation="@dimen/elevationCard"
+                <TextView
+                    style="@style/Text.AppCartaoServidorV1.Card.Superior.Titulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/AppCartaoServidorV1.Card.Superior.Margin.Titulo"
+                    android:text="@string/Informações"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/CardConta">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/paddingCard">
-
-                        <TextView
-                            android:id="@+id/Financeiro"
-                            style="@style/CardTitulo"
-                            android:text="@string/Comercio"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <View
-                            android:id="@+id/linhaCardFinanceiro"
-                            style="@style/CardLiha"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/Financeiro" />
-
-
-                        <TextView
-                            android:id="@+id/labelMatirculaMae"
-                            style="@style/CardLabel"
-                            android:text="@string/matricula"
-                            app:layout_constraintEnd_toStartOf="@+id/labelCnpjMae"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/linhaCardFinanceiro" />
-
-                        <TextView
-                            android:id="@+id/labelCnpjMae"
-                            style="@style/CardLabel"
-                            android:text="@string/CNPJ"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toEndOf="@+id/labelMatirculaMae"
-                            app:layout_constraintTop_toBottomOf="@+id/linhaCardFinanceiro" />
-
-                        <TextView
-                            android:id="@+id/MatriculaMae"
-                            style="@style/CardItem"
-                            android:text="@{viewModel.matriculaMae}"
-                            app:layout_constraintEnd_toStartOf="@+id/labelCnpjMae"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/labelMatirculaMae" />
-
-                        <TextView
-                            android:id="@+id/CnpjMae"
-                            style="@style/CardItem"
-                            android:text="@{viewModel.cnpj}"
-                            app:layout_constraintBottom_toBottomOf="@+id/MatriculaMae"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toEndOf="@+id/labelMatirculaMae"
-                            app:layout_constraintTop_toBottomOf="@+id/labelCnpjMae" />
-
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.cardview.widget.CardView>
-
+                    app:layout_constraintStart_toEndOf="@+id/btnVoltar"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:scrollbars="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/Text.AppCartaoServidorV1.Info.Nome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+                    android:layout_marginTop="@dimen/AppCartaoServidorV1.Basic.VerticalMargin"
+                    android:text="@{viewModel.nome}"
+                    tools:text="Fulano da Silva" />
+
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/Card.AppCartaoServidorV1.Info"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+                    android:layout_marginTop="@dimen/AppCartaoServidorV1.Basic.VerticalMargin">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/AppCartaoServidorV1.Card.Conteudo.Margin"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/Text.AppCartaoServidorV1.Card.Info.Title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Matricula" />
+
+                        <TextView
+                            style="@style/Text.AppCartaoServidorV1.Card.Info.Content"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{viewModel.matricula}" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/Card.AppCartaoServidorV1.Info"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+                    android:layout_marginTop="@dimen/AppCartaoServidorV1.Basic.VerticalMargin">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/AppCartaoServidorV1.Card.Conteudo.Margin"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/Text.AppCartaoServidorV1.Card.Info.Title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/CPF" />
+
+                        <TextView
+                            style="@style/Text.AppCartaoServidorV1.Card.Info.Content"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{viewModel.cpf}" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+                    android:layout_marginVertical="@dimen/AppCartaoServidorV1.Basic.VerticalMargin" />
+
+                <TextView
+                    style="@style/Text.AppCartaoServidorV1.Info.Legenda"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+                    android:text="@string/GerenteEm" />
+
+                <TextView
+                    style="@style/Text.AppCartaoServidorV1.Info.Content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+                    android:text="@{viewModel.nomeComerciante}"
+                    tools:text="Supermercado Cristal"/>
+
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/Card.AppCartaoServidorV1.Info"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+                    android:layout_marginVertical="@dimen/AppCartaoServidorV1.Basic.VerticalMargin">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/AppCartaoServidorV1.Card.Conteudo.Margin"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/Text.AppCartaoServidorV1.Card.Info.Title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Matricula" />
+
+                        <TextView
+                            style="@style/Text.AppCartaoServidorV1.Card.Info.Content"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{viewModel.matriculaMae}" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
         </ScrollView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </layout>

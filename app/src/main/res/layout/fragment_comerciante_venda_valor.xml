@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.appcartaoservidorv1.viewmodels.comerciante.InserirvalorViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.card.MaterialCardView style="@style/Card.AppCartaoServidorV1.Superior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnVoltar"
+                    style="@style/Widget.AppCartaoServidorV1.CardSuperior.BtnVoltar"
+                    android:layout_marginStart="@dimen/AppCartaoServidorV1.Card.Superior.Margin.btnVoltar"
+                    app:icon="@drawable/ic_outline_arrow_back_ios_36"
+                    app:iconGravity="textStart"
+                    app:iconPadding="0dp"
+                    app:iconTint="?attr/colorOnSurface"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/Text.AppCartaoServidorV1.Card.Superior.Titulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/AppCartaoServidorV1.Card.Superior.Margin.Titulo"
+                    android:text="@string/Preço"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/btnVoltar"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/valorInput"
+            style="@style/Widget.AppCartaoServidorV1.Venda.Valor.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/AppCartaoServidorV1.Basic.VerticalMargin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Mensagem">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/Valor"
+                style="@style/Widget.AppCartaoServidorV1.Venda.Valor.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+                android:background="@drawable/bg_venda_entradavalor"
+                android:importantForAutofill="no"
+                tools:text="20,00" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAvancar"
+            style="@style/Widget.AppCartaoServidorV1.Button"
+            android:layout_gravity="end"
+            android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+            app:icon="@drawable/ic_outline_arrow_forward_24" />
+    </LinearLayout>
+</layout>

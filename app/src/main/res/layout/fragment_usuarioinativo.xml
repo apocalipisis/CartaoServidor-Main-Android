@@ -4,120 +4,131 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.appcartaoservidorv1.viewmodels.login.UsuarioinativoViewModel" />
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView3"
-            style="@style/textoTituloBar"
-            android:text="@string/usuario_inativo"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSuperior"
+            style="@style/Card.AppCartaoServidorV1.Superior"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <!-- A CardView that contains a TextView -->
-        <ImageView
-            android:id="@+id/Image"
-            style="@style/imagemTituloBar"
-            android:src="@drawable/icon_not_interested"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-        <ScrollView
-            android:id="@+id/scrollView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:fillViewport="true"
-            android:scrollbars="vertical"
-            android:layout_marginBottom="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/btnWhatsapp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Image">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
 
-                <TextView
-                    android:id="@+id/olaUser"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
-                    android:textAlignment="center"
-                    android:textColor="?attr/colorOnSecondary"
-                    android:textSize="20sp"
-                    app:layout_constraintEnd_toEndOf="parent"
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnVoltar"
+                    style="@style/Widget.AppCartaoServidorV1.CardSuperior.BtnVoltar"
+                    android:layout_marginStart="@dimen/AppCartaoServidorV1.Card.Superior.Margin.btnVoltar"
+                    app:icon="@drawable/ic_outline_arrow_back_ios_36"
+                    app:iconTint="?attr/colorOnSurface"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Fulaninho"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/usuarioInativoText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:text="@string/userInativo_text"
-                    android:textAlignment="center"
-                    android:textColor="?attr/colorOnSecondary"
-                    android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/olaUser" />
-
-                <TextView
-                    android:id="@+id/MotivoLabel"
+                    style="@style/Text.AppCartaoServidorV1.Card.Superior.Titulo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
-                    android:text="Motivo"
-                    android:textColor="?attr/colorOnSecondary"
-                    android:textSize="18sp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/AppCartaoServidorV1.Card.Superior.Margin.Titulo"
+                    android:text="@string/UsuárioInativo"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/usuarioInativoText" />
+                    app:layout_constraintStart_toEndOf="@+id/btnVoltar"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-
-                <TextView
-                    android:id="@+id/Motivo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:text="Caloteiro"
-                    android:textColor="?attr/colorOnPrimary"
-                    android:textSize="30sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/MotivoLabel" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:scrollbars="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/Text.AppCartaoServidorV1.UsuarioInativo.Nome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+                    android:layout_marginTop="@dimen/AppCartaoServidorV1.Basic.VerticalMargin"
+                    android:text="@{viewModel.nome}"
+                    tools:text="Fulano" />
+
+                <TextView
+                    style="@style/Text.AppCartaoServidorV1.UsuarioInativo.Legenda"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+                    android:layout_marginTop="@dimen/AppCartaoServidorV1.Basic.VerticalMargin"
+                    android:text="@string/UsuárioInativoLegenda" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+                    android:layout_marginVertical="@dimen/AppCartaoServidorV1.Basic.VerticalMargin" />
+
+                <TextView
+                    style="@style/Text.AppCartaoServidorV1.UsuarioInativo.Legenda"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+                    android:text="@string/EntreEmContato" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/AppCartaoServidorV1.Basic.VerticalMargin"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout style="@style/Widget.AppCartaoServidorV1.Button.Container">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnLigar"
+                            style="@style/Widget.AppCartaoServidorV1.Button"
+                            app:icon="@drawable/ic_outline_call_24" />
+
+                        <TextView
+                            style="@style/Widget.AppCartaoServidorV1.TextView.Button"
+                            android:text="@string/Ligar" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/Widget.AppCartaoServidorV1.Button.Container">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnWhatsapp"
+                            style="@style/Widget.AppCartaoServidorV1.Button"
+                            app:icon="@drawable/ic_outline_whatsapp_24" />
+
+                        <TextView
+                            style="@style/Widget.AppCartaoServidorV1.TextView.Button"
+                            android:text="@string/Whatsapp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
         </ScrollView>
 
-        <Button
-            android:id="@+id/btnWhatsapp"
-            style="@style/ImageBtnStyle"
-            android:layout_marginBottom="40dp"
-            android:drawableTop="@drawable/icon_whatsapp"
-            android:text="@string/whatsapp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnLigar"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/btnLigar"
-            style="@style/ImageBtnStyle"
-            android:drawableTop="@drawable/icon_phone"
-            android:text="@string/ligar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btnWhatsapp"
-            app:layout_constraintTop_toTopOf="@+id/btnWhatsapp" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>

@@ -8,12 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.appcartaoservidorv1.Constantes
 import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.databinding.FragmentUsuarionaopermitidoBinding
 import com.example.appcartaoservidorv1.services.utilidades.BaseFragment
+import com.example.appcartaoservidorv1.services.utilidades.fromUsuarioinativoToLogin
 import com.example.appcartaoservidorv1.services.utilidades.fromViewToLogin
 import com.example.appcartaoservidorv1.viewmodels.login.UsuarionaopermitidoViewModel
 import com.example.appcartaoservidorv1.viewmodels.login.UsuarionaopermitidoViewModelFactory
@@ -57,7 +57,14 @@ class UsuarionaopermitidoFragment : BaseFragment() {
                 fromViewToLogin(binding.root)
             }
         }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            onBackPressedCallback
+        )
+
+        binding.btnVoltar.setOnClickListener {
+            fromUsuarioinativoToLogin(this)
+        }
 
         // Configura o ciclo de vida
         binding.lifecycleOwner = viewLifecycleOwner
@@ -74,6 +81,4 @@ class UsuarionaopermitidoFragment : BaseFragment() {
     private fun site() {
         startActivity(siteItent())
     }
-
-
 }

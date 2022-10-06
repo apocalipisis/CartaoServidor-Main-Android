@@ -4,20 +4,18 @@ import android.app.Activity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.databinding.FragmentComerciantegerenteVendaSenhaBinding
-import com.example.appcartaoservidorv1.databinding.FragmentInserirsenhaBinding
-import com.example.appcartaoservidorv1.fragments.comerciante.InserirsenhaFragmentArgs
-import com.example.appcartaoservidorv1.services.utilidades.*
-import com.example.appcartaoservidorv1.viewmodels.comerciante.InserirsenhaViewModel
-import com.example.appcartaoservidorv1.viewmodels.comerciante.InserirsenhaViewModelFactory
+import com.example.appcartaoservidorv1.services.utilidades.BaseFragment
+import com.example.appcartaoservidorv1.services.utilidades.fromComerciantegerenteInserirsenhaToComerciantegerente
+import com.example.appcartaoservidorv1.services.utilidades.fromComerciantegerenteInserirsenhaToStatus
 import com.example.appcartaoservidorv1.viewmodels.comerciantegerente.ComerciantegerenteVendaSenhaViewModel
 import com.example.appcartaoservidorv1.viewmodels.comerciantegerente.ComerciantegerenteVendaSenhaViewModelFactory
 
@@ -57,6 +55,7 @@ class ComerciantegerenteVendaSenhaFragment : BaseFragment() {
             args.nomeComerciante,
             args.matriculaVendedor,
             args.nomeVendedor,
+            args.numeroCartao,
             args.token,
         )
         viewModel = ViewModelProvider(
@@ -68,10 +67,6 @@ class ComerciantegerenteVendaSenhaFragment : BaseFragment() {
         // Configuração da tela inicial
         binding.btnAvancar.isEnabled = false
         binding.senha1.requestFocus()
-//        showKeyboard()
-
-        // Armazena o contexto em uma variavel
-        val appContext = this.requireContext()
 
         // ClickListener para o botão avançar
         binding.btnAvancar.setOnClickListener {
@@ -84,11 +79,16 @@ class ComerciantegerenteVendaSenhaFragment : BaseFragment() {
                     viewModel.valor,
                     it1,
                     viewModel.nomeVendedor,
+                    viewModel.numeroCartao,
                     viewModel.token,
                 )
             }
         }
 
+        // Botão Voltar
+        binding.btnVoltar.setOnClickListener {
+            findNavController().navigateUp()
+        }
 
         // ClickListener para o botão Corrigir
         binding.btnCorrige.setOnClickListener {
@@ -107,9 +107,8 @@ class ComerciantegerenteVendaSenhaFragment : BaseFragment() {
 
         // Obserca se a senha contem os 4 digitos e permite avançar
         viewModel.senhaCompleta.observe(viewLifecycleOwner) { senhaCompleta ->
-            Log.i("Senha", senhaCompleta)
             if (senhaCompleta.length == 4) {
-                hideKeyboard()
+//                hideKeyboard()
                 binding.btnAvancar.isEnabled = true
                 view?.clearFocus()
             } else {

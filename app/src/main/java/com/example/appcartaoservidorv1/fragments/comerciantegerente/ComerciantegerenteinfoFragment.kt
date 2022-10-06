@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.databinding.FragmentComerciantegerenteInfoBinding
 import com.example.appcartaoservidorv1.services.utilidades.BaseFragment
@@ -40,12 +41,18 @@ class ComerciantegerenteinfoFragment : BaseFragment() {
             args.status,
             args.cpf,
             args.matriculaMae,
-            args.cnpj
+            args.cnpj,
+            args.nomeComerciante,
         )
         viewModel =
             ViewModelProvider(this, viewModelFactory)[ComerciantegerenteinfoViewModel::class.java]
         // Faz o binding com o viewModel
         binding.viewModel = viewModel
+
+        // Botão Voltar
+        binding.btnVoltar.setOnClickListener {
+            findNavController().navigateUp()
+        }
 
         // Configura o ciclo de vida
         binding.lifecycleOwner = viewLifecycleOwner

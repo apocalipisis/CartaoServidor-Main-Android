@@ -3,6 +3,7 @@ package com.example.appcartaoservidorv1.services.utilidades
 import android.app.Application
 import android.util.Log
 import androidx.core.content.ContextCompat
+import com.example.appcartaoservidorv1.Constantes
 import java.util.concurrent.*
 
 class App : Application() {
@@ -21,12 +22,11 @@ class App : Application() {
             // Recupera os executors
             setExecutors()
             // Execute a task in the background thread
-            Log.i("Teste","A contagem regressiva começou no background")
             agendar = backgroundExecutor.schedule({
                 mainExecutor.execute {
                     fragment.encerrarSessao()
                 }
-            }, 1, TimeUnit.HOURS)
+            }, Constantes.TempoLimite, TimeUnit.MINUTES)
         }
 
         private fun setExecutors(){

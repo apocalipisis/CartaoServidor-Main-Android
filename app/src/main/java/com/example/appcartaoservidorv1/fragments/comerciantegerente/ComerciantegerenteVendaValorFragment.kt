@@ -4,13 +4,13 @@ import android.app.Activity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.databinding.FragmentComerciantegerenteVendaValorBinding
 import com.example.appcartaoservidorv1.services.utilidades.BaseFragment
@@ -22,7 +22,7 @@ import java.text.DecimalFormatSymbols
 import java.text.NumberFormat
 import java.util.*
 
-class ComerciantegerenteVendaValorFragment: BaseFragment() {
+class ComerciantegerenteVendaValorFragment : BaseFragment() {
     // Variavel responsavel pelo binding
     lateinit var binding: FragmentComerciantegerenteVendaValorBinding
     lateinit var args: ComerciantegerenteVendaValorFragmentArgs
@@ -40,7 +40,12 @@ class ComerciantegerenteVendaValorFragment: BaseFragment() {
     ): View {
         // Infla o layout do fragmento
         binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_comerciantegerente_venda_valor, container, false)
+            DataBindingUtil.inflate(
+                inflater,
+                R.layout.fragment_comerciantegerente_venda_valor,
+                container,
+                false
+            )
         // Recupera as variaveis passada para a view
         args = ComerciantegerenteVendaValorFragmentArgs.fromBundle(requireArguments())
         // Inicializa o ViewModel e passa as variaveis
@@ -52,7 +57,10 @@ class ComerciantegerenteVendaValorFragment: BaseFragment() {
                 args.nomeVendedor,
                 args.token,
             )
-        viewModel = ViewModelProvider(this, viewModelFactory)[ComerciantegerenteVendaValorViewModel::class.java]
+        viewModel = ViewModelProvider(
+            this,
+            viewModelFactory
+        )[ComerciantegerenteVendaValorViewModel::class.java]
         // Faz o binding com o viewModel
         binding.viewModel = viewModel
 
@@ -85,6 +93,11 @@ class ComerciantegerenteVendaValorFragment: BaseFragment() {
         binding.Valor.requestFocus()
 //        showKeyboard()
 
+        // Botão Voltar
+        binding.btnVoltar.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
         // Formata a entrada do valor em "tempo real"
         binding.Valor.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
@@ -101,7 +114,6 @@ class ComerciantegerenteVendaValorFragment: BaseFragment() {
                 before: Int, count: Int
             ) {
                 if (s.toString() != current) {
-                    Log.i("TesteEntrada", s.toString())
                     binding.Valor.removeTextChangedListener(this)
 //                    val cleanString: String = s.replace("""[$,.]""".toRegex(), "")
                     val cleanString: String = s.toString()

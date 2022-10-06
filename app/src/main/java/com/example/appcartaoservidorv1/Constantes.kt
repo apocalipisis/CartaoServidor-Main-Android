@@ -1,6 +1,10 @@
 package com.example.appcartaoservidorv1
 
 object Constantes {
+
+    const val TempoLimite: Long = 15
+
+    //----------------------------------------------------------------------------------------------
     // API
     const val CaminhoAPI: String = "https://cartaoservidor.com/ApiAndroid/"
     const val ConsultaLogin: String = "LoginAndroid/"
@@ -10,6 +14,15 @@ object Constantes {
     const val CaminhoAPIServidor: String = "https://cartaoservidor.com/ApiAndroidServidor/"
     const val ConsultaServidor: String = "InfoServidor/"
     const val NTransacoesServidor: String = "NTransacoesServidor/"
+
+    const val ConsultaCartaoServidor: String = "ConsultaCartaoServidor/"
+    const val BloquearCartaoServidor: String = "BloquearCartaoServidor/"
+    const val DesbloquearCartaoServidor: String = "DesbloquearCartaoServidor/"
+    const val NovoCartaoServidor: String = "NovoCartaoServidor/"
+    const val CancelarSolicitacaoNovoCartaoServidor: String =
+        "CancelarSolicitacaoNovoCartaoServidor/"
+
+    const val ListaComerciantesServidor: String = "ListaComerciantesServidor/"
 
     //----------------------------------------------------------------------------------------------
     // API Comerciante
@@ -47,9 +60,27 @@ object Constantes {
     const val DeletarFuncionarioComercianteGerente: String = "DeletarFuncionarioComercianteGerente/"
 
     //----------------------------------------------------------------------------------------------
+    // API Comerciante Funcionario
+    const val CaminhoAPIComercianteFuncionario: String =
+        "https://cartaoservidor.com/ApiAndroidComercianteFuncionario/"
+
+    const val ConsultaComercianteFuncionario: String = "InfoComercianteFuncionario/"
+    const val InserirVendaComercianteFuncionario: String = "InserirVendaComercianteFuncionario/"
+
+    const val NTransacoesComercianteFuncionario: String = "NTransacoesComercianteFuncionario/"
+
+    //----------------------------------------------------------------------------------------------
     // Resposta de error
-    const val Erro1 = "Problemas ao tentar acessar o servidor"
+    const val Erro1 = "Estamos enfrentando problemas internos"
     const val Erro2 = "Credenciais Incorretas"
+
+    const val Erro3 = "Erro no sistema, aguarde e tente novamente"
+    const val Erro4 = "Erro ao tentar acessar o sistema, aguarde e tente novamente"
+
+    const val Erro5 = "Matricula invalida"
+    const val Erro6 = "Digite uma senha"
+
+    const val Erro7 = "Não foi possivel gerar o QRCode, tente novamente"
 
     //----------------------------------------------------------------------------------------------
     // Telefone
@@ -59,7 +90,7 @@ object Constantes {
 
     //----------------------------------------------------------------------------------------------
     // Site
-    const val Site: String = "https://da1teste.herokuapp.com/"
+    const val Site: String = "https://cartaoservidor.com/"
 
     //----------------------------------------------------------------------------------------------
     // Nome Sistema

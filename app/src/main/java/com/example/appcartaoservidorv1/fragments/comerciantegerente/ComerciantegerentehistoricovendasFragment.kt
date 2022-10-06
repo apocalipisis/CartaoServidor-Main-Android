@@ -6,14 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.adapters.AdapterComerciantegerenteHistoricoVendas
 import com.example.appcartaoservidorv1.adapters.Transacao_Listener
 import com.example.appcartaoservidorv1.databinding.FragmentComerciantegerenteHistoricovendasBinding
+import com.example.appcartaoservidorv1.services.redirecionamento.fromHistoricovendasGerenteComercianteToDetalhes
 import com.example.appcartaoservidorv1.services.utilidades.BaseFragment
-import com.example.appcartaoservidorv1.services.utilidades.fromHistoricovendasGerenteComercianteToDetalhes
+import com.example.appcartaoservidorv1.viewmodels.comerciantefuncionario.ComercianteFuncionarioHistoricovendasViewModel
 import com.example.appcartaoservidorv1.viewmodels.comerciantegerente.ComerciantegerenteHistoricovendasViewModel
 import com.example.appcartaoservidorv1.viewmodels.comerciantegerente.ComerciantegerenteHistoricovendasViewModelFactory
 
@@ -55,7 +57,7 @@ class ComerciantegerentehistoricovendasFragment : BaseFragment() {
         val adapter = AdapterComerciantegerenteHistoricoVendas(Transacao_Listener { transacao ->
             viewModel.onTransacaoClicked(transacao)
         })
-        binding.ListaExtrato.adapter = adapter
+        binding.Lista.adapter = adapter
 
         // Coloca um observer nas transações e atualiza o recycler view
         viewModel.transacoes.observe(viewLifecycleOwner) {
@@ -70,9 +72,9 @@ class ComerciantegerentehistoricovendasFragment : BaseFragment() {
         }
 
         val layoutManager = LinearLayoutManager(this.requireContext())
-        binding.ListaExtrato.layoutManager = layoutManager
+        binding.Lista.layoutManager = layoutManager
         // Adi
-        binding.ListaExtrato.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        binding.Lista.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 if (dy > 0) { //check for scroll down
                     val visibleItemCount = layoutManager.childCount
@@ -81,12 +83,27 @@ class ComerciantegerentehistoricovendasFragment : BaseFragment() {
                     if (!viewModel.loading) {
                         if (visibleItemCount + pastVisiblesItems >= totalItemCount) {
                             viewModel.loading = true
-                            viewModel.historicoDeVendas()
+                            viewModel.historicoDeVendas(true)
                         }
                     }
                 }
             }
         })
+
+        // Coloca a barra de atualização como visivel
+        viewModel.statusLista.observe(viewLifecycleOwner) { status ->
+            when (status) {
+                ComerciantegerenteHistoricovendasViewModel.ApiStatusLista.LOADING -> {
+                    estadoCarregandoLista()
+                }
+                ComerciantegerenteHistoricovendasViewModel.ApiStatusLista.DONE -> {
+                    estadoOkLista()
+                }
+                ComerciantegerenteHistoricovendasViewModel.ApiStatusLista.ERROR -> {
+                    estadoErro()
+                }
+            }
+        }
 
         // Coloca a barra de atualização como visivel
         viewModel.status.observe(viewLifecycleOwner) { status ->
@@ -103,6 +120,11 @@ class ComerciantegerentehistoricovendasFragment : BaseFragment() {
             }
         }
 
+        // Botão Voltar
+        binding.btnVoltar.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
         // Configura o ciclo de vida
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
@@ -111,27 +133,62 @@ class ComerciantegerentehistoricovendasFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-
-        viewModel.reloadList()
+        viewModel.reloadList(false)
     }
-
+    //----------------------------------------------------------------------------------------------
+    private fun barraLista(isVisible: Boolean) {
+        if (isVisible) {
+            binding.BarList.visibility = View.VISIBLE
+        } else {
+            binding.BarList.visibility = View.GONE
+        }
+    }
+    //----------------------------------------------------------------------------------------------
+    private fun barra(isVisible: Boolean) {
+        if (isVisible) {
+            binding.Bar.visibility = View.VISIBLE
+        } else {
+            binding.Bar.visibility = View.GONE
+        }
+    }
+    //----------------------------------------------------------------------------------------------
+    private fun lista(isVisible: Boolean) {
+        if (isVisible) {
+            binding.Lista.visibility = View.VISIBLE
+        } else {
+            binding.Lista.visibility = View.GONE
+        }
+    }
+    //----------------------------------------------------------------------------------------------
+    private fun mensagem(isVisible: Boolean) {
+        if (isVisible) {
+            binding.Mensagem.visibility = View.VISIBLE
+        } else {
+            binding.Mensagem.visibility = View.GONE
+        }
+    }
+    //----------------------------------------------------------------------------------------------
     private fun estadoCarregando() {
-        binding.Image.visibility = View.INVISIBLE
-        binding.Bar.visibility = View.VISIBLE
-        binding.Menssagem.visibility = View.GONE
-
+        barra(true)
+        lista(false)
+        mensagem(false)
     }
-
     private fun estadoOk() {
-        binding.Image.visibility = View.VISIBLE
-        binding.Bar.visibility = View.INVISIBLE
-        binding.Menssagem.visibility = View.GONE
+        barra(false)
+        lista(true)
+        mensagem(false)
     }
-
     private fun estadoErro() {
-        binding.Image.visibility = View.VISIBLE
-        binding.Bar.visibility = View.INVISIBLE
-        binding.Menssagem.visibility = View.VISIBLE
-        binding.ListaExtrato.visibility = View.GONE
+        barra(false)
+        lista(false)
+        mensagem(true)
+        barraLista(false)
     }
+    private fun estadoCarregandoLista() {
+        barraLista(true)
+    }
+    private fun estadoOkLista() {
+        barraLista(false)
+    }
+    //----------------------------------------------------------------------------------------------
 }

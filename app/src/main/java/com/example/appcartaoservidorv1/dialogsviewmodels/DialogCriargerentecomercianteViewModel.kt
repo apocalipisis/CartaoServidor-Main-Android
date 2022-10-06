@@ -1,12 +1,12 @@
 package com.example.appcartaoservidorv1.dialogsviewmodels
 
-import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.*
+import com.example.appcartaoservidorv1.Constantes
 import com.example.appcartaoservidorv1.models.auxiliares.ParBoolString
 import com.example.appcartaoservidorv1.services.api.APIComerciante
 import kotlinx.coroutines.launch
 
-class CriargerentecomercianteViewModel : ViewModel() {
+class CriargerentecomercianteViewModel(val matricula: String, val token: String) : ViewModel() {
     // Resposta da API
     private val _response = MutableLiveData<ParBoolString>()
     val response: LiveData<ParBoolString>
@@ -25,40 +25,18 @@ class CriargerentecomercianteViewModel : ViewModel() {
     // Cpf digitada pelo usuario
     var cpf = MutableLiveData<String>()
 
-    // Informa se o nome digitado pelo usuário é valido
-    var isNomeValido = MutableLiveData<String>()
-
-    // Informa se o cpf digitado pelo usuário é valido
-    var isCpfValido = MutableLiveData<String>()
-
     init {
         nome.value = ""
         cpf.value = ""
-
-        isNomeValido.value = ""
-        isCpfValido.value = ""
     }
 
+    //----------------------------------------------------------------------------------------------
     fun criarGerente(
         nome: String,
         cpf: String,
-        isAtivo: Boolean,
         matriculaMae: String,
         token: String
     ) {
-        isNomeValido.value = ""
-        isCpfValido.value = ""
-
-        if (!verificaNome(nome)) {
-            isNomeValido.value = "Nome Inválido"
-            return
-        }
-
-        if (!verificaCpf(cpf)) {
-            isCpfValido.value = "Cpf Inválido"
-            return
-        }
-
         _status.value = ApiStatus.LOADING
         viewModelScope.launch {
             try {
@@ -66,34 +44,26 @@ class CriargerentecomercianteViewModel : ViewModel() {
                     APIComerciante.APIComercianteService.inserirGerenteComerciante(
                         nome,
                         cpf,
-                        isAtivo,
                         matriculaMae,
                         token
                     )
-//                _response.value = ParBoolString(true, "Usuario inserido com Sucesso")
                 _status.value = ApiStatus.DONE
             } catch (e: Exception) {
-                _response.value = ParBoolString(false, "Problemas no servidor, tente novamente")
+                _response.value = ParBoolString(false, Constantes.Erro4)
                 _status.value = ApiStatus.ERROR
             }
         }
     }
-
-    private fun verificaNome(nome: String): Boolean {
-        return nome.isNotEmpty()
-    }
-
-    private fun verificaCpf(cpf: String): Boolean {
-        return cpf.isDigitsOnly() && cpf.length == 11 && cpf.isNotEmpty()
-    }
-
 }
 
 // Configura a factory do ViewModel (Usada para receber os parametros passados para o viewmodel)
-class CriargerentecomercianteViewModelFactory() : ViewModelProvider.Factory {
+class CriargerentecomercianteViewModelFactory(
+    private val matricula: String,
+    private val token: String,
+) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(CriargerentecomercianteViewModel::class.java)) {
-            return CriargerentecomercianteViewModel() as T
+            return CriargerentecomercianteViewModel(matricula,token) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

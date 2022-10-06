@@ -6,16 +6,15 @@ import androidx.navigation.NavOptions
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.fragments.SessaoexpiradaFragmentDirections
 import com.example.appcartaoservidorv1.fragments.comerciante.*
 import com.example.appcartaoservidorv1.fragments.comerciantegerente.*
 import com.example.appcartaoservidorv1.fragments.login.LoginFragmentDirections
-import com.example.appcartaoservidorv1.fragments.servidor.ExtratoservidorFragmentDirections
-import com.example.appcartaoservidorv1.fragments.servidor.ServidorFragmentDirections
-import com.example.appcartaoservidorv1.models.Funcionario
+import com.example.appcartaoservidorv1.fragments.login.UsuarioinativoFragmentDirections
+import com.example.appcartaoservidorv1.fragments.servidor.ServidorDirections
 import com.example.appcartaoservidorv1.models.Gerente
-import com.example.appcartaoservidorv1.models.Transacao
 
 
 // ---------------------------------------No internet Page-------------------------------------- //
@@ -108,20 +107,56 @@ fun fromLoginToComerciantegerente(
     NavHostFragment.findNavController(fragment).navigate(action)
 }
 
-
-// Função que redireciona o usuario do login para a pagina de usuário inativo
-fun fromLoginToUsuarioinativo(fragment: Fragment, nome: String, matricula: String) {
-    val action = LoginFragmentDirections.actionLoginFragmentToUsuarioinativoFragment(
-        nome,
+// Função que redireciona o usuario do login para a pagina do comerciante
+fun fromLoginToComerciantefuncionario(
+    fragment: Fragment,
+    nome: String,
+    matricula: String,
+    token: String,
+) {
+    val action = LoginFragmentDirections.actionLoginFragmentToComercianteFuncionarioFragment(
         matricula,
+        nome,
+        token,
     )
     NavHostFragment.findNavController(fragment).navigate(action)
 }
 
+
+// Função que redireciona o usuario do login para a pagina de usuário inativo
+fun fromLoginToUsuarioinativo(fragment: Fragment, nome: String, matricula: String) {
+
+    val nav = fragment.findNavController()
+
+    val action = LoginFragmentDirections.actionLoginFragmentToUsuarioinativoFragment(
+        nome,
+        matricula,
+    )
+
+    if (nav.currentDestination?.id == R.id.loginFragment)
+        nav.navigate(action)
+}
+
 // Função que redireciona o usuario do login para a pagina de usuário não permitido
 fun fromLoginToUsuarionaopermitido(fragment: Fragment) {
+
+    val nav = fragment.findNavController()
+
     val action = LoginFragmentDirections.actionLoginFragmentToUsuarionaopermitidoFragment()
-    NavHostFragment.findNavController(fragment).navigate(action)
+
+    if (nav.currentDestination?.id == R.id.loginFragment)
+        nav.navigate(action)
+}
+
+// ---------------------------------------Usuario Inativo-------------------------------------- //
+fun fromUsuarioinativoToLogin(fragment: Fragment) {
+
+    val nav = fragment.findNavController()
+
+    val action = UsuarioinativoFragmentDirections.actionUsuarioinativoFragmentToLoginFragment()
+
+    if (nav.currentDestination?.id == R.id.usuarioinativoFragment)
+        nav.navigate(action)
 }
 
 // ---------------------------------------Servidor-------------------------------------- //
@@ -137,7 +172,7 @@ fun fromServidorToInfo(
     instituto: String,
     limiteMensal: Double,
 ) {
-    val action = ServidorFragmentDirections.actionServidorFragmentToInfoservidorFragment(
+    val action = ServidorDirections.actionServidorFragmentToInfoservidorFragment(
         matricula,
         nome,
         cpf,
@@ -149,18 +184,6 @@ fun fromServidorToInfo(
     NavHostFragment.findNavController(fragment).navigate(action)
 }
 
-// Função que redireciona o usuario da página do servidor para a pagina Comprar
-fun fromServidorToComprar(
-    fragment: Fragment,
-    matricula: String,
-    nome: String,
-) {
-    val action = ServidorFragmentDirections.actionServidorFragmentToCompraservidorFragment(
-        matricula,
-        nome
-    )
-    NavHostFragment.findNavController(fragment).navigate(action)
-}
 
 // Função que redireciona o usuario da página do servidor para a pagina do extrato
 fun fromServidorToExtrato(
@@ -169,7 +192,7 @@ fun fromServidorToExtrato(
     token: String,
 ) {
     val action =
-        ServidorFragmentDirections.actionServidorFragmentToExtratoservidorFragment(
+        ServidorDirections.actionServidorFragmentToExtratoservidorFragment(
             matricula,
             token,
         )
@@ -178,20 +201,10 @@ fun fromServidorToExtrato(
 
 // Função que redireciona o usuario da página do servidor para Login
 fun fromServidorToLogin(fragment: Fragment) {
-    val action = ServidorFragmentDirections.actionServidorFragmentToLoginFragment()
+    val action = ServidorDirections.actionServidorFragmentToLoginFragment()
     NavHostFragment.findNavController(fragment).navigate(action)
 }
 
-// ---------------------------------------Extrato Page-------------------------------------- //
-// Função que redireciona o usuario da página extrato servidor para a página detalhes transação
-fun fromExtratoToDetalhes(fragment: Fragment, transacao: Transacao) {
-    val action =
-        ExtratoservidorFragmentDirections.actionExtratoservidorFragmentToTransacaodetalhesFragment(
-            transacao
-        )
-
-    NavHostFragment.findNavController(fragment).navigate(action)
-}
 
 // ---------------------------------------Comerciante-------------------------------------- //
 // ---------------------------------------Comerciante Page-------------------------------------- //
@@ -206,7 +219,7 @@ fun fromComercianteToInfo(
     pagementoUsoDoSistema: Float
 ) {
     val action =
-        ComercianteFragmentDirections.actionComercianteFragmentToInfocomercianteFragment(
+        ComercianteDirections.actionComercianteFragmentToInfocomercianteFragment(
             matricula,
             nome,
             cnpj,
@@ -224,7 +237,7 @@ fun fromComercianteToInserirvalor(
     matriculaComerciante: String,
     token: String
 ) {
-    val action = ComercianteFragmentDirections.actionComercianteFragmentToInserirvalorFragment(
+    val action = ComercianteDirections.actionComercianteFragmentToInserirvalorFragment(
         nomeComerciante,
         matriculaComerciante,
         token,
@@ -235,7 +248,7 @@ fun fromComercianteToInserirvalor(
 // Função que redireciona o usuario da página do comerciante para a pagina do extrato
 fun fromComercianteToHistoricovendas(fragment: Fragment, matricula: String, token: String) {
     val action =
-        ComercianteFragmentDirections.actionComercianteFragmentToHistoricovendasFragment(
+        ComercianteDirections.actionComercianteFragmentToHistoricovendasFragment(
             matricula,
             token,
         )
@@ -244,31 +257,20 @@ fun fromComercianteToHistoricovendas(fragment: Fragment, matricula: String, toke
 
 // Função que redireciona o usuario da página do comerciante para Login
 fun fromComercianteToLogin(fragment: Fragment) {
-    val action = ComercianteFragmentDirections.actionComercianteFragmentToLoginFragment()
+    val action = ComercianteDirections.actionComercianteFragmentToLoginFragment()
     NavHostFragment.findNavController(fragment).navigate(action)
 }
 
 // Função que redireciona o usuario da página do comerciante para Login
 fun fromComercianteToFuncionarios(fragment: Fragment, matricula: String, token: String) {
-    val action =
-        ComercianteFragmentDirections.actionComercianteFragmentToFuncionarioscomercianteFragment(
-            matricula,
-            token
-        )
-    NavHostFragment.findNavController(fragment).navigate(action)
+//    val action =
+//        ComercianteFragmentDirections.actionComercianteFragmentToFuncionarioscomercianteFragment(
+//            matricula,
+//            token
+//        )
+//    NavHostFragment.findNavController(fragment).navigate(action)
 }
 
-
-// --------------------------------Historico Vendas Page------------------------------------ //
-// Função que redireciona o usuario da página extrato servidor para a página detalhes transação
-fun fromHistoricovendasToDetalhes(fragment: Fragment, transacao: Transacao) {
-    val action =
-        HistoricovendasFragmentDirections.actionHistoricovendasFragmentToTransacaodetalhescomercianteFragment(
-            transacao
-        )
-
-    NavHostFragment.findNavController(fragment).navigate(action)
-}
 
 // --------------------------------Inserir Valor Page------------------------------------ //
 // Função que redireciona o usuario para a pagina Inserir Senha
@@ -280,7 +282,7 @@ fun fromInserirvalorToVendacomerciante(
     token: String,
 ) {
     val action =
-        InserirvalorFragmentDirections.actionInserirvalorFragmentToVendacomercianteFragment(
+        VendaValorDirections.actionInserirvalorFragmentToVendacomercianteFragment(
             valor,
             nomeComerciante,
             matriculaComerciante,
@@ -298,15 +300,17 @@ fun fromVendacomercianteToInserirsenha(
     valor: Float,
     nomeComerciante: String,
     matriculaComerciante: String,
+    numeroCartao: String,
     token: String,
 ) {
     val action =
-        VendercomercianteFragmentDirections.actionVendacomercianteFragmentToInserirsenhaFragment(
+        VendaQrCodeDirections.actionVendacomercianteFragmentToInserirsenhaFragment(
             matricula,
             nomeServidor,
             valor,
             nomeComerciante,
             matriculaComerciante,
+            numeroCartao,
             token,
         )
     NavHostFragment.findNavController(fragment).navigate(action)
@@ -320,16 +324,18 @@ fun fromInserirsenhaToStatusvenda(
     matricula: String,
     matriculaComerciante: String,
     senha: String,
+    numeroCartao: String,
     nomeComerciante: String,
     token: String,
 ) {
     val action =
-        InserirsenhaFragmentDirections.actionInserirsenhaFragmentToStatusvendaFragment(
+        VendaSenhaDirections.actionInserirsenhaFragmentToStatusvendaFragment(
             valor,
             matricula,
             matriculaComerciante,
             senha,
             nomeComerciante,
+            numeroCartao,
             token,
         )
     NavHostFragment.findNavController(fragment).navigate(action)
@@ -343,7 +349,7 @@ fun fromInserirsenhaToComerciante(
     token: String,
 ) {
     val action =
-        InserirsenhaFragmentDirections.actionInserirsenhaFragmentToComercianteFragment(
+        VendaSenhaDirections.actionInserirsenhaFragmentToComercianteFragment(
             nome,
             matriculaComerciante,
             token,
@@ -361,7 +367,7 @@ fun fromStatusvendaToComerciante(
     token: String,
 ) {
     val action =
-        StatusvendaFragmentDirections.actionStatusvendaFragmentToComercianteFragment(
+        VendaStatusDirections.actionStatusvendaFragmentToComercianteFragment(
             matriculaComerciante,
             nome,
             token,
@@ -376,12 +382,12 @@ fun fromFuncionariosToGerentes(
     matricula: String,
     token: String,
 ) {
-    val action =
-        FuncionarioscomercianteFragmentDirections.actionFuncionarioscomercianteFragmentToEscolhasgerentecomercianteFragment(
-            matricula,
-            token
-        )
-    NavHostFragment.findNavController(fragment).navigate(action)
+//    val action =
+//        FuncionarioscomercianteFragmentDirections.actionFuncionarioscomercianteFragmentToEscolhasgerentecomercianteFragment(
+//            matricula,
+//            token
+//        )
+//    NavHostFragment.findNavController(fragment).navigate(action)
 }
 
 fun fromFuncionariosToFuncionario(
@@ -389,34 +395,34 @@ fun fromFuncionariosToFuncionario(
     matricula: String,
     token: String,
 ) {
-    val action =
-        FuncionarioscomercianteFragmentDirections.actionFuncionarioscomercianteFragmentToFuncionariocomercianteFragment(
-            matricula,
-            token,
-        )
-    NavHostFragment.findNavController(fragment).navigate(action)
+//    val action =
+//        FuncionarioscomercianteFragmentDirections.actionFuncionarioscomercianteFragmentToFuncionariocomercianteFragment(
+//            matricula,
+//            token,
+//        )
+//    NavHostFragment.findNavController(fragment).navigate(action)
 }
 
 // -------------------------------- Gerentes Comerciantes ------------------------------------ //
-// Função que abre o dialog de criar um gerente
-fun fromEscolhasgerentecomercianteToDialog(fragment: Fragment, matricula: String, token: String) {
-    val action =
-        GerentecomercianteFragmentDirections.actionEscolhasgerentecomercianteFragmentToDialogCriargerentecomerciante(
-            matricula,
-            token
-        )
-    NavHostFragment.findNavController(fragment).navigate(action)
-}
+//// Função que abre o dialog de criar um gerente
+//fun fromEscolhasgerentecomercianteToDialog(fragment: Fragment, matricula: String, token: String) {
+//    val action =
+//        GerentecomercianteFragmentDirections.actionEscolhasgerentecomercianteFragmentToDialogCriargerentecomerciante(
+//            matricula,
+//            token
+//        )
+//    NavHostFragment.findNavController(fragment).navigate(action)
+//}
 
 // Função que redireciona o usuario da página extrato servidor para a página detalhes transação
 fun fromGerenteToDetalhes(fragment: Fragment, gerente: Gerente, token: String) {
-    val action =
-        GerentecomercianteFragmentDirections.actionEscolhasgerentecomercianteFragmentToGerentecomerciantedetalhesFragment(
-            gerente,
-            token,
-        )
-
-    NavHostFragment.findNavController(fragment).navigate(action)
+//    val action =
+//        GerentecomercianteFragmentDirections.actionEscolhasgerentecomercianteFragmentToGerentecomerciantedetalhesFragment(
+//            gerente,
+//            token,
+//        )
+//
+//    NavHostFragment.findNavController(fragment).navigate(action)
 }
 
 // -------------------------------- Detalhes Comerciantes ------------------------------------ //
@@ -425,70 +431,20 @@ fun fromGerentecomercianteDetalhesToDialogEditar(
     matricula: String,
     token: String
 ) {
-    val action =
-        GerentecomerciantedetalhesFragmentDirections.actionGerentecomerciantedetalhesFragmentToDialogEditargerentecomerciante(
-            matricula,
-            token
-        )
-    NavHostFragment.findNavController(fragment).navigate(action)
+//    val action =
+//        GerentecomerciantedetalhesFragmentDirections.actionGerentecomerciantedetalhesFragmentToDialogEditargerentecomerciante(
+//            matricula,
+//            token
+//        )
+//    NavHostFragment.findNavController(fragment).navigate(action)
 }
 
-fun fromGerentecomercianteDetalhesToDialogDeletar(
-    fragment: Fragment,
-    matricula: String,
-    token: String
-) {
-    val action =
-        GerentecomerciantedetalhesFragmentDirections.actionGerentecomerciantedetalhesFragmentToDialogDeletargerentecomerciante(
-            matricula,
-            token
-        )
-    NavHostFragment.findNavController(fragment).navigate(action)
-}
 
 // -------------------------------- Funcionario Comerciantes ------------------------------------ //
 // Função que abre o dialog de criar um funcionario
 fun fromFuncionarioToCriarFuncionario(fragment: Fragment, matricula: String, token: String) {
     val action =
-        FuncionariocomercianteFragmentDirections.actionFuncionariocomercianteFragmentToDialogCriarfuncionariocomerciante(
-            matricula,
-            token
-        )
-    NavHostFragment.findNavController(fragment).navigate(action)
-}
-
-// Função que redireciona o usuario da página extrato servidor para a página detalhes transação
-fun fromFuncionarioToDetalhes(fragment: Fragment, funcionario: Funcionario, token: String) {
-    val action =
-        FuncionariocomercianteFragmentDirections.actionFuncionariocomercianteFragmentToFuncionariocomerciantedetalhesFragment(
-            funcionario,
-            token,
-        )
-
-    NavHostFragment.findNavController(fragment).navigate(action)
-}
-// -------------------------------- Detalhes Funcionario Comerciantes ------------------------------------ //
-
-fun fromFuncionariocomercianteDetalhesToDialogEditar(
-    fragment: Fragment,
-    matricula: String,
-    token: String
-) {
-    val action =
-        FuncionariocomerciantedetalhesFragmentDirections.actionFuncionariocomerciantedetalhesFragmentToDialogEditarfucionariocomerciante(
-            matricula,
-            token
-        )
-    NavHostFragment.findNavController(fragment).navigate(action)
-}
-
-fun fromFuncionariocomercianteDetalhesToDialogDeletar(
-    fragment: Fragment,
-    matricula: String,
-    token: String
-) {
-    val action =
-        FuncionariocomerciantedetalhesFragmentDirections.actionFuncionariocomerciantedetalhesFragmentToDialogDeletarfuncionariocomerciante(
+        FuncionariosDirections.actionFuncionariocomercianteFragmentToDialogCriarfuncionariocomerciante(
             matricula,
             token
         )
@@ -515,6 +471,7 @@ fun fromComerciantegereteToInfo(
     cpf: String,
     matriculaMae: String,
     cnpj: String,
+    nomeComerciante: String,
 ) {
     val action =
         ComerciantegerenteFragmentDirections.actionComerciantegerenteFragmentToComerciantegerenteinfoFragment(
@@ -525,6 +482,7 @@ fun fromComerciantegereteToInfo(
             cpf,
             matriculaMae,
             cnpj,
+            nomeComerciante,
         )
     NavHostFragment.findNavController(fragment).navigate(action)
 }
@@ -569,15 +527,6 @@ fun fromComerciantegerenteToFuncionario(fragment: Fragment, matricula: String, t
     NavHostFragment.findNavController(fragment).navigate(action)
 }
 
-// --------------------------------Historico de Vendas Comerciante Gerente ------------------------------------ //
-// Função que redireciona o usuario da página extrato servidor para a página detalhes transação
-fun fromHistoricovendasGerenteComercianteToDetalhes(fragment: Fragment, transacao: Transacao) {
-    val action =
-        ComerciantegerentehistoricovendasFragmentDirections.actionComerciantegerentehistoricovendasFragmentToComerciantegerenteDetalhestransacaoFragment(
-            transacao
-        )
-    NavHostFragment.findNavController(fragment).navigate(action)
-}
 
 // --------------------------------Inserir Valor Comerciante Gerente------------------------------------ //
 // Função que redireciona o usuario para a pagina Inserir Senha
@@ -613,6 +562,7 @@ fun fromComerciantegerenteQrcodeToInserirsenha(
     nomeComerciante: String,
     matriculaVendedor: String,
     nomeVendedor: String,
+    numeroCartao: String,
     token: String,
 ) {
     val action =
@@ -624,6 +574,7 @@ fun fromComerciantegerenteQrcodeToInserirsenha(
             nomeComerciante,
             matriculaVendedor,
             nomeVendedor,
+            numeroCartao,
             token,
         )
     NavHostFragment.findNavController(fragment).navigate(action)
@@ -655,6 +606,7 @@ fun fromComerciantegerenteInserirsenhaToStatus(
     valor: Float,
     senha: String,
     nomeVendedor: String,
+    numeroCartao: String,
     token: String,
 ) {
     val action =
@@ -665,6 +617,7 @@ fun fromComerciantegerenteInserirsenhaToStatus(
             valor,
             senha,
             nomeVendedor,
+            numeroCartao,
             token,
         )
     NavHostFragment.findNavController(fragment).navigate(action)
@@ -689,58 +642,3 @@ fun fromComerciantegerenteVendaStatusToComerciantegerente(
     NavHostFragment.findNavController(fragment).navigate(action)
 }
 
-// -------------------------------- Funcionario ComercianteGerente ------------------------------------ //
-// Função que redireciona para a página de detalhes sobre o funcionário
-fun fromComerciantegerenteFuncionarioToDetalhes(
-    fragment: Fragment,
-    funcionario: Funcionario,
-    token: String
-) {
-    val action =
-        ComerciantegerenteFuncionarioFragmentDirections.actionComerciantegerenteFuncionarioFragmentToComerciantegerenteFuncionarioDetalhesFragment(
-            funcionario,
-            token,
-        )
-
-    NavHostFragment.findNavController(fragment).navigate(action)
-}
-
-fun fromComerciantegerenteFuncionarioToCriarFuncionario(
-    fragment: Fragment,
-    matricula: String,
-    token: String
-) {
-    val action =
-        ComerciantegerenteFuncionarioFragmentDirections.actionComerciantegerenteFuncionarioFragmentToDialogComerciantegerenteFuncionarioCriar(
-            matricula,
-            token
-        )
-    NavHostFragment.findNavController(fragment).navigate(action)
-}
-
-// -------------------------------- Detalhes Funcionario ComercianteGerente ------------------------------------ //
-fun fromComerciantegerenteFuncionarioDetalhesToDialogEditar(
-    fragment: Fragment,
-    matricula: String,
-    token: String
-) {
-    val action =
-        ComerciantegerenteFuncionarioDetalhesFragmentDirections.actionComerciantegerenteFuncionarioDetalhesFragmentToDialogComerciantegerenteFuncionarioEditar(
-            matricula,
-            token
-        )
-    NavHostFragment.findNavController(fragment).navigate(action)
-}
-
-fun fromComerciantegerenteFuncionarioDetalhesToDialogDeletar(
-    fragment: Fragment,
-    matricula: String,
-    token: String
-) {
-    val action =
-        ComerciantegerenteFuncionarioDetalhesFragmentDirections.actionComerciantegerenteFuncionarioDetalhesFragmentToDialogComerciantegerenteFuncionarioDeletar(
-            matricula,
-            token
-        )
-    NavHostFragment.findNavController(fragment).navigate(action)
-}

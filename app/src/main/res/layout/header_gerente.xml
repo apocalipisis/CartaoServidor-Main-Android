@@ -1,30 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_dialog"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="8dp"
-            android:text="@string/gerentesEncontrados"
-            android:textAlignment="center"
-            android:textColor="@color/cinzaDias"
-            android:textSize="20sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/clickParaEditarItem"
-            android:textAlignment="center"
-            android:textColor="@color/cinzaDias"
-            android:textSize="11sp" />
-
+        <!--        <TextView-->
+        <!--            android:id="@+id/text"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="@string/gerentesEncontrados"-->
+        <!--            android:textAlignment="center"-->
+        <!--            android:textColor="@color/cinzaDias"-->
+        <!--            android:textSize="20sp" />-->
     </LinearLayout>
 </layout>

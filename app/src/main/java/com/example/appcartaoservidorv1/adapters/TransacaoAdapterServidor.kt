@@ -3,11 +3,10 @@ package com.example.appcartaoservidorv1.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcartaoservidorv1.R
-import com.example.appcartaoservidorv1.databinding.TransacaoItemservidorBinding
+import com.example.appcartaoservidorv1.databinding.ItemTransacaoBinding
 import com.example.appcartaoservidorv1.models.Transacao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -69,18 +68,18 @@ class ExtratoservidorAdapter(val clickListener: Transacao_Listener) :
         companion object {
             fun from(parent: ViewGroup): TextViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val view = layoutInflater.inflate(R.layout.header_servidor, parent, false)
+                val view = layoutInflater.inflate(R.layout.header_servidor_extrato, parent, false)
                 return TextViewHolder(view)
             }
         }
     }
 
-    class ViewHolder private constructor(val binding: TransacaoItemservidorBinding) :
+    class ViewHolder private constructor(val binding: ItemTransacaoBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Transacao, clickListener: Transacao_Listener) {
             binding.transacao = item
-            binding.NomeComerciante.text = item.NomeComerciante
+            binding.Nome.text = item.NomeComerciante
             binding.Valor.text = formatSaldo(item.Valor) + " R$"
             binding.Data.text = formatData(item.DataVenda)
             binding.clickListener = clickListener
@@ -89,7 +88,7 @@ class ExtratoservidorAdapter(val clickListener: Transacao_Listener) :
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = TransacaoItemservidorBinding.inflate(layoutInflater, parent, false)
+                val binding = ItemTransacaoBinding.inflate(layoutInflater, parent, false)
 
                 return ViewHolder(binding)
             }
@@ -110,5 +109,4 @@ class ExtratoservidorAdapter(val clickListener: Transacao_Listener) :
             return formatter.format(data)
         }
     }
-
 }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.example.appcartaoservidorv1.Constantes
 import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.databinding.FragmentSessaoexpiradaBinding
 import com.example.appcartaoservidorv1.services.utilidades.BaseFragment
@@ -38,8 +39,15 @@ class SessaoexpiradaFragment : BaseFragment() {
 
         val fragment = this
 
+        binding.mensagem.text =
+            "Sua sessão atingiu o tempo limite de ${Constantes.TempoLimite} minutos"
+
         // Click listener para o btn Refresh
         binding.btnRefazerlogin.setOnClickListener {
+            fromSessaoexpiradaToLogin(fragment)
+        }
+
+        binding.btnVoltar.setOnClickListener {
             fromSessaoexpiradaToLogin(fragment)
         }
 

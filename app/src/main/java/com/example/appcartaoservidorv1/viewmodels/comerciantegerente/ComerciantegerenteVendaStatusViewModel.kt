@@ -1,7 +1,9 @@
 package com.example.appcartaoservidorv1.viewmodels.comerciantegerente
 
+import android.util.Log
 import androidx.lifecycle.*
-import com.example.appcartaoservidorv1.models.DTO_InserirTransacao
+import com.example.appcartaoservidorv1.Constantes
+import com.example.appcartaoservidorv1.models.auxiliares.ParBoolString
 import com.example.appcartaoservidorv1.services.api.APIComercianteGerente
 import kotlinx.coroutines.launch
 
@@ -12,6 +14,7 @@ class ComerciantegerenteVendaStatusViewModel(
     val valor: Float,
     val senha: String,
     val nomeVendedor: String,
+    val numeroCartao: String,
     val token: String,
 ) : ViewModel() {
 
@@ -22,23 +25,13 @@ class ComerciantegerenteVendaStatusViewModel(
     val status: LiveData<ApiStatus>
         get() = _status
 
-    // Mensagem sobre consulta a API
-    private val _result = MutableLiveData<String>()
-    val result: LiveData<String>
-        get() = _result
-
-    // Motivo (aparece em possiveis erros)
-    private val _motivo = MutableLiveData<String>()
-    val motivo: LiveData<String>
-        get() = _motivo
-
     // Resposta da API
-    lateinit var response: DTO_InserirTransacao
+    lateinit var response: ParBoolString
 
-    // Avisa se a transação foi inserida ou não
-    private val _sucess = MutableLiveData<Boolean>()
-    val sucess: LiveData<Boolean>
-        get() = _sucess
+    // Mensagem a ser mostrada
+    private val _mensagem = MutableLiveData<String>()
+    val mensagem: LiveData<String>
+        get() = _mensagem
 
     init {
         inserirTransacao(
@@ -47,6 +40,7 @@ class ComerciantegerenteVendaStatusViewModel(
             matriculaVendedor,
             valor,
             senha,
+            numeroCartao,
             token
         )
     }
@@ -58,65 +52,30 @@ class ComerciantegerenteVendaStatusViewModel(
         matriculaVendedor: String,
         valor: Float,
         senha: String,
+        numeroCartao: String,
         token: String,
     ) {
         _status.value = ApiStatus.LOADING
         viewModelScope.launch {
             try {
-                response = APIComercianteGerente.APIComercianteGerenteService.inserirVendaComercianteGerente(
-                    matriculaCliente,
-                    matriculaComerciante,
-                    matriculaVendedor,
-                    valor.toString(),
-                    senha,
-                    token,
-                )
-                if (response.vendaInserida) {
-                    sucessResultMotivo(true, "Venda inserida", "")
-                } else {
-                    if (!response.bancoDeDadosOk) {
-                        sucessResultMotivo(
-                            false,
-                            "Venda não inserida",
-                            "Problemas no servidor, tente novamente"
-                        )
-                    } else if (!response.prefeituraAtivo) {
-                        sucessResultMotivo(
-                            false,
-                            "Venda não inserida",
-                            "O serviço prestado a essa prefeitura está inativo no momento"
-                        )
-                    } else if (!response.valorValido) {
-                        sucessResultMotivo(false, "Venda não inserida", "Valor Inválido")
-                    } else if (!response.servidorExiste) {
-                        sucessResultMotivo(false, "Venda não inserida", "Servidor não Existe")
-                    } else if (!response.senhaCorreta) {
-                        sucessResultMotivo(false, "Venda não inserida", "Senha Incorreta")
-                    } else if (!response.servidorAtivo) {
-                        sucessResultMotivo(false, "Venda não inserida", "Servidor Inativo")
-                    } else if (!response.temSaldo) {
-                        sucessResultMotivo(false, "Venda não inserida", "Saldo Insuficiente")
-                    }
-                }
+                response =
+                    APIComercianteGerente.APIComercianteGerenteService.inserirVendaComercianteGerente(
+                        matriculaCliente,
+                        matriculaComerciante,
+                        matriculaVendedor,
+                        valor.toString(),
+                        numeroCartao,
+                        senha,
+                        token,
+                    )
+                _mensagem.value = response.s
                 _status.value = ApiStatus.DONE
             } catch (e: Exception) {
-                _result.value = "Venda não inserida"
-                sucessResultMotivo(
-                    false,
-                    "Venda não inserida",
-                    "Problemas no servidor, tente novamente"
-                )
+                _mensagem.value = Constantes.Erro4
                 _status.value = ApiStatus.ERROR
             }
         }
     }
-
-    private fun sucessResultMotivo(sucess: Boolean, result: String, motivo: String) {
-        _sucess.value = sucess
-        _result.value = result
-        _motivo.value = motivo
-    }
-
 }
 
 // Configura a factory do ViewModel (Usada para receber os parametros passados para o viewmodel)
@@ -127,6 +86,7 @@ class ComerciantegerenteVendaStatusViewModelFactory(
     private val valor: Float,
     private val senha: String,
     private val nomeVendedor: String,
+    private val numeroCartao: String,
     private val token: String,
 ) :
     ViewModelProvider.Factory {
@@ -139,6 +99,7 @@ class ComerciantegerenteVendaStatusViewModelFactory(
                 valor,
                 senha,
                 nomeVendedor,
+                numeroCartao,
                 token,
             ) as T
         }

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.appcartaoservidorv1.viewmodels.comerciantegerente.ComerciantegerenteVendaStatusViewModel" />
@@ -14,86 +15,120 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView3"
-            android:text="@string/status"
-            style="@style/textoTituloBar"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSuperior"
+            style="@style/Card.AppCartaoServidorV1.Superior"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <!-- A CardView that contains a TextView -->
-        <ImageView
-            android:id="@+id/Image"
-            style="@style/imagemTituloBar"
-            android:src="@drawable/icon_shopping_cart"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnVoltar"
+                    style="@style/Widget.AppCartaoServidorV1.CardSuperior.BtnVoltar"
+                    android:layout_marginStart="@dimen/AppCartaoServidorV1.Card.Superior.Margin.btnVoltar"
+                    app:icon="@drawable/ic_outline_arrow_back_ios_36"
+                    app:iconGravity="textStart"
+                    app:iconPadding="0dp"
+                    app:iconTint="?attr/colorOnSurface"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/Text.AppCartaoServidorV1.Card.Superior.Titulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/AppCartaoServidorV1.Card.Superior.Margin.Titulo"
+                    android:text="@string/Venda"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/btnVoltar"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <LinearLayout
-            android:id="@+id/Saldo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="40dp"
             android:orientation="vertical"
-            android:padding="25dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btnHomeContainer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Image"
-            app:layout_constraintVertical_bias="0.27">
+            app:layout_constraintTop_toBottomOf="@+id/cardSuperior">
 
-            <ImageView
-                android:id="@+id/ImageStatusSucess"
-                style="@style/imagemStatus"
-                android:src="@drawable/icon_check"
-                android:visibility="gone"/>
-
-            <ImageView
-                android:id="@+id/ImageStatusError"
-                style="@style/imagemStatus"
-                android:src="@drawable/icon_close"
-                android:visibility="gone"/>
-
-            <ProgressBar
-                android:id="@+id/Bar"
-                style="@style/ProgressBarStyle"
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Card.AppCartaoServidorV1.General.Loading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:visibility="gone" />
+                android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+                android:layout_marginVertical="@dimen/AppCartaoServidorV1.Basic.VerticalMargin">
 
-            <TextView
-                android:id="@+id/result"
-                style="@style/resultStatus"
-                android:layout_marginTop="5dp"
-                android:text="@{viewModel.result}"
-                tools:text="Transação bem sucedida"
-                android:visibility="invisible"/>
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/Bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+                    android:layout_marginVertical="@dimen/AppCartaoServidorV1.Basic.VerticalMargin"
+                    android:indeterminate="true"
+                    android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/motivo"
-                style="@style/sv_Mensagem"
-                android:layout_marginTop="5dp"
-                android:text="@{viewModel.motivo}"
-                tools:text="Erro no banco de dados"
-                android:visibility="invisible"/>
+                <LinearLayout
+                    android:id="@+id/Resultados"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+                    android:layout_marginVertical="@dimen/AppCartaoServidorV1.Basic.VerticalMargin"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/iconSucesso"
+                        style="@style/Image.AppCartaoServidorV1.Icon.Results.Sucesso"
+                        android:src="@drawable/ic_outline_check_24"
+                        android:visibility="gone" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/iconError"
+                        style="@style/Image.AppCartaoServidorV1.Icon.Results.Erro"
+                        android:src="@drawable/ic_outline_error_24"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/mensagem"
+                        style="@style/Text.AppCartaoServidorV1.Card.Info.Content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.mensagem}"
+                        tools:text="Usuário cadastrado com sucesso" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnHome"
-            style="@style/ImageBtnStyle"
-            android:layout_marginBottom="40dp"
-            android:drawableTop="@drawable/selector_home"
-            android:text="Pagina principal"
+        <LinearLayout
+            android:id="@+id/btnHomeContainer"
+            style="@style/Widget.AppCartaoServidorV1.Button.Container"
+            android:layout_marginBottom="@dimen/AppCartaoServidorV1.Basic.VerticalMargin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:visibility="invisible"/>
+            app:layout_constraintStart_toStartOf="parent">
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnHome"
+                style="@style/Widget.AppCartaoServidorV1.Button"
+                app:icon="@drawable/ic_outline_home_24" />
 
-
+            <TextView
+                style="@style/Widget.AppCartaoServidorV1.TextView.Button"
+                android:text="@string/PaginaPrincipal" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

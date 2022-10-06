@@ -11,6 +11,7 @@ import com.example.appcartaoservidorv1.databinding.FragmentComerciantegerenteBin
 import com.example.appcartaoservidorv1.services.utilidades.*
 import com.example.appcartaoservidorv1.viewmodels.comerciantegerente.ComerciantegerenteViewModel
 import com.example.appcartaoservidorv1.viewmodels.comerciantegerente.ComerciantegerenteViewModelFactory
+import com.google.android.material.color.MaterialColors
 
 class ComerciantegerenteFragment : BaseFragment() {
 
@@ -43,7 +44,6 @@ class ComerciantegerenteFragment : BaseFragment() {
         // Faz o binding com o viewModel
         binding.viewModel = viewModel
         // Armazena o contexto em uma variavel
-        val appContext = this.requireContext()
 
         // ClickListener para o botão adicionarVenda
         binding.btnVender.setOnClickListener {
@@ -82,7 +82,8 @@ class ComerciantegerenteFragment : BaseFragment() {
                 viewModel.response.status,
                 viewModel.response.cpf,
                 viewModel.response.matriculaComerciante,
-                viewModel.response.cnpj
+                viewModel.response.cnpj,
+                viewModel.response.nomeComerciante,
             )
         }
 
@@ -113,53 +114,113 @@ class ComerciantegerenteFragment : BaseFragment() {
         super.onResume()
         viewModel.consultaComerciante(viewModel.matricula)
     }
+    //----------------------------------------------------------------------------------------------
+    private fun botoes(isVisible: Boolean) {
+        if (isVisible) {
+            binding.Botoes.visibility = View.VISIBLE
+            binding.Vender.visibility = View.VISIBLE
+        } else {
+            binding.Botoes.visibility = View.GONE
+            binding.Vender.visibility = View.GONE
+        }
+    }
+    //----------------------------------------------------------------------------------------------
+    private fun botaoRefresh(isVisible: Boolean) {
+        if (isVisible) {
+            binding.Refresh.visibility = View.VISIBLE
+        } else {
+            binding.Refresh.visibility = View.GONE
+        }
+    }
+    //----------------------------------------------------------------------------------------------
+    private fun mensagemFaturamento(isVisible: Boolean) {
+        if (isVisible) {
+            binding.MensagemFaturamento.visibility = View.VISIBLE
+        } else {
+            binding.MensagemFaturamento.visibility = View.GONE
+        }
+    }
+
+    //----------------------------------------------------------------------------------------------
+    private fun valores(isVisible: Boolean) {
+        if (isVisible) {
+            binding.Valores.visibility = View.VISIBLE
+        } else {
+            binding.Valores.visibility = View.GONE
+        }
+    }
+
+    //----------------------------------------------------------------------------------------------
+    private fun barra(isVisible: Boolean) {
+        if (isVisible) {
+            binding.Bar.visibility = View.VISIBLE
+        } else {
+            binding.Bar.visibility = View.GONE
+        }
+    }
+
+    //----------------------------------------------------------------------------------------------
+    private fun mensagemErro(isVisible: Boolean) {
+        if (isVisible) {
+            binding.MensagemErro.visibility = View.VISIBLE
+        } else {
+            binding.MensagemErro.visibility = View.GONE
+        }
+    }
+
+    //----------------------------------------------------------------------------------------------
+    private fun cardEstado(isErro: Boolean) {
+        if (isErro) {
+            binding.Card.setCardBackgroundColor(
+                MaterialColors.getColor(
+                    binding.root,
+                    com.google.android.material.R.attr.colorError
+                )
+            )
+        } else {
+            binding.Card.setCardBackgroundColor(
+                MaterialColors.getColor(
+                    binding.root,
+                    com.google.android.material.R.attr.colorSurface
+                )
+            )
+        }
+    }
+    //----------------------------------------------------------------------------------------------
 
     // Configuração da View para quando tiver carregando a resposta
     private fun estadoCarregando() {
-        // Views
-        binding.Bar.visibility = View.VISIBLE
-        binding.faturamento.visibility = View.GONE
-        binding.faturamentoLabel.visibility = View.GONE
-        binding.saldoMes.visibility = View.GONE
-        binding.mensagem.visibility = View.GONE
+        cardEstado(false)
 
-        // Btns
-        binding.btnRefresh.visibility = View.GONE
-        binding.btnHistorico.visibility = View.GONE
-        binding.btnInfo.visibility = View.GONE
-        binding.btnVender.visibility = View.GONE
+        botoes(false)
+        botaoRefresh(false)
+        mensagemFaturamento(false)
+        valores(false)
+        barra(true)
+        mensagemErro(false)
     }
 
     // Configuração da View para quando tiver erro na resposta
     private fun estadoErro() {
-        // Views
-        binding.Bar.visibility = View.GONE
-        binding.faturamento.visibility = View.GONE
-        binding.faturamentoLabel.visibility = View.GONE
-        binding.saldoMes.visibility = View.GONE
-        binding.mensagem.visibility = View.VISIBLE
+        cardEstado(true)
 
-        // Btns
-        binding.btnRefresh.visibility = View.VISIBLE
-        binding.btnHistorico.visibility = View.GONE
-        binding.btnInfo.visibility = View.GONE
-        binding.btnVender.visibility = View.GONE
+        botoes(false)
+        botaoRefresh(true)
+        mensagemFaturamento(false)
+        valores(false)
+        barra(false)
+        mensagemErro(true)
     }
 
     // Configuração da View para quando tiver uma resposta OK
     private fun estadoOk() {
-        // Views
-        binding.Bar.visibility = View.GONE
-        binding.faturamento.visibility = View.VISIBLE
-        binding.faturamentoLabel.visibility = View.VISIBLE
-        binding.saldoMes.visibility = View.VISIBLE
-        binding.mensagem.visibility = View.GONE
+        cardEstado(false)
 
-        // Btns
-        binding.btnRefresh.visibility = View.GONE
-        binding.btnHistorico.visibility = View.VISIBLE
-        binding.btnInfo.visibility = View.VISIBLE
-        binding.btnVender.visibility = View.VISIBLE
+        botoes(true)
+        botaoRefresh(false)
+        mensagemFaturamento(true)
+        valores(true)
+        barra(false)
+        mensagemErro(false)
     }
-
 }

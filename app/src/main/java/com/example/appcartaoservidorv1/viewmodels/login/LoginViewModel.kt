@@ -2,14 +2,12 @@ package com.example.appcartaoservidorv1.viewmodels.login
 
 import androidx.lifecycle.*
 import com.example.appcartaoservidorv1.Constantes
-import com.example.appcartaoservidorv1.models.DTO_Login
+import com.example.appcartaoservidorv1.models.dto.DTOLogin
 import com.example.appcartaoservidorv1.services.APIAndroid
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
 class LoginViewModel : ViewModel() {
-    // Resposta da API
-    private lateinit var response: DTO_Login
-
     // Status da consulta a API
     enum class ApiStatus { LOADING, ERROR, DONE }
 
@@ -17,94 +15,46 @@ class LoginViewModel : ViewModel() {
     val status: LiveData<ApiStatus>
         get() = _status
 
-    // Status do Login
-    private val _loginSucess = MutableLiveData<Boolean>()
-    val loginSucess: LiveData<Boolean>
-        get() = _loginSucess
+    // Resposta da API
+    private val _response = MutableLiveData<DTOLogin>()
+    val response: LiveData<DTOLogin>
+        get() = _response
 
     // Motivo (em caso de loginSucess = false)
-    private val _motivoLoginFail = MutableLiveData<String>()
-    val motivoLoginFail: LiveData<String>
-        get() = _motivoLoginFail
+    private val _mensagem = MutableLiveData<String>()
+    val mensagem: LiveData<String>
+        get() = _mensagem
 
-    // Destino (em caso de loginSucess = True)
-    private val _destino = MutableLiveData<String>()
-    val destino: LiveData<String>
-        get() = _destino
+    fun setMensagem(text: String) {
+        _mensagem.value = text
+    }
 
-    // Matricula digitada pelo usuario
+    // Observa e muda o estado da card
+    var isCardStateErro = MutableLiveData<Boolean>()
+    fun setCardStateErro(valor: Boolean) {
+        isCardStateErro.value = valor
+    }
+
     var matricula = MutableLiveData<String>()
-
-    // Senha digitada pelo usuario
     var senha = MutableLiveData<String>()
 
-    //Nome do usuário
-    var nome: String = ""
+    init {
+        isCardStateErro.value = false
+    }
 
-    //Token do usuário
-    var token: String = ""
-
-    fun getApiResponse(matricula: String, senha: String) {
-
+    fun request(matricula: String, senha: String) {
         _status.value = ApiStatus.LOADING
         viewModelScope.launch {
             try {
-                response = APIAndroid.APIAndroidService.verificaLogin(
-                    matricula,
-                    senha,
-                )
-                analisaResposta(response)
+                _response.value = APIAndroid.APIAndroidService.verificaLogin(matricula, senha)
+                setMensagem(response.value!!.s)
                 _status.value = ApiStatus.DONE
             } catch (e: Exception) {
-                _motivoLoginFail.value = Constantes.Erro1
+                setMensagem(Constantes.Erro4)
                 _status.value = ApiStatus.ERROR
             }
         }
     }
-
-    private fun analisaResposta(response: DTO_Login) {
-        if (!response.bancoDeDadosOk) {
-            _loginSucess.value = false
-            _motivoLoginFail.value = Constantes.Erro1
-            return
-        }
-
-        if (response.bancoDeDadosOk && !response.loginAutorizado) {
-            _loginSucess.value = false
-            _motivoLoginFail.value = Constantes.Erro2
-            return
-        }
-
-        _loginSucess.value = true
-        redirectUser(response)
-    }
-
-    private fun redirectUser(response: DTO_Login) {
-        nome = response.nomeUsuario
-        token = response.token
-
-        if (!response.usuarioAtivo) {
-            _destino.value = "UsuarioInativo"
-            return
-        }
-
-        when (response.tipoUsuario) {
-            "Servidor" -> {
-                _destino.value = "Servidor"
-            }
-            "Comerciante" -> {
-                _destino.value = "Comerciante"
-            }
-            "ComercianteGerente" -> {
-                _destino.value = "ComercianteGerente"
-            }
-            else -> {
-                _destino.value = "NãoAutorizado"
-            }
-        }
-    }
-
-
 }
 
 // Configura a factory do ViewModel (Usada para receber os parametros passados para o viewmodel)

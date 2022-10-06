@@ -1,173 +1,251 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-        name="viewModel"
-        type="com.example.appcartaoservidorv1.viewmodels.servidor.ServidorViewModel" />
 
+        <variable
+            name="viewModel"
+            type="com.example.appcartaoservidorv1.viewmodels.servidor.ServidorViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/constraintLayout"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@color/primaryColor"
+            style="@style/Card.AppCartaoServidorV1.Superior"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/Nome"
-                style="@style/UserTopBarTexto"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="25dp"
-                android:text="@{viewModel.nome}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2"
-                tools:text="Supermercado Cristal" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView2"
-                style="@style/UserTopBarTexto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="10dp"
-                android:text="@string/ola"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/textView"
+                    style="@style/Text.AppCartaoServidorV1.Card.Superior.Usuario.Legenda"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+                    android:layout_marginTop="@dimen/AppCartaoServidorV1.Basic.VerticalMargin"
+                    android:text="@string/Ola" />
 
-            <TextView
-                android:id="@+id/btnSair"
-                style="@style/UserTopBarTexto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="25dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="10dp"
-                android:text="@string/sair"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/Nome"
+                    style="@style/Text.AppCartaoServidorV1.Card.Superior.Usuario.Nome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+                    android:layout_marginTop="@dimen/AppCartaoServidorV1.Basic.VerticalMargin"
+                    android:text="@{viewModel.nome}"
+                    tools:text="Fulaninho da Silva" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-        <Button
-            android:id="@+id/btnComprar"
-            style="@style/ImageBtnStyle"
-            android:layout_marginTop="-30dp"
-            android:drawableTop="@drawable/btn_add_circle"
-            android:text="@string/comprar"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSair"
+            style="@style/Widget.AppCartaoServidorV1.Usuario.Button.Sair"
+            android:text="@string/Sair"
+            app:icon="@drawable/ic_outline_logout_24"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
         <LinearLayout
-            android:id="@+id/Saldo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="40dp"
-            android:background="@drawable/background_saldo"
-            android:orientation="vertical"
-            android:padding="25dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/Comprar"
+            style="@style/Widget.AppCartaoServidorV1.Button.Container"
+            android:layout_marginTop="@dimen/AppCartaoServidorV1.Basic.VerticalMargin"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-            app:layout_constraintVertical_bias="0.27">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
-
-            <TextView
-                android:id="@+id/saldo"
-                style="@style/s_Saldo"
-                android:text="@{viewModel.saldo}"
-                tools:text="70,00"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnComprar"
+                style="@style/Widget.AppCartaoServidorV1.Button"
+                app:icon="@drawable/ic_outline_add_24" />
 
             <TextView
-                android:id="@+id/saldoLabel"
-                style="@style/s_SaldoLabel"
-                android:text="R$" />
+                style="@style/Widget.AppCartaoServidorV1.TextView.Button"
+                android:text="@string/Comprar" />
+        </LinearLayout>
 
-            <TextView
-                android:id="@+id/mensagem"
-                style="@style/s_Mensagem"
-                android:visibility="gone"
-                android:text="@{viewModel.mensagemAPI}" />
 
-            <ProgressBar
-                android:id="@+id/Bar"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/Botoes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Comprar">
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                style="@style/ProgressBarStyle"
-                android:visibility="gone"/>
+                android:orientation="vertical">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/Card"
+                    style="@style/Card.AppCartaoServidorV1.General.Loading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+                    android:layout_marginVertical="@dimen/AppCartaoServidorV1.Basic.VerticalMargin">
+
+                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                        android:id="@+id/Bar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+                        android:layout_marginVertical="@dimen/AppCartaoServidorV1.Basic.VerticalMargin"
+                        android:indeterminate="true"
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/MensagemErro"
+                        style="@style/Text.AppCartaoServidorV1.Usuario.Card.Centro.MensagemErro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+                        android:layout_marginVertical="@dimen/AppCartaoServidorV1.Basic.VerticalMargin"
+                        android:text="@{viewModel.mensagemAPI}"
+                        android:visibility="gone"
+                        tools:text="Problemas ao acessar o sistema tente novamente mais tarde" />
+
+                    <LinearLayout
+                        android:id="@+id/Valores"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+                        android:layout_marginVertical="@dimen/AppCartaoServidorV1.Basic.VerticalMargin"
+                        android:visibility="gone">
+
+                        <TextView
+                            style="@style/Text.AppCartaoServidorV1.Usuario.Card.Centro.Valor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{viewModel.saldo}"
+                            tools:text="20,00" />
+
+                        <TextView
+                            style="@style/Text.AppCartaoServidorV1.Usuario.Card.Centro.Legenda"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/RS" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/MensagemFaturamento"
+                style="@style/Text.AppCartaoServidorV1.Usuario.Card.Centro.Mensagem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.descricaoSaldo}"
+                android:visibility="gone"
+                tools:text="Faturamento no mes de setembro" />
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/saldoMes"
-            android:layout_width="wrap_content"
+
+        <HorizontalScrollView
+            android:id="@+id/Botoes"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textSize="15sp"
-            android:textColor="?attr/colorOnSecondary"
-            android:text="@{viewModel.descricaoSaldo}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Saldo"
-            tools:text="Saldo disponivel em junho"/>
-
-        <Button
-            android:id="@+id/btnExtrato"
-            style="@style/ImageBtnStyle"
-            android:drawableTop="@drawable/btn_monetization_on"
-            android:layout_marginBottom="40dp"
-            android:text="@string/extrato"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnFuncionarios"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/btnFuncionarios"
-            style="@style/ImageBtnStyle"
-            android:drawableTop="@drawable/btn_credit_card"
-            android:text="@string/cartões"
-            app:layout_constraintEnd_toStartOf="@+id/btnInfo"
-            app:layout_constraintStart_toEndOf="@+id/btnExtrato"
-            app:layout_constraintTop_toTopOf="@+id/btnExtrato" />
-
-        <Button
-            android:id="@+id/btnInfo"
-            style="@style/ImageBtnStyle"
-            android:drawableTop="@drawable/btn_info"
-            android:text="@string/info"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btnFuncionarios"
-            app:layout_constraintTop_toTopOf="@+id/btnExtrato" />
-
-
-
-        <Button
-            android:id="@+id/btnRefresh"
-            style="@style/ImageBtnStyle"
-            android:drawableTop="@drawable/icon_refresh"
-            android:text="@string/is_tentar_novamente"
-            android:onClick="@{() -> viewModel.consultaServidor(viewModel.matricula)}"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="@dimen/AppCartaoServidorV1.Basic.VerticalMargin"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <LinearLayout style="@style/Widget.AppCartaoServidorV1.Button.Container">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnExtrato"
+                        style="@style/Widget.AppCartaoServidorV1.Button"
+                        app:icon="@drawable/ic_outline_shopping_cart_24" />
+
+                    <TextView
+                        style="@style/Widget.AppCartaoServidorV1.TextView.Button"
+                        android:text="@string/Extrato" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/Widget.AppCartaoServidorV1.Button.Container">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnCartao"
+                        style="@style/Widget.AppCartaoServidorV1.Button"
+                        app:icon="@drawable/ic_outline_credit_card_24" />
+
+                    <TextView
+                        style="@style/Widget.AppCartaoServidorV1.TextView.Button"
+                        android:text="@string/Cartão" />
+                </LinearLayout>
+
+
+                <LinearLayout style="@style/Widget.AppCartaoServidorV1.Button.Container">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnComercios"
+                        style="@style/Widget.AppCartaoServidorV1.Button"
+                        app:icon="@drawable/ic_outline_store_24" />
+
+                    <TextView
+                        style="@style/Widget.AppCartaoServidorV1.TextView.Button"
+                        android:text="@string/Comercios" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/Widget.AppCartaoServidorV1.Button.Container">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnInfo"
+                        style="@style/Widget.AppCartaoServidorV1.Button"
+                        app:icon="@drawable/ic_outline_info_24" />
+
+                    <TextView
+                        style="@style/Widget.AppCartaoServidorV1.TextView.Button"
+                        android:text="@string/Informações" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+        <LinearLayout
+            android:id="@+id/Refresh"
+            style="@style/Widget.AppCartaoServidorV1.Button.Container"
+            android:layout_marginBottom="@dimen/AppCartaoServidorV1.Basic.VerticalMargin"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.AppCartaoServidorV1.Button"
+                android:onClick="@{() -> viewModel.consultaServidor(viewModel.matricula)}"
+                app:icon="@drawable/ic_outline_refresh_24" />
+
+            <TextView
+                style="@style/Widget.AppCartaoServidorV1.TextView.Button"
+                android:text="@string/TentarNovamente" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

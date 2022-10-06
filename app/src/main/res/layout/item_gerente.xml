@@ -4,67 +4,107 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="gerente"
             type="com.example.appcartaoservidorv1.models.Gerente" />
+
         <variable
             name="clickListener"
             type="com.example.appcartaoservidorv1.adapters.GerenteListener" />
+
+        <variable
+            name="clickListener2"
+            type="com.example.appcartaoservidorv1.adapters.GerenteListener" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:onClick="@{() -> clickListener.onClick(gerente)}">
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/Image"
-            android:layout_width="34dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="10dp"
-            android:gravity="center"
-            android:src="@drawable/icon_supervisor_account"
-            app:layout_constraintBottom_toBottomOf="@+id/Status"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Icon" />
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Card.AppCartaoServidorV1.Item.Comercio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+            android:layout_marginVertical="@dimen/AppCartaoServidorV1.RecyclerView.Card.Item.MarginVertical">
 
-        <TextView
-            android:id="@+id/Nome"
-            style="@style/ti_NomeVendedor"
-            android:layout_marginStart="15dp"
-            app:layout_constraintEnd_toStartOf="@+id/Status"
-            app:layout_constraintStart_toEndOf="@+id/Image"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Fulano da Silva" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/infoContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/AppCartaoServidorV1.Card.Conteudo.Margin"
+                android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/Matricula"
-            style="@style/ti_Valor"
-            app:layout_constraintEnd_toEndOf="@+id/Nome"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/Nome"
-            app:layout_constraintTop_toBottomOf="@+id/Nome"
-            tools:text="00000000001" />
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/shapeableImageView"
+                    style="@style/Image.AppCartaoServidorV1.RecyclerView.Item.Icon"
+                    android:src="@drawable/ic_outline_supervisor_account_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/Status"
-            style="@style/ti_Data"
-            android:layout_marginEnd="30dp"
-            app:layout_constraintBottom_toBottomOf="@+id/Matricula"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/Nome"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Ativo" />
+                <LinearLayout
+                    android:id="@+id/linearLayout3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/AppCartaoServidorV1.RecyclerView.Card.Content.MarginHorizontal"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btnBloquear"
+                    app:layout_constraintStart_toEndOf="@+id/shapeableImageView"
+                    app:layout_constraintTop_toTopOf="parent">
 
-        <View
-            android:id="@+id/linhaAmarela"
-            style="@style/ti_Linha"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Status" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/Nome"
+                        style="@style/Text.AppCartaoServidorV1.RecycleView.Card.Nome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Fulano" />
+
+                    <TextView
+                        android:id="@+id/Status"
+                        style="@style/Text.AppCartaoServidorV1.RecycleView.Card.Info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/AppCartaoServidorV1.RecyclerView.Card.Content.Info.MarginVertical"
+                        tools:text="Ativo" />
+
+                    <TextView
+                        android:id="@+id/Matricula"
+                        style="@style/Text.AppCartaoServidorV1.RecycleView.Card.Info2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="00002" />
+
+                </LinearLayout>
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnBloquear"
+                    style="@style/Widget.AppCartaoServidorV1.Button.RecyclerView.Card.Item"
+                    android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.RecyclerView.Card.Btns.MarginHorizontal"
+                    android:onClick="@{() -> clickListener.onClick(gerente)}"
+                    app:icon="@drawable/ic_outline_lock_24"
+                    app:layout_constraintStart_toEndOf="@+id/linearLayout3"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/Teste"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/Teste"
+                    style="@style/Widget.AppCartaoServidorV1.Button.RecyclerView.Card.Item"
+                    android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.RecyclerView.Card.Btns.MarginHorizontal"
+                    android:onClick="@{() -> clickListener2.onClick(gerente)}"
+                    app:icon="@drawable/ic_outline_delete_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
 </layout>

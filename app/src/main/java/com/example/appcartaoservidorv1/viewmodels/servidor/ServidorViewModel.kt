@@ -1,6 +1,7 @@
 package com.example.appcartaoservidorv1.viewmodels.servidor
 
 import androidx.lifecycle.*
+import com.example.appcartaoservidorv1.Constantes
 import com.example.appcartaoservidorv1.models.DTO_Servidor
 import com.example.appcartaoservidorv1.services.api.APIServidor
 import com.example.appcartaoservidorv1.services.utilidades.dataEmMes
@@ -34,7 +35,7 @@ class ServidorViewModel(val matricula: String, val nome: String, val token: Stri
     private val data = Calendar.getInstance().time
 
     init {
-        _descricaoSaldo.value = "Saldo Disponivel em ${dataEmMes(data)}"
+        _descricaoSaldo.value = "Saldo disponivel em ${dataEmMes(data)}"
 //        consultaServidor(matricula)
     }
 
@@ -48,7 +49,7 @@ class ServidorViewModel(val matricula: String, val nome: String, val token: Stri
                 _status.value = ApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = ApiStatus.ERROR
-                _mensagemAPI.value = "Problemas no servidor, tente novamente"
+                _mensagemAPI.value = Constantes.Erro4
             }
         }
     }

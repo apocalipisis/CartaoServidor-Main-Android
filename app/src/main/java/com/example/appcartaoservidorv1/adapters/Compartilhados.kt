@@ -1,9 +1,45 @@
 package com.example.appcartaoservidorv1.adapters
 
 import androidx.recyclerview.widget.DiffUtil
+import com.example.appcartaoservidorv1.models.ComercianteModel
 import com.example.appcartaoservidorv1.models.Funcionario
 import com.example.appcartaoservidorv1.models.Gerente
 import com.example.appcartaoservidorv1.models.Transacao
+
+// ComercianteModel
+//--------------------------------------------------------------------------------------------------
+class ComercianteModelDiffCallback : DiffUtil.ItemCallback<ComercianteModelDados>() {
+    override fun areItemsTheSame(
+        oldItem: ComercianteModelDados,
+        newItem: ComercianteModelDados
+    ): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(
+        oldItem: ComercianteModelDados,
+        newItem: ComercianteModelDados
+    ): Boolean {
+        return oldItem == newItem
+    }
+}
+
+sealed class ComercianteModelDados {
+    abstract val id: Long
+
+    data class ComercianteModelItem(val comercianteModel: ComercianteModel) :
+        ComercianteModelDados() {
+        override val id = comercianteModel.Id
+    }
+
+    object Header : ComercianteModelDados() {
+        override val id = Long.MIN_VALUE
+    }
+}
+
+class ComercianteModelListener(val clickListener: (nComercianteModel: ComercianteModel) -> Unit) {
+    fun onClick(comercianteModel: ComercianteModel) = clickListener(comercianteModel)
+}
 
 // Transação
 //--------------------------------------------------------------------------------------------------

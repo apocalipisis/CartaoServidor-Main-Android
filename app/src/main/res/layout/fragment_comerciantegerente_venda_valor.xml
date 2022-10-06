@@ -11,86 +11,69 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView3"
-            style="@style/textoTituloBar"
-            android:text="@string/Preço"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.card.MaterialCardView style="@style/Card.AppCartaoServidorV1.Superior">
 
-        <!-- A CardView that contains a TextView -->
-        <ImageView
-            android:id="@+id/Image"
-            style="@style/imagemTituloBar"
-            android:src="@drawable/icon_shopping_cart"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
 
-        <TextView
-            android:id="@+id/Mensagem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/digitePreço"
-            android:textColor="?attr/colorOnSecondary"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Image" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnVoltar"
+                    style="@style/Widget.AppCartaoServidorV1.CardSuperior.BtnVoltar"
+                    android:layout_marginStart="@dimen/AppCartaoServidorV1.Card.Superior.Margin.btnVoltar"
+                    app:icon="@drawable/ic_outline_arrow_back_ios_36"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
+                <TextView
+                    style="@style/Text.AppCartaoServidorV1.Card.Superior.Titulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/AppCartaoServidorV1.Card.Superior.Margin.Titulo"
+                    android:text="@string/Preço"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/btnVoltar"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/valorInput"
+            style="@style/Widget.AppCartaoServidorV1.Venda.Valor.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:padding="0dp"
-            android:textSize="40sp"
+            android:layout_marginVertical="@dimen/AppCartaoServidorV1.Basic.VerticalMargin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Mensagem"
-            app:suffixText=" R$"
-            app:suffixTextAppearance="@style/sufixEntryInserirValor"
-            app:suffixTextColor="?attr/colorOnPrimary">
+            app:layout_constraintTop_toBottomOf="@+id/Mensagem">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/Valor"
-                style="@style/EntryInserirValor"
+                style="@style/Widget.AppCartaoServidorV1.Venda.Valor.EditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:gravity="end"
+                android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+                android:background="@drawable/bg_venda_entradavalor"
                 android:importantForAutofill="no"
-                android:inputType="numberPassword"
-                android:textDirection="anyRtl" />
+                tools:text="20,00" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!--        <EditText-->
-        <!--            android:id="@+id/Valor"-->
-        <!--            style="@style/EntryInserirValor"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:textAlignment="textEnd"-->
-        <!--            android:textDirection="anyRtl"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/Mensagem" />-->
-
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnAvancar"
-            style="@style/ImageBtnStyle"
-            android:layout_width="wrap_content"
-            android:drawableTop="@drawable/selector_arrow_foward"
-            android:textSize="40sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/valorInput" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            style="@style/Widget.AppCartaoServidorV1.Button"
+            android:layout_gravity="end"
+            android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+            app:icon="@drawable/ic_outline_arrow_forward_24" />
+    </LinearLayout>
 </layout>

@@ -14,4 +14,7 @@ data class DTO_Servidor(
     @Json(name = "status") var status: String,
     @Json(name = "instituto") var instituto: String,
     @Json(name = "limiteMensal") var limiteMensal: Double,
+    @Json(name = "statusCartao") var statusCartao: String,
+    @Json(name = "numeroCartao") var numeroCartao: String,
+    @Json(name = "haPendenciasCartao") var haPendenciasCartao: Boolean,
 )

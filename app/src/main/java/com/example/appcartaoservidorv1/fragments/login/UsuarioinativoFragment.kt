@@ -13,13 +13,12 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.appcartaoservidorv1.Constantes
 import com.example.appcartaoservidorv1.R
 import com.example.appcartaoservidorv1.databinding.FragmentUsuarioinativoBinding
-import com.example.appcartaoservidorv1.services.utilidades.BaseFragment
-import com.example.appcartaoservidorv1.services.utilidades.fromViewToLogin
+import com.example.appcartaoservidorv1.services.utilidades.fromUsuarioinativoToLogin
 import com.example.appcartaoservidorv1.viewmodels.login.UsuarioinativoViewModel
 import com.example.appcartaoservidorv1.viewmodels.login.UsuarioinativoViewModelFactory
 
 
-class UsuarioinativoFragment : BaseFragment() {
+class UsuarioinativoFragment : Fragment() {
     // Variavel responsavel pelo binding
     lateinit var binding: FragmentUsuarioinativoBinding
     lateinit var args: UsuarioinativoFragmentArgs
@@ -39,16 +38,22 @@ class UsuarioinativoFragment : BaseFragment() {
         // Recupera as variaveis passada para a view
         args = UsuarioinativoFragmentArgs.fromBundle(requireArguments())
         // Inicializa o ViewModel e passa as variaveis
-        viewModelFactory = UsuarioinativoViewModelFactory(args.nome)
+        viewModelFactory = UsuarioinativoViewModelFactory(args.nome, args.matricula)
         viewModel =
             ViewModelProvider(this, viewModelFactory)[UsuarioinativoViewModel::class.java]
         // Faz o binding com o viewModel
         binding.viewModel = viewModel
 
+        val fragment = this
+
+        binding.btnVoltar.setOnClickListener {
+            fromUsuarioinativoToLogin(fragment)
+        }
+
         // Configura o botão de voltar para ao pressionar voltar para a página login
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                fromViewToLogin(binding.root)
+                fromUsuarioinativoToLogin(fragment)
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(
@@ -69,7 +74,7 @@ class UsuarioinativoFragment : BaseFragment() {
 
     private fun whatsAppItent(): Intent {
         val url =
-            "https://wa.me/${Constantes.TelefoneWhats}?text=Olá,%20sou%20servidor%20e%20estou%20inativo,%20gostaria%20de%20saber%20o%20que%20pode%20ser%20feito."
+            "https://wa.me/${Constantes.TelefoneWhats}?text=Olá,%20meu%20nome%20é%20${viewModel.nome}%20e%20estou%20no%20sistema%20com%20matricula%20${viewModel.matricula}%20estou%20aparecendo%20como%20inativo,%20gostaria%20de%20saber%20o%20que%20pode%20ser%20feito."
 
         val shareIntent = Intent(Intent.ACTION_VIEW)
         shareIntent.data = Uri.parse(url)

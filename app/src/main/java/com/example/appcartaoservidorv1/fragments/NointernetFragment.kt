@@ -30,7 +30,6 @@ class NointernetFragment : Fragment() {
     ): View {
         // Infla o layout do fragmento
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_nointernet, container, false)
-        // Recupera as variaveis passada para a view
 
         // Inicializa o ViewModel e passa as variaveis
         viewModelFactory = NointernetViewModelFactory()
@@ -41,7 +40,15 @@ class NointernetFragment : Fragment() {
         binding.btnRefresh.setOnClickListener {
             if (isNetworkAvailable(appContex)) {
                 NavHostFragment.findNavController(this).popBackStack()
-            }else{
+            } else {
+                failAnimation()
+            }
+        }
+
+        binding.btnVoltar.setOnClickListener {
+            if (isNetworkAvailable(appContex)) {
+                NavHostFragment.findNavController(this).popBackStack()
+            } else {
                 failAnimation()
             }
         }
@@ -52,12 +59,15 @@ class NointernetFragment : Fragment() {
             override fun handleOnBackPressed() {
                 if (isNetworkAvailable(appContex)) {
                     NavHostFragment.findNavController(fragment).popBackStack()
-                }else{
+                } else {
                     failAnimation()
                 }
             }
         }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            onBackPressedCallback
+        )
 
         // Configura o ciclo de vida
         binding.lifecycleOwner = viewLifecycleOwner
@@ -65,14 +75,13 @@ class NointernetFragment : Fragment() {
     }
 
     // Mostra a animação
-    private fun failAnimation(){
-        binding.ImageStatusError.visibility = View.VISIBLE
-        binding.ImageStatusError.animate().apply{
-            duration = 1000
+    private fun failAnimation() {
+        binding.image.visibility = View.VISIBLE
+        binding.image.animate().apply {
+            duration = 200
             rotationYBy(360f)
-        }.withEndAction{
-            binding.result.visibility = View.VISIBLE
-            binding.result.text = "Sem conexão"
+        }.withEndAction {
+//            binding.mensagem.text = "Sem conexão"
         }
     }
 }

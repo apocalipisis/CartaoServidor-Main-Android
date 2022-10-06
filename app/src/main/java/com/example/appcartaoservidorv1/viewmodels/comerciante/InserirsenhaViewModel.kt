@@ -15,11 +15,12 @@ class InserirsenhaViewModel(
     val valor: Float,
     val nomeComerciante: String,
     val matriculaComerciante: String,
+    val numeroCartao: String,
     val token: String,
 ) :
     ViewModel() {
     // Mensagem com o valor da compra
-    val ValorStr: String = formataString(valor) + " R$"
+    val valorStr: String = formataString(valor) + " R$"
 
     // Mensagem a ser exibida na tela
     private val _ConfirmStr = MutableLiveData<String>()
@@ -41,15 +42,15 @@ class InserirsenhaViewModel(
         _ConfirmStr.value = "Compra em ${nomeComerciante}, valor:"
     }
 
-    fun senhaCompleta(){
-        _senhaCompleta.value = senha1+senha2+senha3+senha4
+    fun senhaCompleta() {
+        _senhaCompleta.value = senha1 + senha2 + senha3 + senha4
     }
 
     // Função que formata o numero adicionando pontos(a cada mil) e virgula nas casas decimais
     private fun formataString(numb: Number): String {
         val formatter = NumberFormat.getCurrencyInstance(Locale.getDefault()) as DecimalFormat
         val symbols: DecimalFormatSymbols = formatter.decimalFormatSymbols
-        symbols.setCurrencySymbol("")
+        symbols.currencySymbol = ""
         formatter.decimalFormatSymbols = symbols
         return formatter.format(numb)
     }
@@ -63,11 +64,20 @@ class InserirsenhaViewModelFactory(
     private val valor: Float,
     private val nomeComerciante: String,
     private val matriculaComerciante: String,
+    private val numeroCartao: String,
     private val token: String,
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(InserirsenhaViewModel::class.java)) {
-            return InserirsenhaViewModel(matricula, servidor, valor, nomeComerciante, matriculaComerciante, token) as T
+            return InserirsenhaViewModel(
+                matricula,
+                servidor,
+                valor,
+                nomeComerciante,
+                matriculaComerciante,
+                numeroCartao,
+                token,
+            ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

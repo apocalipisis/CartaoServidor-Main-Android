@@ -1,12 +1,13 @@
 package com.example.appcartaoservidorv1.dialogsviewmodels
 
 import androidx.lifecycle.*
+import com.example.appcartaoservidorv1.Constantes
 import com.example.appcartaoservidorv1.models.auxiliares.ParBoolString
 import com.example.appcartaoservidorv1.services.api.APIComerciante
 import kotlinx.coroutines.launch
 
-class DialogCriarfuncionariocomercianteViewModel(val matricula: String, val token: String) : ViewModel() {
-
+class DialogCriarfuncionariocomercianteViewModel(val matricula: String, val token: String) :
+    ViewModel() {
     // Resposta da API
     private val _response = MutableLiveData<ParBoolString>()
     val response: LiveData<ParBoolString>
@@ -22,54 +23,32 @@ class DialogCriarfuncionariocomercianteViewModel(val matricula: String, val toke
     // Nome digitada pelo usuario
     var nome = MutableLiveData<String>()
 
-    // Cpf digitada pelo usuario
-
-    // Informa se o nome digitado pelo usuário é valido
-    var isNomeValido = MutableLiveData<String>()
-
-    // Informa se o cpf digitado pelo usuário é valido
-
     init {
         nome.value = ""
-
-        isNomeValido.value = ""
     }
 
-    fun criarGerente(
+    //----------------------------------------------------------------------------------------------
+    fun criarFuncionario(
         nome: String,
-        isAtivo: Boolean,
         matriculaMae: String,
         token: String
     ) {
-        isNomeValido.value = ""
-
-        if (!verificaNome(nome)) {
-            isNomeValido.value = "Nome Inválido"
-            return
-        }
         _status.value = ApiStatus.LOADING
         viewModelScope.launch {
             try {
                 _response.value =
                     APIComerciante.APIComercianteService.inserirFuncionarioComerciante(
                         nome,
-                        isAtivo,
                         matriculaMae,
                         token
                     )
                 _status.value = ApiStatus.DONE
             } catch (e: Exception) {
-                _response.value = ParBoolString(false, "Problemas no servidor, tente novamente")
+                _response.value = ParBoolString(false, Constantes.Erro4)
                 _status.value = ApiStatus.ERROR
             }
         }
     }
-
-    private fun verificaNome(nome: String): Boolean {
-        return nome.isNotEmpty()
-    }
-
-
 }
 
 

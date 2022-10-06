@@ -1,11 +1,12 @@
 package com.example.appcartaoservidorv1.viewmodels.servidor
 
 import androidx.lifecycle.*
+import com.example.appcartaoservidorv1.Constantes
 import com.example.appcartaoservidorv1.models.Transacao
 import com.example.appcartaoservidorv1.services.api.APIServidor
 import kotlinx.coroutines.launch
 
-class ExtratoservidorViewModel(val matricula: String,val token: String) :
+class ExtratoservidorViewModel(val matricula: String, val token: String) :
     ViewModel() {
     //  Contador do numero de consultas
     private var nConsulta: Int = 0
@@ -15,10 +16,15 @@ class ExtratoservidorViewModel(val matricula: String,val token: String) :
 
     // Status da consulta a API
     enum class ApiStatus { LOADING, ERROR, DONE }
+    enum class ApiStatusLista { LOADING, ERROR, DONE }
 
-    private val _status = MutableLiveData<ServidorViewModel.ApiStatus>()
-    val status: LiveData<ServidorViewModel.ApiStatus>
+    private val _status = MutableLiveData<ApiStatus>()
+    val status: LiveData<ApiStatus>
         get() = _status
+
+    private val _statusLista = MutableLiveData<ApiStatusLista>()
+    val statusLista: LiveData<ApiStatusLista>
+        get() = _statusLista
 
     // Mensagem sobre consulta a API
     private val _mensagemAPI = MutableLiveData<String>()
@@ -50,29 +56,49 @@ class ExtratoservidorViewModel(val matricula: String,val token: String) :
 
     init {
         _transacoes.value = listOf()
-        consultaExtrato()
     }
 
-    fun consultaExtrato() {
-        _status.value = ServidorViewModel.ApiStatus.LOADING
+    fun consultaExtrato(isLista: Boolean) {
+        if (isLista){
+            _statusLista.value = ApiStatusLista.LOADING
+        }else{
+            _status.value = ApiStatus.LOADING
+        }
         viewModelScope.launch {
             try {
-                response = APIServidor.APIServidorService.nTransacoesServidor(matricula, nConsulta, token)
+                response =
+                    APIServidor.APIServidorService.nTransacoesServidor(matricula, nConsulta, token)
                 _transacoes.value =
                     _transacoes.value?.plus(response.sortedByDescending { it.DataVenda.time })
                 if (response.isNotEmpty()) {
                     nConsulta++
                     loading = false
                 }
-                _status.value = ServidorViewModel.ApiStatus.DONE
+                if (isLista){
+                    _statusLista.value = ApiStatusLista.DONE
+                }else{
+                    _status.value = ApiStatus.DONE
+                }
             } catch (e: Exception) {
-                _mensagemAPI.value = "Problemas no servidor, tente novamente"
+                _mensagemAPI.value = Constantes.Erro4
                 loading = false
-                _status.value = ServidorViewModel.ApiStatus.ERROR
+                if (isLista) {
+                    _statusLista.value = ApiStatusLista.ERROR
+                } else {
+                    _status.value = ApiStatus.ERROR
+                }
             }
         }
     }
 
+    fun reloadList(isLista: Boolean) {
+        nConsulta = 0
+
+        val list: List<Transacao> = listOf()
+        _transacoes.value = list
+
+        consultaExtrato(isLista)
+    }
 
 }
 
@@ -83,7 +109,7 @@ class ExtratoservidorViewModelFactory(
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ExtratoservidorViewModel::class.java)) {
-            return ExtratoservidorViewModel(matricula,token) as T
+            return ExtratoservidorViewModel(matricula, token) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

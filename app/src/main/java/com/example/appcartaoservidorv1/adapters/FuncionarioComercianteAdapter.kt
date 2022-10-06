@@ -3,6 +3,7 @@ package com.example.appcartaoservidorv1.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +18,10 @@ import kotlinx.coroutines.withContext
 private val ITEM_VIEW_TYPE_HEADER = 0
 private val ITEM_VIEW_TYPE_ITEM = 1
 
-class FuncionarioComercianteAdapter(val clickListener: FuncionarioListener) :
+class FuncionarioComercianteAdapter(
+    val clickListener: FuncionarioListener,
+    private val clickListener2: FuncionarioListener
+) :
     ListAdapter<FuncionarioDados, RecyclerView.ViewHolder>(FuncionarioDiffCallback()) {
 
     private val adapterScope = CoroutineScope(Dispatchers.Default)
@@ -26,7 +30,11 @@ class FuncionarioComercianteAdapter(val clickListener: FuncionarioListener) :
         adapterScope.launch {
             val items = when (list) {
                 null -> listOf(FuncionarioDados.Header)
-                else -> listOf(FuncionarioDados.Header) + list.map { FuncionarioDados.FuncionarioItem(it) }
+                else -> listOf(FuncionarioDados.Header) + list.map {
+                    FuncionarioDados.FuncionarioItem(
+                        it
+                    )
+                }
             }
             withContext(Dispatchers.Main) {
                 submitList(items)
@@ -45,7 +53,7 @@ class FuncionarioComercianteAdapter(val clickListener: FuncionarioListener) :
         when (holder) {
             is ViewHolder -> {
                 val funcionarioItem = getItem(position) as FuncionarioDados.FuncionarioItem
-                holder.bind(funcionarioItem.funcionario, clickListener)
+                holder.bind(funcionarioItem.funcionario, clickListener, clickListener2)
             }
         }
     }
@@ -73,12 +81,22 @@ class FuncionarioComercianteAdapter(val clickListener: FuncionarioListener) :
     class ViewHolder private constructor(val binding: ItemFuncionarioBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Funcionario, clickListener: FuncionarioListener) {
+        fun bind(
+            item: Funcionario,
+            clickListener: FuncionarioListener,
+            clickListener2: FuncionarioListener
+        ) {
             binding.funcionario = item
             binding.Nome.text = item.Nome
             binding.Matricula.text = item.Matricula
             binding.Status.text = item.Status
             binding.clickListener = clickListener
+            binding.clickListener2 = clickListener2
+
+            when (item.Status) {
+                "Ativo" -> {btnBloquearIconLock()}
+                else -> {btnBloquearIconLockOpen()}
+            }
         }
 
         companion object {
@@ -89,14 +107,22 @@ class FuncionarioComercianteAdapter(val clickListener: FuncionarioListener) :
                 return ViewHolder(binding)
             }
         }
-
-        // Função que coloca o saldo no formato adequado e transforma em string
-        private fun formatCpf(cpf: String): String {
-            return cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(
-                6,
-                9
-            ) + "-" + cpf.substring(9, 11)
+        // -----------------------------------------------------------------------------------------
+        private fun btnBloquearIconLock() {
+            val icon = R.drawable.ic_outline_lock_24
+            val context = binding.btnBloquear.context
+            binding.btnBloquear.icon = AppCompatResources.getDrawable(context, icon)
         }
+
+        // -----------------------------------------------------------------------------------------
+        private fun btnBloquearIconLockOpen() {
+            val icon = R.drawable.ic_outline_lock_open_24
+            val context = binding.btnBloquear.context
+            binding.btnBloquear.icon = AppCompatResources.getDrawable(context, icon)
+        }
+        // -----------------------------------------------------------------------------------------
+
+
     }
 
 }

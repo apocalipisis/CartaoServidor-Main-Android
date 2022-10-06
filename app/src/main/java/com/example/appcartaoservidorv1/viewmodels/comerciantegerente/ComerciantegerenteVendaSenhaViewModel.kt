@@ -17,6 +17,7 @@ class ComerciantegerenteVendaSenhaViewModel(
     val nomeComerciante: String,
     val matriculaVendedor: String,
     val nomeVendedor: String,
+    val numeroCartao: String,
     val token: String,
 ) :
     ViewModel() {
@@ -66,6 +67,7 @@ class ComerciantegerenteVendaSenhaViewModelFactory(
     private val nomeComerciante: String,
     private val matriculaVendedor: String,
     private val nomeVendedor: String,
+    private val numeroCartao: String,
     private val token: String,
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -78,6 +80,7 @@ class ComerciantegerenteVendaSenhaViewModelFactory(
                 nomeComerciante,
                 matriculaVendedor,
                 nomeVendedor,
+                numeroCartao,
                 token,
             ) as T
         }

@@ -16,9 +16,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/logo_app"
+        android:icon="@drawable/img_empresa_logo_icon"
         android:label="@string/app_display_name"
-        android:roundIcon="@drawable/logo_app"
+        android:roundIcon="@drawable/img_empresa_logo_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCartaoServidorV1"
         tools:targetApi="31">

@@ -45,6 +45,7 @@ class ComerciantegerenteVendaStatusFragment : BaseFragment() {
             args.valor,
             args.senha,
             args.nomeVendedor,
+            args.numeroCartao,
             args.token,
         )
         viewModel = ViewModelProvider(
@@ -56,10 +57,18 @@ class ComerciantegerenteVendaStatusFragment : BaseFragment() {
 
         // Armazena o fragment em uma variavel
         val fragment = this
-        // Armazena o contexto em uma variavel
-        val appContext = this.requireContext()
 
         binding.btnHome.setOnClickListener {
+            fromComerciantegerenteVendaStatusToComerciantegerente(
+                fragment,
+                viewModel.matriculaVendedor,
+                viewModel.nomeVendedor,
+                viewModel.token
+            )
+        }
+
+        // Botão Voltar
+        binding.btnVoltar.setOnClickListener {
             fromComerciantegerenteVendaStatusToComerciantegerente(
                 fragment,
                 viewModel.matriculaVendedor,
@@ -72,20 +81,19 @@ class ComerciantegerenteVendaStatusFragment : BaseFragment() {
         viewModel.status.observe(viewLifecycleOwner) { status ->
             when (status) {
                 ComerciantegerenteVendaStatusViewModel.ApiStatus.LOADING -> {
-                    mostrarBarra()
+                    estadoCarregando()
                 }
                 ComerciantegerenteVendaStatusViewModel.ApiStatus.DONE -> {
-                    esconderBarra()
-                    if (viewModel.sucess.value == true) {
-                        sucessAnimation()
-
+                    if (viewModel.response.b) {
+                        estadoOk()
+                        imageSucess()
                     } else {
-                        failAnimation()
+                        estadoOk()
+                        imageFail()
                     }
                 }
-                ComerciantegerenteVendaStatusViewModel.ApiStatus.ERROR -> {
-                    esconderBarra()
-                    failAnimation()
+                else -> {
+                    estadoErro()
                 }
             }
         }
@@ -112,37 +120,43 @@ class ComerciantegerenteVendaStatusFragment : BaseFragment() {
         return binding.root
     }
 
-    // Mostra a barra de loading
-    private fun mostrarBarra() {
-        binding.Bar.visibility = View.VISIBLE
-    }
-
-    // Esconde a barra de loading
-    private fun esconderBarra() {
-        binding.Bar.visibility = View.GONE
-    }
-
-    // Mostra a animação de sucesso
-    private fun sucessAnimation() {
-        binding.ImageStatusSucess.visibility = View.VISIBLE
-        binding.ImageStatusSucess.animate().apply {
-            duration = 1000
-            rotationYBy(360f)
-        }.withEndAction {
-            binding.result.visibility = View.VISIBLE
-            binding.btnHome.visibility = View.VISIBLE
+    //----------------------------------------------------------------------------------------------
+    private fun barra(isVisible: Boolean) {
+        if (isVisible) {
+            binding.Bar.visibility = View.VISIBLE
+        } else {
+            binding.Bar.visibility = View.GONE
         }
     }
 
-    private fun failAnimation() {
-        binding.ImageStatusError.visibility = View.VISIBLE
-        binding.ImageStatusError.animate().apply {
-            duration = 1000
-            rotationYBy(360f)
-        }.withEndAction {
-            binding.result.visibility = View.VISIBLE
-            binding.motivo.visibility = View.VISIBLE
-            binding.btnHome.visibility = View.VISIBLE
-        }
+    //----------------------------------------------------------------------------------------------
+    private fun resultados() {
+        binding.Resultados.visibility = View.VISIBLE
+    }
+
+    //----------------------------------------------------------------------------------------------
+    private fun imageSucess() {
+        binding.iconSucesso.visibility = View.VISIBLE
+    }
+
+    //----------------------------------------------------------------------------------------------
+    private fun imageFail() {
+        binding.iconError.visibility = View.VISIBLE
+    }
+
+    //----------------------------------------------------------------------------------------------
+    private fun estadoCarregando() {
+        barra(true)
+    }
+
+    private fun estadoOk() {
+        barra(false)
+        resultados()
+    }
+
+    private fun estadoErro() {
+        resultados()
+        imageFail()
+        barra(false)
     }
 }

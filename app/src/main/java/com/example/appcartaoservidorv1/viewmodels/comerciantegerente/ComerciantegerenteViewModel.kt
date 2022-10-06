@@ -9,17 +9,21 @@ import com.example.appcartaoservidorv1.services.utilidades.formatDinheiro
 import kotlinx.coroutines.launch
 import java.util.*
 
-class ComerciantegerenteViewModel(val matricula: String, val nome: String, val token: String) : ViewModel() {
+class ComerciantegerenteViewModel(val matricula: String, val nome: String, val token: String) :
+    ViewModel() {
 
     // Status da consulta a API
     enum class ApiStatus { LOADING, ERROR, DONE }
+
     private val _status = MutableLiveData<ApiStatus>()
     val status: LiveData<ApiStatus>
         get() = _status
+
     // Mensagem sobre consulta a API
     private val _mensagemAPI = MutableLiveData<String>()
     val mensagemAPI: LiveData<String>
         get() = _mensagemAPI
+
     // Resposta da API
     lateinit var response: DTOComercianteGerente
 
@@ -27,6 +31,7 @@ class ComerciantegerenteViewModel(val matricula: String, val nome: String, val t
     private val _descricaoFaturamento = MutableLiveData<String>()
     val descricaoFaturamento: LiveData<String>
         get() = _descricaoFaturamento
+
     // Faturamento
     private val _faturamento = MutableLiveData<String>()
     val faturamento: LiveData<String>
@@ -45,11 +50,14 @@ class ComerciantegerenteViewModel(val matricula: String, val nome: String, val t
         _status.value = ApiStatus.LOADING
         viewModelScope.launch {
             try {
-                response = APIComercianteGerente.APIComercianteGerenteService.consultaComercianteGerente(matricula, token)
+                response =
+                    APIComercianteGerente.APIComercianteGerenteService.consultaComercianteGerente(
+                        matricula,
+                        token
+                    )
                 _faturamento.value = formatDinheiro(response.faturamento)
                 _status.value = ApiStatus.DONE
             } catch (e: Exception) {
-                Log.i("Teste",e.toString())
                 _status.value = ApiStatus.ERROR
                 _mensagemAPI.value = "Problemas no servidor, tente novamente"
             }
@@ -60,7 +68,11 @@ class ComerciantegerenteViewModel(val matricula: String, val nome: String, val t
 
 
 // Configura a factory do ViewModel (Usada para receber os parametros passados para o viewmodel)
-class ComerciantegerenteViewModelFactory(private val matricula: String, private val nome: String, private val token: String) :
+class ComerciantegerenteViewModelFactory(
+    private val matricula: String,
+    private val nome: String,
+    private val token: String
+) :
     ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ComerciantegerenteViewModel::class.java)) {

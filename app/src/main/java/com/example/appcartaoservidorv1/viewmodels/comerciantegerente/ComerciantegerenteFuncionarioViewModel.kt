@@ -1,7 +1,9 @@
 package com.example.appcartaoservidorv1.viewmodels.comerciantegerente
 
 import androidx.lifecycle.*
+import com.example.appcartaoservidorv1.Constantes
 import com.example.appcartaoservidorv1.models.Funcionario
+import com.example.appcartaoservidorv1.models.auxiliares.ParBoolString
 import com.example.appcartaoservidorv1.services.api.APIComercianteGerente
 import kotlinx.coroutines.launch
 
@@ -14,47 +16,64 @@ class ComerciantegerenteFuncionarioViewModel(val matricula: String, val token: S
     // Verifica se uma solicitação foi enviada
     var loading = false
 
+    //----------------------------------------------------------------------------------------------
+    // Resposta da API
+    private lateinit var response: List<Funcionario>
+    private lateinit var responseUpdate: ParBoolString
+
+    //----------------------------------------------------------------------------------------------
     // Status da consulta a API
     enum class ApiStatus { LOADING, ERROR, DONE }
+    enum class ApiStatusLista { LOADING, ERROR, DONE }
+    enum class ApiStatusUpdateRequest { LOADING, ERROR, DONE }
 
     private val _status = MutableLiveData<ApiStatus>()
     val status: LiveData<ApiStatus>
         get() = _status
 
+    private val _statusLista = MutableLiveData<ApiStatusLista>()
+    val statusLista: LiveData<ApiStatusLista>
+        get() = _statusLista
+
+
+    private val _statusUpdateRequest = MutableLiveData<ApiStatusUpdateRequest>()
+    val statusUpdateRequest: LiveData<ApiStatusUpdateRequest>
+        get() = _statusUpdateRequest
+
+    //----------------------------------------------------------------------------------------------
     // Mensagem sobre consulta a API
     private val _mensagemAPI = MutableLiveData<String>()
     val mensagemAPI: LiveData<String>
         get() = _mensagemAPI
 
-    // Resposta da API
-    private lateinit var response: List<Funcionario>
-
-    // Controla a navegação para uma página de detalhes
-    private val _navigateToFuncionarioDetail = MutableLiveData<Funcionario>()
-    val navigateToFuncionarioDetail
-        get() = _navigateToFuncionarioDetail
-
-    // Transações
+    //----------------------------------------------------------------------------------------------
+    // Funcionarios
     private val _funcionarios = MutableLiveData<List<Funcionario>>()
     val funcionarios: LiveData<List<Funcionario>>
         get() = _funcionarios
 
-    // Passa o valor da transação para frente (transação detalhes)
-    fun onFuncionarioClicked(funcionario: Funcionario) {
-        _navigateToFuncionarioDetail.value = funcionario
-    }
+    //----------------------------------------------------------------------------------------------
+    var notify: Boolean = false
+    var item: Int = 0
 
-    // Limpa o valor da transação
-    fun onFuncionarioDetailNavigated() {
-        _navigateToFuncionarioDetail.value = null
+    //----------------------------------------------------------------------------------------------
+    // Passa o gerente a ser atualizado
+    fun onStatusChangeClicked(funcionario: Funcionario) {
+        updateRequest(funcionario)
     }
+    //----------------------------------------------------------------------------------------------
 
     init {
-        _funcionarios.value = listOf()
+        _funcionarios.value = mutableListOf()
     }
+    //----------------------------------------------------------------------------------------------
 
-    fun consultarFuncionarios() {
-        _status.value = ApiStatus.LOADING
+    fun consultarFuncionarios(isLista: Boolean) {
+        if (isLista) {
+            _statusLista.value = ApiStatusLista.LOADING
+        } else {
+            _status.value = ApiStatus.LOADING
+        }
         viewModelScope.launch {
             try {
                 response =
@@ -68,23 +87,78 @@ class ComerciantegerenteFuncionarioViewModel(val matricula: String, val token: S
                     loading = false
                     nConsulta++
                 }
-                _status.value = ApiStatus.DONE
+                if (isLista) {
+                    _statusLista.value = ApiStatusLista.DONE
+                } else {
+                    _status.value = ApiStatus.DONE
+                }
             } catch (e: Exception) {
-                _mensagemAPI.value = "Problemas no servidor, tente novamente"
+                _mensagemAPI.value = Constantes.Erro4
                 loading = false
-                _status.value = ApiStatus.ERROR
+                if (isLista) {
+                    _statusLista.value = ApiStatusLista.ERROR
+                } else {
+                    _status.value = ApiStatus.ERROR
+                }
             }
         }
     }
 
-    fun reloadList() {
+
+    //----------------------------------------------------------------------------------------------
+    private fun updateItem(funcionario: Funcionario) {
+        item = _funcionarios.value?.withIndex()
+            ?.first { funcionario.Id == it.value.Id }!!
+            .index
+    }
+
+    //----------------------------------------------------------------------------------------------
+    private fun updateRequest(funcionario: Funcionario) {
+        notify = true
+        updateItem(funcionario)
+
+        var isAtivo = true
+        if (funcionario.Status == "Ativo")
+            isAtivo = false
+
+        _statusUpdateRequest.value = ApiStatusUpdateRequest.LOADING
+        viewModelScope.launch {
+            try {
+                responseUpdate =
+                    APIComercianteGerente.APIComercianteGerenteService.editarFuncionarioComercianteGerente(
+                        funcionario.Matricula,
+                        isAtivo,
+                        token
+                    )
+                updateRecyclerView(responseUpdate)
+                _statusUpdateRequest.value = ApiStatusUpdateRequest.DONE
+            } catch (e: Exception) {
+                _statusUpdateRequest.value = ApiStatusUpdateRequest.ERROR
+            }
+        }
+    }
+
+    //----------------------------------------------------------------------------------------------
+    private fun updateRecyclerView(response: ParBoolString) {
+        if (response.b)
+            _funcionarios.value?.get(item)?.Status = response.s
+
+        _funcionarios.value = _funcionarios.value
+    }
+
+
+    //----------------------------------------------------------------------------------------------
+
+    fun reloadList(isLista: Boolean) {
         nConsulta = 0
 
-        val list: List<Funcionario> = listOf()
+        val list: List<Funcionario> = mutableListOf()
         _funcionarios.value = list
 
-        consultarFuncionarios()
+        consultarFuncionarios(isLista)
     }
+    //----------------------------------------------------------------------------------------------
+
 }
 
 // Configura a factory do ViewModel (Usada para receber os parametros passados para o viewmodel)

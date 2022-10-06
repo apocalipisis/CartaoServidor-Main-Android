@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcartaoservidorv1.R
-import com.example.appcartaoservidorv1.databinding.ItemTransacaocomerciantegerenteBinding
+import com.example.appcartaoservidorv1.databinding.ItemTransacaoBinding
 import com.example.appcartaoservidorv1.models.Transacao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -72,12 +72,12 @@ class AdapterComerciantegerenteHistoricoVendas (val clickListener: Transacao_Lis
         }
     }
 
-    class ViewHolder private constructor(val binding: ItemTransacaocomerciantegerenteBinding) :
+    class ViewHolder private constructor(val binding: ItemTransacaoBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Transacao, clickListener: Transacao_Listener) {
             binding.transacao = item
-            binding.NomeComprador.text = item.NomeComprador
+            binding.Nome.text = item.NomeComprador
             binding.Valor.text = formatSaldo(item.Valor) + " R$"
             binding.Data.text = formatData(item.DataVenda)
             binding.clickListener = clickListener
@@ -86,7 +86,7 @@ class AdapterComerciantegerenteHistoricoVendas (val clickListener: Transacao_Lis
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = ItemTransacaocomerciantegerenteBinding.inflate(layoutInflater, parent, false)
+                val binding = ItemTransacaoBinding.inflate(layoutInflater, parent, false)
 
                 return ViewHolder(binding)
             }
