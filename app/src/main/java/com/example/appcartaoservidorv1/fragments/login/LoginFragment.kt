@@ -176,42 +176,42 @@ class LoginFragment : BaseFragment() {
 
         // ClickListener para o botão login
         binding.btnEntrar.setOnClickListener {
-//            estadoCard(false)
-//            var isOk = true
-//
-//            when (biometriaOn) {
-//                true -> {
-//                    viewModel.matricula.value = matriculaBiometria
-//                    viewModel.senha.value = senhaBiometria
-//                    biometricPrompt.authenticate(promptInfo)
-//                }
-//                false -> {
-//
-//                    if (!matriculaOk()) {
-//                        viewModel.setMensagem(Constantes.Erro5)
-//                        viewModel.setCardStateErro(true)
-//                        isOk = false
-//                    }
-//
-//                    if (isOk) {
-//                        if (!senhaOk()) {
-//                            viewModel.setMensagem(Constantes.Erro6)
-//                            viewModel.setCardStateErro(true)
-//                            isOk = false
-//                        }
-//                    }
-//
-//                    if (isOk) {
-//                        viewModel.request(
-//                            viewModel.matricula.value.toString(),
-//                            viewModel.senha.value.toString()
-//                        )
-//
-//                    }
-//                }
-//            }
-            viewModel.matricula.value = "00002"
-            viewModel.senha.value = "1234"
+            estadoCard(false)
+            var isOk = true
+
+            when (biometriaOn) {
+                true -> {
+                    viewModel.matricula.value = matriculaBiometria
+                    viewModel.senha.value = senhaBiometria
+                    biometricPrompt.authenticate(promptInfo)
+                }
+                false -> {
+
+                    if (!matriculaOk()) {
+                        viewModel.setMensagem(Constantes.Erro5)
+                        viewModel.setCardStateErro(true)
+                        isOk = false
+                    }
+
+                    if (isOk) {
+                        if (!senhaOk()) {
+                            viewModel.setMensagem(Constantes.Erro6)
+                            viewModel.setCardStateErro(true)
+                            isOk = false
+                        }
+                    }
+
+                    if (isOk) {
+                        viewModel.request(
+                            viewModel.matricula.value.toString(),
+                            viewModel.senha.value.toString()
+                        )
+
+                    }
+                }
+            }
+//            viewModel.matricula.value = "00002"
+//            viewModel.senha.value = "1234"
             viewModel.request(
                 viewModel.matricula.value.toString(),
                 viewModel.senha.value.toString()

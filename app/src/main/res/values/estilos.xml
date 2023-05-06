@@ -344,7 +344,7 @@
 
     <style name="Widget.AppCartaoServidorV1.Login.Senha.EditText" parent="">
         <item name="android:inputType">textPassword</item>
-        <item name="android:maxLength">5</item>
+        <item name="android:maxLength">6</item>
         <item name="android:textAppearance">?attr/textAppearanceBody1</item>
         <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
