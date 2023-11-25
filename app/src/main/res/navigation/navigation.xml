@@ -1,0 +1,1244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.login.LoginFragment"
+        android:label="LoginFragment">
+        <action
+            android:id="@+id/action_loginFragment_to_servidorFragment"
+            app:destination="@id/servidorFragment"
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/to_top"
+            app:popEnterAnim="@anim/from_top"
+            app:popExitAnim="@anim/to_bottom"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_comercianteFragment"
+            app:destination="@id/comercianteFragment"
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/to_top"
+            app:popEnterAnim="@anim/from_top"
+            app:popExitAnim="@anim/to_bottom"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_usuarionaopermitidoFragment"
+            app:destination="@id/usuarionaopermitidoFragment"
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/to_top"
+            app:popEnterAnim="@anim/from_top"
+            app:popExitAnim="@anim/to_bottom" />
+        <action
+            android:id="@+id/action_loginFragment_to_comerciantegerenteFragment"
+            app:destination="@id/comerciantegerenteFragment"
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/to_top"
+            app:popEnterAnim="@anim/from_top"
+            app:popExitAnim="@anim/to_bottom"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_comercianteFuncionarioFragment"
+            app:destination="@id/comercianteFuncionarioFragment"
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/to_top"
+            app:popEnterAnim="@anim/from_top"
+            app:popExitAnim="@anim/to_bottom"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_usuarioinativoFragment"
+            app:destination="@id/usuarioinativoFragment"
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/to_top"
+            app:popEnterAnim="@anim/from_top"
+            app:popExitAnim="@anim/to_bottom"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
+
+    </fragment>
+    <fragment
+        android:id="@+id/servidorFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.servidor.Servidor"
+        android:label="ServidorFragment">
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="nome"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_servidorFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/from_top"
+            app:exitAnim="@anim/to_bottom"
+            app:popEnterAnim="@anim/from_bottom"
+            app:popExitAnim="@anim/to_top"
+            app:popUpTo="@id/servidorFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_servidorFragment_to_extratoservidorFragment"
+            app:destination="@id/extratoservidorFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_rigth"
+            app:popEnterAnim="@anim/from_rigth"
+            app:popExitAnim="@anim/to_left" />
+        <action
+            android:id="@+id/action_servidorFragment_to_infoservidorFragment"
+            app:destination="@id/infoservidorFragment"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
+        <action
+            android:id="@+id/action_servidorFragment_to_compraservidorFragment"
+            app:destination="@id/compraservidorFragment"
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/to_top"
+            app:popEnterAnim="@anim/from_top"
+            app:popExitAnim="@anim/to_bottom" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_servidorFragment_to_servidorCartaoFragment"
+            app:destination="@id/servidorCartaoFragment"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
+        <action
+            android:id="@+id/action_servidorFragment_to_servidorComerciantesFragment"
+            app:destination="@id/servidorComerciantesFragment"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
+    </fragment>
+    <fragment
+        android:id="@+id/extratoservidorFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.servidor.Extrato"
+        android:label="ExtratoservidorFragment">
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_extratoservidorFragment_to_dialogServidorDetalhestransacao"
+            app:destination="@id/dialogServidorDetalhestransacao"
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/to_top"
+            app:popEnterAnim="@anim/from_top"
+            app:popExitAnim="@anim/to_bottom" />
+    </fragment>
+    <fragment
+        android:id="@+id/infoservidorFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.servidor.Info"
+        android:label="InfoservidorFragment">
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="nome"
+            app:argType="string" />
+        <argument
+            android:name="cpf"
+            app:argType="string" />
+        <argument
+            android:name="tipoUsuario"
+            app:argType="string" />
+        <argument
+            android:name="status"
+            app:argType="string" />
+        <argument
+            android:name="instituto"
+            app:argType="string" />
+        <argument
+            android:name="limiteMensal"
+            app:argType="float" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/compraservidorFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.servidor.Comprar"
+        android:label="CompraservidorFragment">
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="nome"
+            app:argType="string" />
+        <argument
+            android:name="statusCartao"
+            app:argType="string" />
+        <argument
+            android:name="numeroCartao"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_compraservidorFragment_to_servidorCartaoFragment"
+            app:destination="@id/servidorCartaoFragment"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth"
+            app:popUpTo="@id/servidorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/comercianteFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciante.Comerciante"
+        android:label="ComercianteFragment">
+        <action
+            android:id="@+id/action_comercianteFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/from_top"
+            app:exitAnim="@anim/to_bottom"
+            app:popEnterAnim="@anim/from_bottom"
+            app:popExitAnim="@anim/to_top"
+            app:popUpTo="@id/comercianteFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="nome"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_comercianteFragment_to_inserirvalorFragment"
+            app:destination="@id/inserirvalorFragment"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
+        <action
+            android:id="@+id/action_comercianteFragment_to_historicovendasFragment"
+            app:destination="@id/historicovendasFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_rigth"
+            app:popEnterAnim="@anim/from_rigth"
+            app:popExitAnim="@anim/to_left" />
+        <action
+            android:id="@+id/action_comercianteFragment_to_infocomercianteFragment"
+            app:destination="@id/infocomercianteFragment"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_comercianteFragment_to_dialogComercianteFuncionarios"
+            app:destination="@id/dialogComercianteFuncionarios"
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/to_top"
+            app:popEnterAnim="@anim/from_top"
+            app:popExitAnim="@anim/to_bottom"/>
+    </fragment>
+    <fragment
+        android:id="@+id/vendacomercianteFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciante.VendaQrCode"
+        android:label="VendacomercianteFragment">
+        <action
+            android:id="@+id/action_vendacomercianteFragment_to_inserirsenhaFragment"
+            app:destination="@id/inserirsenhaFragment"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
+        <argument
+            android:name="valor"
+            app:argType="float" />
+        <argument
+            android:name="nomeComerciante"
+            app:argType="string" />
+        <argument
+            android:name="matriculaComerciante"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/inserirsenhaFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciante.VendaSenha"
+        android:label="InserirsenhaFragment">
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="nome"
+            app:argType="string" />
+        <argument
+            android:name="valor"
+            app:argType="float" />
+        <argument
+            android:name="nomeComerciante"
+            app:argType="string" />
+        <argument
+            android:name="matriculaComerciante"
+            app:argType="string" />
+        <argument
+            android:name="numeroCartao"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_inserirsenhaFragment_to_statusvendaFragment"
+            app:destination="@id/statusvendaFragment"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
+        <action
+            android:id="@+id/action_inserirsenhaFragment_to_comercianteFragment"
+            app:destination="@id/comercianteFragment"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/from_rigth"
+            app:popExitAnim="@anim/to_left"
+            app:popUpTo="@id/comercianteFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/usuarioinativoFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.login.UsuarioinativoFragment"
+        android:label="UsuarioinativoFragment">
+        <argument
+            android:name="nome"
+            app:argType="string" />
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_usuarioinativoFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/from_top"
+            app:exitAnim="@anim/to_bottom"
+            app:popEnterAnim="@anim/from_bottom"
+            app:popExitAnim="@anim/to_top"
+            app:popUpTo="@id/usuarioinativoFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/usuarionaopermitidoFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.login.UsuarionaopermitidoFragment"
+        android:label="UsuarionaopermitidoFragment">
+        <action
+            android:id="@+id/action_usuarionaopermitidoFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/from_top"
+            app:exitAnim="@anim/to_bottom"
+            app:popEnterAnim="@anim/from_bottom"
+            app:popExitAnim="@anim/to_top" />
+    </fragment>
+    <fragment
+        android:id="@+id/inserirvalorFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciante.VendaValor"
+        android:label="InserirvalorFragment">
+        <action
+            android:id="@+id/action_inserirvalorFragment_to_vendacomercianteFragment"
+            app:destination="@id/vendacomercianteFragment"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
+        <argument
+            android:name="nomeComerciante"
+            app:argType="string" />
+        <argument
+            android:name="matriculaComerciante"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/statusvendaFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciante.VendaStatus"
+        android:label="StatusvendaFragment">
+        <argument
+            android:name="valor"
+            app:argType="float" />
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="matriculaComerciante"
+            app:argType="string" />
+        <argument
+            android:name="senha"
+            app:argType="string" />
+        <argument
+            android:name="nomeComerciante"
+            app:argType="string" />
+        <argument
+            android:name="numeroCartao"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_statusvendaFragment_to_comercianteFragment"
+            app:destination="@id/comercianteFragment"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_rigth"
+            app:popExitAnim="@anim/to_left"
+            app:popUpTo="@id/comercianteFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/historicovendasFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciante.HistoricoVendas"
+        android:label="HistoricovendasFragment">
+
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_historicovendasFragment_to_dialogComercianteDetalhestransacao"
+            app:destination="@id/dialogComercianteDetalhestransacao"
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/to_top"
+            app:popEnterAnim="@anim/from_top"
+            app:popExitAnim="@anim/to_bottom"/>
+    </fragment>
+    <fragment
+        android:id="@+id/infocomercianteFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciante.Info"
+        android:label="InfocomercianteFragment">
+
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="nome"
+            app:argType="string" />
+        <argument
+            android:name="cnpj"
+            app:argType="string" />
+        <argument
+            android:name="tipoUsuario"
+            app:argType="string" />
+        <argument
+            android:name="status"
+            app:argType="string" />
+        <argument
+            android:name="pagamentoUsoSistema"
+            app:argType="float" />
+    </fragment>
+    <fragment
+        android:id="@+id/nointernetFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.NointernetFragment"
+        android:label="NointernetFragment">
+
+    </fragment>
+    <fragment
+        android:id="@+id/sessaoexpiradaFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.SessaoexpiradaFragment"
+        android:label="SessaoexpiradaFragment">
+        <action
+            android:id="@+id/action_sessaoexpiradaFragment_to_loginFragment3"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/navigation" />
+    </fragment>
+    <fragment
+        android:id="@+id/comerciante_gerentes"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciante.Gerentes"
+        android:label="EscolhasgerentecomercianteFragment">
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_comerciante_gerentes_to_comerciante_gerentes_criar"
+            app:destination="@id/comerciante_gerentes_criar"
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/to_top"
+            app:popEnterAnim="@anim/from_top"
+            app:popExitAnim="@anim/to_bottom" />
+        <action
+            android:id="@+id/action_comerciante_gerentes_to_dialogDeletargerentecomerciante"
+            app:destination="@id/dialogDeletargerentecomerciante"
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/to_top"
+            app:popEnterAnim="@anim/from_top"
+            app:popExitAnim="@anim/to_bottom" />
+    </fragment>
+    <dialog
+        android:id="@+id/comerciante_gerentes_criar"
+        android:name="com.example.appcartaoservidorv1.dialogs.DialogCriargerentecomerciante"
+        android:label="DialogCriargerentecomerciante">
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+    </dialog>
+    <dialog
+        android:id="@+id/dialogDeletargerentecomerciante"
+        android:name="com.example.appcartaoservidorv1.dialogs.DialogDeletargerentecomerciante"
+        android:label="DialogDeletargerentecomerciante">
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+    </dialog>
+    <fragment
+        android:id="@+id/comerciante_funcionarios"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciante.Funcionarios"
+        android:label="FuncionariocomercianteFragment">
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_funcionariocomercianteFragment_to_dialogCriarfuncionariocomerciante"
+            app:destination="@id/dialogCriarfuncionariocomerciante"
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/to_top"
+            app:popEnterAnim="@anim/from_top"
+            app:popExitAnim="@anim/to_bottom" />
+        <action
+            android:id="@+id/action_funcionariocomercianteFragment_to_dialogDeletarfuncionariocomerciante"
+            app:destination="@id/dialogDeletarfuncionariocomerciante"
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/to_top"
+            app:popEnterAnim="@anim/from_top"
+            app:popExitAnim="@anim/to_bottom" />
+    </fragment>
+    <dialog
+        android:id="@+id/dialogCriarfuncionariocomerciante"
+        android:name="com.example.appcartaoservidorv1.dialogs.DialogCriarfuncionariocomerciante"
+        android:label="DialogCriarfuncionariocomerciante">
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+    </dialog>
+    <dialog
+        android:id="@+id/dialogDeletarfuncionariocomerciante"
+        android:name="com.example.appcartaoservidorv1.dialogs.DialogDeletarfuncionariocomerciante"
+        android:label="DialogDeletarfuncionariocomerciante">
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+    </dialog>
+    <fragment
+        android:id="@+id/comerciantegerenteVendaStatusFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciantegerente.ComerciantegerenteVendaStatusFragment"
+        android:label="ComerciantegerenteVendaStatusFragment">
+        <argument
+            android:name="matriculaCliente"
+            app:argType="string" />
+        <argument
+            android:name="matriculaComerciante"
+            app:argType="string" />
+        <argument
+            android:name="matriculaVendedor"
+            app:argType="string" />
+        <argument
+            android:name="valor"
+            app:argType="float" />
+        <argument
+            android:name="senha"
+            app:argType="string" />
+        <argument
+            android:name="nomeVendedor"
+            app:argType="string" />
+        <argument
+            android:name="numeroCartao"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_comerciantegerenteVendaStatusFragment_to_comerciantegerenteFragment"
+            app:destination="@id/comerciantegerenteFragment"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_rigth"
+            app:popExitAnim="@anim/to_left"
+            app:popUpTo="@id/comerciantegerenteFragment"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+    <dialog
+        android:id="@+id/dialogComerciantegerenteFuncionarioDeletar"
+        android:name="com.example.appcartaoservidorv1.dialogs.comerciantegerente.DialogComerciantegerenteFuncionarioDeletar"
+        android:label="DialogComerciantegerenteFuncionarioDeletar">
+
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+
+    </dialog>
+    <fragment
+        android:id="@+id/comerciantegerentehistoricovendasFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciantegerente.ComerciantegerentehistoricovendasFragment"
+        android:label="ComerciantegerentehistoricovendasFragment">
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_comerciantegerentehistoricovendasFragment_to_dialogComerciantegerenteDetalhestransacao"
+            app:destination="@id/dialogComerciantegerenteDetalhestransacao"
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/to_top"
+            app:popEnterAnim="@anim/from_top"
+            app:popExitAnim="@anim/to_bottom" />
+    </fragment>
+    <dialog
+        android:id="@+id/dialogComerciantegerenteFuncionarioCriar"
+        android:name="com.example.appcartaoservidorv1.dialogs.comerciantegerente.DialogComerciantegerenteFuncionarioCriar"
+        android:label="DialogComerciantegerenteFuncionarioCriar">
+
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+    </dialog>
+    <fragment
+        android:id="@+id/comerciantegerenteVendaValorFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciantegerente.ComerciantegerenteVendaValorFragment"
+        android:label="ComerciantegerenteVendaValorFragment">
+        <argument
+            android:name="matriculaComerciante"
+            app:argType="string" />
+        <argument
+            android:name="nomeComerciante"
+            app:argType="string" />
+        <argument
+            android:name="matriculaVendedor"
+            app:argType="string" />
+        <argument
+            android:name="nomeVendedor"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_comerciantegerenteVendaValorFragment_to_comerciantegerenteVendaQrcode"
+            app:destination="@id/comerciantegerenteVendaQrcode"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
+    </fragment>
+    <fragment
+        android:id="@+id/comerciantegerenteFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciantegerente.ComerciantegerenteFragment"
+        android:label="ComerciantegerenteFragment">
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="nome"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_comerciantegerenteFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/from_top"
+            app:exitAnim="@anim/to_bottom"
+            app:popEnterAnim="@anim/from_bottom"
+            app:popExitAnim="@anim/to_top"
+            app:popUpTo="@id/comerciantegerenteFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_comerciantegerenteFragment_to_comerciantegerenteinfoFragment"
+            app:destination="@id/comerciantegerenteinfoFragment"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
+        <action
+            android:id="@+id/action_comerciantegerenteFragment_to_comerciantegerentehistoricovendasFragment"
+            app:destination="@id/comerciantegerentehistoricovendasFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_rigth"
+            app:popEnterAnim="@anim/from_rigth"
+            app:popExitAnim="@anim/to_left" />
+        <action
+            android:id="@+id/action_comerciantegerenteFragment_to_comerciantegerenteVendaValorFragment"
+            app:destination="@id/comerciantegerenteVendaValorFragment"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
+        <action
+            android:id="@+id/action_comerciantegerenteFragment_to_comerciantegerenteFuncionarioFragment"
+            app:destination="@id/comerciantegerenteFuncionarioFragment"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
+    </fragment>
+    <fragment
+        android:id="@+id/comerciantegerenteinfoFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciantegerente.ComerciantegerenteinfoFragment"
+        android:label="ComerciantegerenteinfoFragment">
+
+        <argument
+            android:name="nome"
+            app:argType="string" />
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="tipoUsuario"
+            app:argType="string" />
+        <argument
+            android:name="status"
+            app:argType="string" />
+        <argument
+            android:name="cpf"
+            app:argType="string" />
+        <argument
+            android:name="matriculaMae"
+            app:argType="string" />
+        <argument
+            android:name="cnpj"
+            app:argType="string" />
+        <argument
+            android:name="nomeComerciante"
+            app:argType="string" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/comerciantegerenteVendaQrcode"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciantegerente.ComerciantegerenteVendaQrcodeFragment"
+        android:label="ComerciantegerenteVendaQrcode">
+        <argument
+            android:name="valor"
+            app:argType="float" />
+        <argument
+            android:name="matriculaComerciante"
+            app:argType="string" />
+        <argument
+            android:name="nomeComerciante"
+            app:argType="string" />
+        <argument
+            android:name="matriculaVendedor"
+            app:argType="string" />
+        <argument
+            android:name="nomeVendedor"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_comerciantegerenteVendaQrcode_to_comerciantegerenteVendaSenhaFragment"
+            app:destination="@id/comerciantegerenteVendaSenhaFragment"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
+    </fragment>
+    <fragment
+        android:id="@+id/comerciantegerenteFuncionarioFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciantegerente.ComerciantegerenteFuncionarioFragment"
+        android:label="ComerciantegerenteFuncionarioFragment">
+
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_comerciantegerenteFuncionarioFragment_to_dialogComerciantegerenteFuncionarioCriar"
+            app:destination="@id/dialogComerciantegerenteFuncionarioCriar"
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/to_top"
+            app:popEnterAnim="@anim/from_top"
+            app:popExitAnim="@anim/to_bottom" />
+        <action
+            android:id="@+id/action_comerciantegerenteFuncionarioFragment_to_dialogComerciantegerenteFuncionarioDeletar"
+            app:destination="@id/dialogComerciantegerenteFuncionarioDeletar" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/comerciantegerenteVendaSenhaFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciantegerente.ComerciantegerenteVendaSenhaFragment"
+        android:label="ComerciantegerenteVendaSenhaFragment">
+        <argument
+            android:name="matriculaCliente"
+            app:argType="string" />
+        <argument
+            android:name="nomeCliente"
+            app:argType="string" />
+        <argument
+            android:name="valor"
+            app:argType="float" />
+        <argument
+            android:name="matriculaComerciante"
+            app:argType="string" />
+        <argument
+            android:name="nomeComerciante"
+            app:argType="string" />
+        <argument
+            android:name="matriculaVendedor"
+            app:argType="string" />
+        <argument
+            android:name="nomeVendedor"
+            app:argType="string" />
+        <argument
+            android:name="numeroCartao"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_comerciantegerenteVendaSenhaFragment_to_comerciantegerenteFragment"
+            app:destination="@id/comerciantegerenteFragment"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/from_rigth"
+            app:popExitAnim="@anim/to_left"
+            app:popUpTo="@id/comerciantegerenteFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_comerciantegerenteVendaSenhaFragment_to_comerciantegerenteVendaStatusFragment"
+            app:destination="@id/comerciantegerenteVendaStatusFragment"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
+    </fragment>
+    <fragment
+        android:id="@+id/comercianteFuncionarioFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciantefuncionario.ComercianteFuncionarioFragment"
+        android:label="ComercianteFuncionarioFragment">
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="nome"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_comercianteFuncionarioFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/from_top"
+            app:exitAnim="@anim/to_bottom"
+            app:popEnterAnim="@anim/from_bottom"
+            app:popExitAnim="@anim/to_top"
+            app:popUpTo="@id/comercianteFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_comercianteFuncionarioFragment_to_comercianteFuncionarioInfoFragment"
+            app:destination="@id/comercianteFuncionarioInfoFragment"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
+        <action
+            android:id="@+id/action_comercianteFuncionarioFragment_to_comercianteFuncionarioHistoricovendasFragment"
+            app:destination="@id/comercianteFuncionarioHistoricovendasFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_rigth"
+            app:popEnterAnim="@anim/from_rigth"
+            app:popExitAnim="@anim/to_left" />
+        <action
+            android:id="@+id/action_comercianteFuncionarioFragment_to_comercianteFuncionarioVendaValorFragment"
+            app:destination="@id/comercianteFuncionarioVendaValorFragment"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
+    </fragment>
+    <fragment
+        android:id="@+id/comercianteFuncionarioInfoFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciantefuncionario.ComercianteFuncionarioInfoFragment"
+        android:label="ComercianteFuncionarioInfoFragment">
+
+        <argument
+            android:name="nome"
+            app:argType="string" />
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="tipoUsuario"
+            app:argType="string" />
+        <argument
+            android:name="status"
+            app:argType="string" />
+        <argument
+            android:name="matriculaMae"
+            app:argType="string" />
+        <argument
+            android:name="cnpj"
+            app:argType="string" />
+        <argument
+            android:name="nomeComerciante"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/comercianteFuncionarioHistoricovendasFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciantefuncionario.ComercianteFuncionarioHistoricovendasFragment"
+        android:label="ComercianteFuncionarioHistoricovendasFragment">
+
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_comercianteFuncionarioHistoricovendasFragment_to_dialogComerciantefuncionarioDetalhestransacao"
+            app:destination="@id/dialogComerciantefuncionarioDetalhestransacao"
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/to_top"
+            app:popEnterAnim="@anim/from_top"
+            app:popExitAnim="@anim/to_bottom" />
+    </fragment>
+    <fragment
+        android:id="@+id/comercianteFuncionarioVendaValorFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciantefuncionario.ComercianteFuncionarioVendaValorFragment"
+        android:label="ComercianteFuncionarioVendaValorFragment">
+
+        <argument
+            android:name="matriculaComerciante"
+            app:argType="string" />
+        <argument
+            android:name="nomeComerciante"
+            app:argType="string" />
+        <argument
+            android:name="matriculaVendedor"
+            app:argType="string" />
+        <argument
+            android:name="nomeVendedor"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_comercianteFuncionarioVendaValorFragment_to_comercianteFuncionarioVendaQrcodeFragment"
+            app:destination="@id/comercianteFuncionarioVendaQrcodeFragment"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/comercianteFuncionarioVendaQrcodeFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciantefuncionario.ComercianteFuncionarioVendaQrcodeFragment"
+        android:label="ComercianteFuncionarioVendaQrcodeFragment">
+
+        <argument
+            android:name="valor"
+            app:argType="float" />
+        <argument
+            android:name="matriculaComerciante"
+            app:argType="string" />
+        <argument
+            android:name="nomeComerciante"
+            app:argType="string" />
+        <argument
+            android:name="matriculaVendedor"
+            app:argType="string" />
+        <argument
+            android:name="nomeVendedor"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_comercianteFuncionarioVendaQrcodeFragment_to_comercianteFuncionarioVendaSenhaFragment"
+            app:destination="@id/comercianteFuncionarioVendaSenhaFragment"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/comercianteFuncionarioVendaSenhaFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciantefuncionario.ComercianteFuncionarioVendaSenhaFragment"
+        android:label="ComercianteFuncionarioVendaSenhaFragment">
+
+        <argument
+            android:name="matriculaCliente"
+            app:argType="string" />
+        <argument
+            android:name="nomeCliente"
+            app:argType="string" />
+        <argument
+            android:name="valor"
+            app:argType="float" />
+        <argument
+            android:name="matriculaComerciante"
+            app:argType="string" />
+        <argument
+            android:name="nomeComerciante"
+            app:argType="string" />
+        <argument
+            android:name="matriculaVendedor"
+            app:argType="string" />
+        <argument
+            android:name="nomeVendedor"
+            app:argType="string" />
+        <argument
+            android:name="numeroCartao"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_comercianteFuncionarioVendaSenhaFragment_to_comercianteFuncionarioFragment"
+            app:destination="@id/comercianteFuncionarioFragment"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/from_rigth"
+            app:popExitAnim="@anim/to_left"
+            app:popUpTo="@id/comercianteFuncionarioFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_comercianteFuncionarioVendaSenhaFragment_to_comercianteFuncionarioVendaStatusFragment"
+            app:destination="@id/comercianteFuncionarioVendaStatusFragment"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/comercianteFuncionarioVendaStatusFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.comerciantefuncionario.ComercianteFuncionarioVendaStatusFragment"
+        android:label="ComercianteFuncionarioVendaStatusFragment">
+
+        <argument
+            android:name="matriculaCliente"
+            app:argType="string" />
+        <argument
+            android:name="matriculaComerciante"
+            app:argType="string" />
+        <argument
+            android:name="matriculaVendedor"
+            app:argType="string" />
+        <argument
+            android:name="valor"
+            app:argType="float" />
+        <argument
+            android:name="senha"
+            app:argType="string" />
+        <argument
+            android:name="nomeVendedor"
+            app:argType="string" />
+        <argument
+            android:name="numeroCartao"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_comercianteFuncionarioVendaStatusFragment_to_comercianteFuncionarioFragment"
+            app:destination="@id/comercianteFuncionarioFragment"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_rigth"
+            app:popExitAnim="@anim/to_left"
+            app:popUpTo="@id/comercianteFuncionarioFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/servidorCartaoFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.servidor.Cartao"
+        android:label="ServidorCartaoFragment">
+
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_servidorCartaoFragment_to_dialogServidorNovoCartao"
+            app:destination="@id/dialogServidorNovoCartao"
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/to_top"
+            app:popEnterAnim="@anim/from_top"
+            app:popExitAnim="@anim/to_bottom" />
+        <action
+            android:id="@+id/action_servidorCartaoFragment_to_solicitacaoNovoCartaoDetalhes"
+            app:destination="@id/solicitacaoNovoCartaoDetalhes" />
+    </fragment>
+    <dialog
+        android:id="@+id/dialogServidorNovoCartao"
+        android:name="com.example.appcartaoservidorv1.dialogs.servidor.DialogServidorNovoCartao"
+        android:label="DialogServidorNovoCartao">
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_dialogServidorNovoCartao_to_solicitacaoNovoCartaoDetalhes"
+            app:destination="@id/solicitacaoNovoCartaoDetalhes" />
+    </dialog>
+    <fragment
+        android:id="@+id/solicitacaoNovoCartaoDetalhes"
+        android:name="com.example.appcartaoservidorv1.fragments.servidor.CartaoSolicitacaoDetalhes"
+        android:label="ServidorCartaoSolicitacaodetalhesFragment">
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_servidorCartaoSolicitacaodetalhesFragment_to_dialogServidorCartaoCacelarsolicitacao"
+            app:destination="@id/dialogServidorCartaoCacelarsolicitacao"
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/to_top"
+            app:popEnterAnim="@anim/from_top"
+            app:popExitAnim="@anim/to_bottom" />
+    </fragment>
+    <dialog
+        android:id="@+id/dialogServidorCartaoCacelarsolicitacao"
+        android:name="com.example.appcartaoservidorv1.dialogs.servidor.DialogServidorCartaoCacelarsolicitacao"
+        android:label="DialogServidorCartaoCacelarsolicitacao" >
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+    </dialog>
+    <fragment
+        android:id="@+id/servidorComerciantesFragment"
+        android:name="com.example.appcartaoservidorv1.fragments.servidor.Comerciantes"
+        android:label="ServidorComerciantesFragment" >
+
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_servidorComerciantesFragment_to_dialogServidorComerciantesdetalhes2"
+            app:destination="@id/dialogServidorComerciantesdetalhes2"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
+
+    </fragment>
+    <dialog
+        android:id="@+id/dialogServidorDetalhestransacao"
+        android:name="com.example.appcartaoservidorv1.dialogs.servidor.DialogServidorDetalhestransacao"
+        android:label="DialogServidorDetalhestransacao" >
+
+        <argument
+            android:name="transacao"
+            app:argType="com.example.appcartaoservidorv1.models.Transacao" />
+
+    </dialog>
+    <dialog
+        android:id="@+id/dialogComercianteDetalhestransacao"
+        android:name="com.example.appcartaoservidorv1.dialogs.comerciante.DialogComercianteDetalhestransacao"
+        android:label="DialogComercianteDetalhestransacao" >
+
+        <argument
+            android:name="transacao"
+            app:argType="com.example.appcartaoservidorv1.models.Transacao" />
+
+    </dialog>
+    <dialog
+        android:id="@+id/dialogComerciantegerenteDetalhestransacao"
+        android:name="com.example.appcartaoservidorv1.dialogs.comerciantegerente.DialogComerciantegerenteDetalhestransacao"
+        android:label="DialogComerciantegerenteDetalhestransacao" >
+        <argument
+            android:name="transacao"
+            app:argType="com.example.appcartaoservidorv1.models.Transacao" />
+    </dialog>
+    <dialog
+        android:id="@+id/dialogComerciantefuncionarioDetalhestransacao"
+        android:name="com.example.appcartaoservidorv1.dialogs.comerciantefuncionario.DialogComerciantefuncionarioDetalhestransacao"
+        android:label="DialogComerciantefuncionarioDetalhestransacao" >
+        <argument
+            android:name="transacao"
+            app:argType="com.example.appcartaoservidorv1.models.Transacao" />
+
+    </dialog>
+    <dialog
+        android:id="@+id/dialogServidorComerciantesdetalhes2"
+        android:name="com.example.appcartaoservidorv1.dialogs.servidor.DialogServidorComerciantesdetalhes"
+        android:label="DialogServidorComerciantesdetalhes">
+        <argument
+            android:name="comerciante"
+            app:argType="com.example.appcartaoservidorv1.models.ComercianteModel" />
+    </dialog>
+    <dialog
+        android:id="@+id/dialogComercianteFuncionarios"
+        android:name="com.example.appcartaoservidorv1.dialogs.comerciante.DialogComercianteFuncionarios"
+        android:label="DialogComercianteFuncionarios" >
+
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_dialogComercianteFuncionarios_to_comerciante_gerentes"
+            app:destination="@id/comerciante_gerentes"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
+        <action
+            android:id="@+id/action_dialogComercianteFuncionarios_to_comerciante_funcionarios"
+            app:destination="@id/comerciante_funcionarios"
+            app:enterAnim="@anim/from_rigth"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
+
+    </dialog>
+</navigation>

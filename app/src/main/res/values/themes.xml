@@ -1,0 +1,31 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.AppCartaoServidorV1" parent="Theme.MaterialComponents.Light">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/claridade_azul_62</item>
+        <item name="colorPrimaryVariant">@color/claridade_azul_75</item>
+        <item name="colorOnPrimary">@color/preto</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/claridade_laranja_62</item>
+        <item name="colorSecondaryVariant">@color/claridade_laranja_75</item>
+        <item name="colorOnSecondary">@color/preto</item>
+        <!-- Surface -->
+        <item name="colorSurface">@color/branco</item>
+        <item name="colorOnSurface">@color/preto</item>
+
+        <item name="backgroundColor">@color/Branco</item>
+        <item name="colorOnBackground">@color/preto</item>
+
+        <item name="colorOnError">@color/Branco</item>
+        <!-- Status bar. -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <!-- Shapes. -->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.MyApp.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.MyApp.MediumComponent</item>
+
+        <!-- Typografia. -->
+        <item name="textAppearanceButton">@style/TextAppearance.MyApp.Button</item>
+    </style>
+</resources>

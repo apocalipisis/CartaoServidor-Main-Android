@@ -1,0 +1,854 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ________________________________________________________________________________________________ -->
+    <!--Cards-->
+    <!-- ________________________________________________________________________________________________ -->
+    <style name="Card.AppCartaoServidorV1.Superior" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="cardElevation">2dp</item>
+        <item name="shapeAppearanceOverlay">
+            @style/ShapeAppearanceOverlay.AppCartaoServidorV1.Card.Usuario
+        </item>
+        <item name="cardBackgroundColor">?attr/colorPrimary</item>
+    </style>
+
+    <style name="Card.AppCartaoServidorV1.Login.Superior" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="cardElevation">6dp</item>
+        <item name="shapeAppearanceOverlay">
+            @style/ShapeAppearanceOverlay.AppCartaoServidorV1.Login.Card.Superior
+        </item>
+        <item name="cardBackgroundColor">?attr/colorPrimary</item>
+    </style>
+
+    <style name="Card.AppCartaoServidorV1.Login.Central" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="cardElevation">6dp</item>
+        <item name="strokeColor">?attr/colorError</item>
+    </style>
+
+    <style name="Card.AppCartaoServidorV1.Login.Inferior" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="cardElevation">6dp</item>
+        <item name="shapeAppearanceOverlay">
+            @style/ShapeAppearanceOverlay.AppCartaoServidorV1.Login.Card.Inferior
+        </item>
+        <item name="cardBackgroundColor">?attr/colorPrimary</item>
+    </style>
+
+
+    <style name="Card.AppCartaoServidorV1.Info" parent="">
+        <item name="cardElevation">6dp</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="Card.AppCartaoServidorV1.General.Loading" parent="">
+        <item name="cardElevation">6dp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="Card.AppCartaoServidorV1.QrCode" parent="">
+        <item name="cardElevation">6dp</item>
+        <item name="android:layout_height">0dp</item>
+    </style>
+
+    <style name="Card.AppCartaoServidorV1.Item.Comercio" parent="">
+        <item name="cardElevation">6dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.AppCartaoServidorV1.Card.Usuario" parent="">
+        <item name="cornerSize">0dp</item>
+        <item name="cornerSizeBottomLeft">16dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.AppCartaoServidorV1.Login.Card.Superior" parent="">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">0dp</item>
+        <item name="cornerSizeBottomRight">32dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.AppCartaoServidorV1.Login.Card.Inferior" parent="">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">0dp</item>
+        <item name="cornerSizeTopLeft">32dp</item>
+    </style>
+    <!-- ________________________________________________________________________________________________ -->
+    <!--Images-->
+    <!-- ________________________________________________________________________________________________ -->
+
+    <style name="Image.AppCartaoServidorV1.Login.Logo" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">110dp</item>
+    </style>
+
+    <style name="Image.AppCartaoServidorV1.Icon.Results.Sucesso" parent="">
+        <item name="android:layout_width">96dp</item>
+        <item name="android:layout_height">96dp</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:tint">?attr/colorPrimary</item>
+    </style>
+
+    <style name="Image.AppCartaoServidorV1.Icon.Results.Erro" parent="">
+        <item name="android:layout_width">96dp</item>
+        <item name="android:layout_height">96dp</item>
+        <item name="android:textColor">?attr/colorOnError</item>
+        <item name="android:tint">?attr/colorError</item>
+    </style>
+
+    <style name="Image.AppCartaoServidorV1.RecyclerView.Item.Icon" parent="">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:background">?attr/colorSecondary</item>
+        <item name="android:tint">?attr/colorOnSecondary</item>
+        <item name="contentPadding">12dp</item>
+        <item name="shapeAppearance">?attr/shapeAppearanceSmallComponent</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="Image.AppCartaoServidorV1.Icon.SemInternet" parent="">
+        <item name="android:layout_width">64dp</item>
+        <item name="android:layout_height">64dp</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+    </style>
+
+    <style name="Image.AppCartaoServidorV1.Icon.Login.Biometrics" parent="">
+        <item name="android:layout_width">36dp</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:tint">?attr/colorOnPrimary</item>
+    </style>
+
+    <!-- _______________________________________________________________________________________ -->
+    <!--Botões-->
+    <!-- _______________________________________________________________________________________ -->
+    <!--Botão-->
+    <style name="Widget.AppCartaoServidorV1.Button.Container" parent="">
+        <item name="android:layout_width">120dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">@dimen/Button.LinearLayout.Padding</item>
+    </style>
+
+    <style name="Widget.AppCartaoServidorV1.Button" parent="">
+        <item name="android:layout_width">@dimen/Button.Width</item>
+        <item name="android:layout_height">@dimen/Button.Heigth</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="iconPadding">0dp</item>
+        <item name="iconGravity">textStart</item>
+    </style>
+
+    <style name="Widget.AppCartaoServidorV1.Dialog.Button" parent="">
+        <item name="android:layout_width">@dimen/Button.Width</item>
+        <item name="android:layout_height">@dimen/Button.Heigth</item>
+        <item name="android:backgroundTint">?attr/colorPrimary</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+    </style>
+
+    <style name="Widget.AppCartaoServidorV1.CardSuperior.BtnVoltar" parent="">
+        <item name="android:layout_width">38dp</item>
+        <item name="android:layout_height">38dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:backgroundTint">?attr/colorSurface</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="iconTint">?attr/colorOnSurface</item>
+        <item name="iconPadding">0dp</item>
+        <item name="iconGravity">textStart</item>
+    </style>
+
+    <style name="Widget.AppCartaoServidorV1.Dialog.btnVoltar" parent="">
+        <item name="iconTint">?attr/colorOnSecondary</item>
+        <item name="backgroundTint">?attr/colorSecondary</item>
+        <item name="android:layout_width">38dp</item>
+        <item name="android:layout_height">38dp</item>
+        <item name="android:layout_gravity">start</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="iconPadding">0dp</item>
+        <item name="iconGravity">textStart</item>
+    </style>
+
+    <style name="Widget.AppCartaoServidorV1.Dialog.btnAvançar" parent="">
+        <item name="iconTint">?attr/colorOnPrimary</item>
+        <item name="backgroundTint">?attr/colorPrimary</item>
+        <item name="android:layout_width">38dp</item>
+        <item name="android:layout_height">38dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+    </style>
+
+    <style name="Widget.AppCartaoServidorV1.TextView.Button" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/Button.TextView.MarginTop</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAppearance">?attr/textAppearanceButton</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
+
+    <style name="Widget.AppCartaoServidorV1.Usuario.Button.Sair" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="shapeAppearanceOverlay">
+            @style/ShapeAppearanceOverlay.AppCartaoServidorV1.Button.Sair
+        </item>
+        <item name="backgroundTint">?attr/colorSecondary</item>
+    </style>
+
+    <style name="Widget.AppCartaoServidorV1.Button.Container.Senha" parent="">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">@dimen/Button.LinearLayout.Padding</item>
+    </style>
+
+    <style name="Widget.AppCartaoServidorV1.Button.Senha.Cancela" parent="">
+        <item name="android:layout_width">@dimen/Button.Width</item>
+        <item name="android:layout_height">@dimen/Button.Heigth</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="backgroundTint">?attr/colorError</item>
+        <item name="iconTint">?attr/colorOnError</item>
+        <item name="iconPadding">0dp</item>
+        <item name="iconGravity">textStart</item>
+    </style>
+
+    <style name="Widget.AppCartaoServidorV1.Button.Senha.Corrige" parent="">
+        <item name="android:layout_width">@dimen/Button.Width</item>
+        <item name="android:layout_height">@dimen/Button.Heigth</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="backgroundTint">?attr/colorSecondary</item>
+        <item name="iconTint">?attr/colorOnSecondary</item>
+        <item name="iconPadding">0dp</item>
+        <item name="iconGravity">textStart</item>
+    </style>
+
+    <style name="Widget.AppCartaoServidorV1.Button.RecyclerView.Card.Item" parent="">
+        <item name="android:layout_width">38dp</item>
+        <item name="android:layout_height">38dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="iconPadding">0dp</item>
+        <item name="iconGravity">textStart</item>
+    </style>
+
+    <style name="Widget.AppCartaoServidorV1.FloatingButton.RecyclerView" parent="">
+        <item name="android:tint">?attr/colorOnPrimary</item>
+        <item name="backgroundTint">?attr/colorPrimary</item>
+    </style>
+
+    <style name="Widget.AppCartaoServidorV1.Btn.Login" parent="">
+        <item name="android:tint">?attr/colorOnSurface</item>
+        <item name="backgroundTint">?attr/colorSurface</item>
+        <item name="drawableTint">?attr/colorOnSurface</item>
+    </style>
+    <!--Botão Sair-->
+    <style name="ShapeAppearanceOverlay.AppCartaoServidorV1.Button.Sair" parent="">
+        <item name="cornerSize">0dp</item>
+        <item name="cornerSizeBottomLeft">6dp</item>
+    </style>
+
+    <!-- _______________________________________________________________________________________ -->
+    <!-- EditText -->
+    <!-- _______________________________________________________________________________________ -->
+    <style name="Widget.AppCartaoServidorV1.Dialog.TextInputLayout.OutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColorHint">?attr/colorOnSurface</item>
+        <item name="hintTextColor">?attr/colorOnSurface</item>
+        <item name="errorEnabled">true</item>
+    </style>
+
+    <style name="Widget.AppCartaoServidorV1.Dialog.TextInputLayout.EditText" parent="">
+        <item name="android:textAppearance">?attr/textAppearanceBody1</item>
+        <item name="android:inputType">text</item>
+    </style>
+
+    <style name="Widget.AppCartaoServidorV1.Venda.Senha.OutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">?attr/colorPrimary</item>
+        <item name="boxStrokeWidth">3dp</item>
+    </style>
+
+    <style name="Widget.AppCartaoServidorV1.Venda.Senha.EditText" parent="">
+        <item name="android:textAppearance">?attr/textAppearanceHeadline3</item>
+        <item name="android:inputType">numberPassword</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:maxLength">1</item>
+        <item name="android:cursorVisible">false</item>
+    </style>
+
+    <style name="Widget.AppCartaoServidorV1.Venda.Valor.OutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="suffixText">" R$"</item>
+        <item name="suffixTextAppearance">?attr/textAppearanceHeadline3</item>
+        <item name="suffixTextColor">?attr/colorOnBackground</item>
+        <item name="contentPadding">0dp</item>
+    </style>
+
+    <style name="Widget.AppCartaoServidorV1.Venda.Valor.EditText" parent="">
+        <item name="android:inputType">numberDecimal</item>
+        <item name="android:textAlignment">textEnd</item>
+        <item name="android:textAppearance">?attr/textAppearanceHeadline3</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+        <item name="android:textDirection">anyRtl</item>
+    </style>
+
+    <style name="Widget.AppCartaoServidorV1.Login.Matricula.OutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColorHint">?attr/colorOnSurface</item>
+        <item name="hintTextColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="Widget.AppCartaoServidorV1.Login.Matricula.EditText" parent="">
+        <item name="android:inputType">number</item>
+        <item name="android:maxLength">5</item>
+        <item name="android:textAppearance">?attr/textAppearanceBody1</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="Widget.AppCartaoServidorV1.Login.Senha.OutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColorHint">?attr/colorOnSurface</item>
+        <item name="hintTextColor">?attr/colorOnSurface</item>
+        <item name="endIconMode">password_toggle</item>
+    </style>
+
+    <style name="Widget.AppCartaoServidorV1.Login.Senha.EditText" parent="">
+        <item name="android:inputType">textPassword</item>
+        <item name="android:maxLength">6</item>
+        <item name="android:textAppearance">?attr/textAppearanceBody1</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+
+    <!-- _______________________________________________________________________________________ -->
+    <!-- Texts -->
+    <!-- _______________________________________________________________________________________ -->
+    <style name="Text.AppCartaoServidorV1.Dialog.Titulo" parent="">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAppearance">?attr/textAppearanceHeadline6</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.Dialog.Nome" parent="">
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textAppearance">?attr/textAppearanceHeadline5</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.Dialog.Matricula" parent="">
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textAppearance">?attr/textAppearanceSubtitle1</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.Info.Nome" parent="">
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textAppearance">?attr/textAppearanceHeadline5</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.Info.Legenda" parent="">
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+        <item name="android:textAppearance">?attr/textAppearanceSubtitle2</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.Info.Content" parent="">
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+        <item name="android:textAppearance">?attr/textAppearanceSubtitle1</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.Card.Superior.Titulo" parent="">
+        <item name="android:textAppearance">?attr/textAppearanceHeadline5</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.Card.Superior.Usuario.Legenda" parent="">
+        <item name="android:textAppearance">?attr/textAppearanceBody1</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.Card.Superior.Usuario.Nome" parent="">
+        <item name="android:textAppearance">?attr/textAppearanceHeadline5</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.Card.Info.Title" parent="">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAppearance">?attr/textAppearanceBody1</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.Card.Info.Content" parent="">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAppearance">?attr/textAppearanceBody2</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.Usuario.Card.Centro.MensagemErro" parent="">
+        <item name="android:textColor">?attr/colorOnError</item>
+        <item name="android:textAppearance">?attr/textAppearanceSubtitle1</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.Usuario.Card.Centro.Valor" parent="">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:textAppearance">?attr/textAppearanceHeadline3</item>
+        <item name="android:textAlignment">textEnd</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.Usuario.Card.Centro.Legenda" parent="">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:textAppearance">?attr/textAppearanceHeadline5</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.Usuario.Card.Centro.Mensagem" parent="">
+        <item name="android:textAppearance">?attr/textAppearanceBody2</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.Card.Info.Legenda" parent="">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAppearance">?attr/textAppearanceCaption</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.Venda.QrCode.Legenda" parent="">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAppearance">?attr/textAppearanceBody2</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.Venda.QrCode.Erro" parent="">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAppearance">?attr/textAppearanceBody2</item>
+        <item name="android:textColor">?attr/colorError</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.Venda.Senha.Nome" parent="">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAppearance">?attr/textAppearanceHeadline5</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.Venda.Senha.Legenda" parent="">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAppearance">?attr/textAppearanceBody2</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.Venda.Senha.Valor" parent="">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAppearance">?attr/textAppearanceHeadline4</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.RecycleView.Erro" parent="">
+        <item name="android:textAppearance">?attr/textAppearanceBody1</item>
+        <item name="android:textColor">?attr/colorError</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.RecycleView.Card.Nome" parent="">
+        <item name="android:textAppearance">?attr/textAppearanceBody1</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.RecycleView.Card.Info" parent="">
+        <item name="android:textAppearance">?attr/textAppearanceBody2</item>
+        <item name="android:textColor">?attr/colorSecondary</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.RecycleView.Card.Info2" parent="">
+        <item name="android:textAppearance">?attr/textAppearanceBody2</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.SemIntenet.Legenda" parent="">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAppearance">?attr/textAppearanceBody2</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.UsuarioInativo.Nome" parent="">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAppearance">?attr/textAppearanceHeadline5</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.UsuarioInativo.Legenda" parent="">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAppearance">?attr/textAppearanceBody2</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.UsuarioNaoPermitido.Legenda" parent="">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAppearance">?attr/textAppearanceBody2</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.Login.Legenda" parent="">
+        <item name="android:textAppearance">?attr/textAppearanceBody2</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.Login.Nome" parent="">
+        <item name="android:textAppearance">?attr/textAppearanceHeadline5</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="Text.AppCartaoServidorV1.Login.Mensagem" parent="">
+        <item name="android:textAppearance">?attr/textAppearanceCaption</item>
+        <item name="android:textColor">?attr/colorError</item>
+    </style>
+
+    <!-- ________________________________________________________________________________________________ -->
+    <!--Página Comercio-->
+    <!-- ________________________________________________________________________________________________ -->
+    <style name="Comercio.TextView.Nome" parent="">
+        <item name="android:textAppearance">?attr/textAppearanceHeadline5</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
+
+    <style name="Comercio.TextView.Card.Conteudo" parent="">
+        <item name="android:textAppearance">?attr/textAppearanceBody1</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+    </style>
+
+    <!-- ________________________________________________________________________________________________ -->
+    <!--Página Colaboradores -->
+    <!-- ________________________________________________________________________________________________ -->
+
+    <style name="ShapeAppearanceOverlay.AppCartaoServidorV1.Colaboradores.CardInferior" parent="">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">0dp</item>
+        <item name="cornerSizeTopRight">16dp</item>
+    </style>
+
+
+    <!-- ________________________________________________________________________________________________ -->
+    <!-- ________________________________________________________________________________________________ -->
+    <!-- ________________________________________________________________________________________________ -->
+    <!-- ________________________________________________________________________________________________ -->
+    <!-- ________________________________________________________________________________________________ -->
+    <!--Antes de usar Materials-->
+    <!-- ________________________________________________________________________________________________ -->
+    <!-- ________________________________________________________________________________________________ -->
+    <!-- ________________________________________________________________________________________________ -->
+    <!-- ________________________________________________________________________________________________ -->
+
+    <!-- ________________________________________________________________________________________________ -->
+    <!--Login-->
+    <!-- ________________________________________________________________________________________________ -->
+
+    <style name="LoginImageBtnStyle">
+        <item name="android:padding">0dp</item>
+        <item name="android:layout_width">135dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!-- ________________________________________________________________________________________________ -->
+    <!--Gerais-->
+    <!-- ________________________________________________________________________________________________ -->
+    <style name="FragmentoStyle">
+        <item name="android:padding">4dp</item>
+    </style>
+
+    <style name="TituloStyle">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/Branco</item>
+    </style>
+
+    <style name="SubTituloStyle">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="erroStyle">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?attr/colorError</item>
+    </style>
+
+    <style name="ProgressBarStyle">
+        <item name="android:indeterminateTint">?attr/colorOnPrimary</item>
+    </style>
+
+    <style name="BarLoadingList">
+        <item name="android:indeterminateTint">@color/Branco</item>
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginTop">-25dp</item>
+    </style>
+
+
+    <style name="ProgressBarStyleLogin">
+        <item name="android:indeterminateTint">?attr/colorSecondary</item>
+    </style>
+
+    <style name="ImageBtnStyle">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <!-- ________________________________________________________________________________________________ -->
+    <!--    Barras superior    -->
+    <!-- ________________________________________________________________________________________________ -->
+    <style name="UserTopBarTexto">
+        <item name="android:textColor">@color/Branco</item>
+        <item name="android:textSize">@dimen/textSizeUserBar</item>
+    </style>
+
+    <style name="textoTituloBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">@dimen/paddingTopTextoTituloBar</item>
+        <item name="android:paddingBottom">@dimen/paddingBottomTextoTituloBar</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:textSize">@dimen/textSizeTituloBar</item>
+    </style>
+
+    <style name="imagemTituloBar">
+        <item name="android:layout_width">@dimen/widthImagemTituloBar</item>
+        <item name="android:layout_height">@dimen/heightImagemTituloBar</item>
+        <item name="android:layout_marginTop">@dimen/marginTopImagemTituloBar</item>
+    </style>
+    <!-- ________________________________________________________________________________________________ -->
+    <!--    Cards    -->
+    <!-- ________________________________________________________________________________________________ -->
+    <style name="Card">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="CardTitulo">
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:textSize">@dimen/textSizeTituloCard</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="CardLiha">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/heigthLinhaCard</item>
+        <item name="android:layout_marginTop">@dimen/marginTopLinhaCard</item>
+        <item name="android:background">?attr/colorSecondary</item>
+    </style>
+
+    <style name="CardLabel">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">@dimen/textSizeLabelCard</item>
+        <item name="android:textColor">?attr/colorOnSecondary</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/marginTopLabelCard</item>
+    </style>
+
+    <style name="CardItem">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">@dimen/textSizeItemCard</item>
+        <item name="android:textColor">@color/cinzaDias80</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/marginTopItemCard</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <!-- ________________________________________________________________________________________________ -->
+    <!--Pagina Servidor (s_)-->
+    <!-- ________________________________________________________________________________________________ -->
+    <style name="s_Saldo">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <!--        <item name="android:textColor">@color/primaryColor</item>-->
+        <!--        <item name="android:textColor">?attr/colorOnPrimary</item>-->
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">50sp</item>
+    </style>
+
+    <style name="s_SaldoLabel">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <!--        <item name="android:textColor">?attr/colorOnSecondary</item>-->
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+
+    <style name="s_Mensagem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    <!-- ________________________________________________________________________________________________ -->
+    <!--Pagina Info Servidor (is_)-->
+    <!-- ________________________________________________________________________________________________ -->
+
+    <style name="is_Item">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">19sp</item>
+        <item name="android:textColor">?attr/colorOnSecondary</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/is_marginTopItem</item>
+    </style>
+
+    <style name="is_SubItem">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/cinzaDias80</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/is_marginTopsubItem</item>
+    </style>
+
+    <style name="is_Nome">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/is_paddingTitulo</item>
+        <item name="android:textSize">@dimen/is_fontSizeNome</item>
+        <item name="android:textColor">@color/cinzaDias80</item>
+    </style>
+
+    <style name="is_Linha">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/is_heigthLinha</item>
+        <item name="android:layout_marginTop">@dimen/is_marginTopLinha</item>
+        <item name="android:background">?attr/colorSecondary</item>
+    </style>
+    <!-- ________________________________________________________________________________________________ -->
+    <!--Pagina Transação Item (ti_)-->
+    <!-- ________________________________________________________________________________________________ -->
+
+    <style name="ti_Linha">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/ti_heigthLinha</item>
+        <item name="android:layout_marginTop">@dimen/ti_marginTopLinha</item>
+        <item name="android:background">?attr/colorSecondary</item>
+
+    </style>
+
+    <style name="ti_NomeVendedor">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/ti_textSizeNomeVendedor</item>
+        <item name="android:textColor">?attr/colorOnSecondary</item>
+    </style>
+
+    <style name="ti_Valor">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/ti_textSizeValor</item>
+        <item name="android:textColor">@color/cinzaDias80</item>
+    </style>
+
+    <style name="ti_Data">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:textSize">@dimen/ti_textSizeData</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">?attr/colorOnSecondary</item>
+    </style>
+    <!-- ________________________________________________________________________________________________ -->
+    <!--Inserir Valor-->
+    <!-- ________________________________________________________________________________________________ -->
+    <style name="EntryInserirValor">
+        <item name="android:textSize">@dimen/iv_textSizeEntry</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:background">@drawable/bg_venda_entradavalor</item>
+    </style>
+
+
+    <style name="sufixEntryInserirValor">
+        <item name="android:textSize">@dimen/iv_textSizeEntry</item>
+        <item name="android:layout_marginLeft">@dimen/iv_textSizeEntry</item>
+    </style>
+    <!-- ________________________________________________________________________________________________ -->
+    <!--Inserir Senha-->
+    <!-- ________________________________________________________________________________________________ -->
+
+    <style name="EntryInserirSenha">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:inputType">numberPassword</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">?attr/colorOnSecondary</item>
+        <item name="android:maxLength">1</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <!-- ________________________________________________________________________________________________ -->
+    <!--Status venda-->
+    <!-- ________________________________________________________________________________________________ -->
+    <style name="imagemStatus">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+
+    <style name="resultStatus">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="sv_Mensagem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+
+</resources>

@@ -1,0 +1,23 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.AppCartaoServidorV1" parent="Theme.MaterialComponents.DayNight">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/claridade_azul_62</item>
+        <item name="colorOnPrimary">@color/preto</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/claridade_laranja_62</item>
+        <item name="colorOnSecondary">@color/preto</item>
+        <!-- Surface -->
+<!--        <item name="colorSurface">@color/preto</item>-->
+        <!-- Status bar. -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <!-- Customize your theme here. -->
+        <!-- Shapes. -->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.MyApp.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.MyApp.MediumComponent</item>
+        <!-- Typografia. -->
+        <item name="textAppearanceButton">@style/TextAppearance.MyApp.Button</item>
+    </style>
+</resources>

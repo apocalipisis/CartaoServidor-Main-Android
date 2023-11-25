@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.appcartaoservidorv1.dialogsviewmodels.DialogDeletargerentecomercianteViewModel" />
+
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Dialog.TituloContainer.HorizontalMargin"
+            android:layout_marginTop="@dimen/AppCartaoServidorV1.Dialog.TituloContainer.VerticalMargin">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnVoltar"
+                style="@style/Widget.AppCartaoServidorV1.Dialog.btnVoltar"
+                app:icon="@drawable/ic_outline_close_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                style="@style/Text.AppCartaoServidorV1.Dialog.Titulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/AppCartaoServidorV1.Card.Superior.Margin.Titulo"
+                android:text="@string/DeletarGerente"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btnVoltar"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/btnContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/AppCartaoServidorV1.Dialog.BtnContainer.VerticalMargin"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout style="@style/Widget.AppCartaoServidorV1.Button.Container">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSim"
+                    style="@style/Widget.AppCartaoServidorV1.Dialog.Button"
+                    app:icon="@drawable/ic_outline_check_24"
+                    app:iconGravity="textStart"
+                    app:iconPadding="0dp"
+                    app:iconTint="?attr/colorOnPrimary" />
+
+                <TextView
+                    style="@style/Widget.AppCartaoServidorV1.TextView.Button"
+                    android:text="@string/Sim" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/Widget.AppCartaoServidorV1.Button.Container">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnNao"
+                    style="@style/Widget.AppCartaoServidorV1.Dialog.Button"
+                    app:icon="@drawable/ic_outline_block_24"
+                    app:iconGravity="textStart"
+                    app:iconPadding="0dp"
+                    app:iconTint="?attr/colorOnPrimary" />
+
+                <TextView
+                    style="@style/Widget.AppCartaoServidorV1.TextView.Button"
+                    android:text="@string/Não" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/CardContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Card.AppCartaoServidorV1.General.Loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+                android:layout_marginVertical="@dimen/AppCartaoServidorV1.Basic.VerticalMargin">
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/Bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+                    android:layout_marginVertical="@dimen/AppCartaoServidorV1.Basic.VerticalMargin"
+                    android:indeterminate="true"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/Resultados"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+                    android:layout_marginVertical="@dimen/AppCartaoServidorV1.Basic.VerticalMargin"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/iconSucesso"
+                        style="@style/Image.AppCartaoServidorV1.Icon.Results.Sucesso"
+                        android:src="@drawable/ic_outline_check_24"
+                        android:visibility="gone" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/iconError"
+                        style="@style/Image.AppCartaoServidorV1.Icon.Results.Sucesso"
+                        android:src="@drawable/ic_outline_error_24"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/mensagem"
+                        style="@style/Text.AppCartaoServidorV1.Card.Info.Content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Usuário cadastrado com sucesso" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

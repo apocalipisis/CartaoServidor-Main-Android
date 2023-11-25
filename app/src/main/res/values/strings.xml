@@ -1,0 +1,301 @@
+<resources>
+    <string name="Transação">Transação</string>
+    <string name="Valor">Valor:</string>
+    <string name="Data">Data:</string>
+    <string name="Descrição">Descrição:</string>
+
+    <string name="Matricula">Matricula:</string>
+    <string name="CPF">CPF:</string>
+    <string name="CNPJ">CNPJ:</string>
+    <string name="FuncionarioEm">Funcionário em</string>
+    <string name="TrabalhaEm">Trabalha em</string>
+    <string name="GerenteEm">Gerente em</string>
+    <string name="Comerciante">Comerciante</string>
+    <string name="Servidor">Servidor</string>
+    <string name="Taxa">Taxa:</string>
+    <string name="MensagemTaxa">Taxa cobrada pelo uso do sistema</string>
+    <string name="LimiteMensal">Limite mensal:</string>
+    <string name="MensagemLimite">Seu limite atual de gastos no mês</string>
+
+    <string name="Colaboradores">Colaboradores</string>
+    <string name="Gerentes">Gerentes</string>
+    <string name="Funcionários">Funcionários</string>
+    <string name="CriarFuncionario">Criar Funcionário</string>
+    <string name="CriarGerente">Criar Gerente</string>
+    <string name="DeletarFuncionario">Deletar Funcionário</string>
+    <string name="DeletarGerente">Deletar Gerente</string>
+
+    <string name="Sim">Sim</string>
+    <string name="Não">Não</string>
+
+    <string name="CancelarSolicitação">Cancelar solicitação</string>
+    <string name="NovoCartão">Novo cartão</string>
+
+    <string name="Nome">Nome</string>
+    <string name="Cpf">CPF</string>
+    <string name="Ola">Olá,</string>
+    <string name="SejaBemVindo">Seja bem vindo!</string>
+    <string name="Sair">Sair</string>
+    <string name="Vender">Vender</string>
+    <string name="RS">R$</string>
+    <string name="Vendas">Vendas</string>
+    <string name="Informações">Informações</string>
+    <string name="TentarNovamente">Tentar novamente</string>
+    <string name="Comprar">Comprar</string>
+    <string name="Extrato">Extrato</string>
+    <string name="Cartão">Cartão</string>
+    <string name="Comercios">Comércios</string>
+
+    <string name="QrCode">QrCode</string>
+    <string name="QrCodeLegenda">Aponte para o QrCode do cliente</string>
+    <string name="QrCodeInvalido">QrCode Inválido</string>
+    <string name="ZeroReais">0,00</string>
+    <string name="Senha">Senha</string>
+    <string name="Senha.DoisPontos">Senha:</string>
+    <string name="Confirma">Confirma</string>
+    <string name="Cancela">Cancela</string>
+    <string name="Corrige">Corrige</string>
+    <string name="Venda">Venda</string>
+    <string name="PaginaPrincipal">Página principal</string>
+    <string name="Preço">Preço</string>
+    <string name="Comércio">Comércio</string>
+    <string name="Comércios">Comércios</string>
+    <string name="HistóricoDeVendas">Histórico de Vendas</string>
+
+    <string name="SemInternet">Sem Internet</string>
+    <string name="ConecteSe">Conecte se para aproveitar o aplicativo</string>
+    <string name="TentarReconectar">Tentar Reconectar</string>
+    <string name="UsuárioInativo">Usuário Inativo</string>
+    <string name="UsuárioInativoLegenda">Você está como inativo no nosso sistema</string>
+    <string name="EntreEmContato">Entre em contato conosco e regularize sua situação</string>
+    <string name="Ligar">Ligar</string>
+    <string name="Whatsapp">Whatsapp</string>
+    <string name="SemSuporte">Sem Suporte</string>
+    <string name="UsuárioSemSuporte">Este tipo de usuário não tem suporte no aplicativo</string>
+    <string name="AcesseOSite">Acesse suas informações através de nosso site</string>
+    <string name="AcessarSite">Acessar Site</string>
+    <string name="TrocarUsuário">Trocar Usuário</string>
+    <string name="Entrar">Entrar</string>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--Genéricos-->
+    <string name="criar">Criar</string>
+    <string name="gerenciar">Gerenciar</string>
+
+    <!--Caixa de pesquisa-->
+    <string name="search_hint">Pesquisar vendas</string>
+
+    <!--    Pagina de login    -->
+    <string name="app_display_name">Cartao Servidor</string>
+    <string name="app_name">AppCartaoServidorV1</string>
+    <string name="seja_bem_vindo">Seja bem vindo!</string>
+    <string name="matricula">Matrícula</string>
+    <string name="senha">Senha</string>
+    <string name="entrar">Entrar</string>
+
+    <!--    Barras superior    -->
+    <string name="detalhecompra">Detalhes Compra</string>
+    <string name="detalhevenda">Detalhes Venda</string>
+    <!--    Cards    -->
+    <string name="comerciante">Comerciante</string>
+    <string name="vendedor">Vendedor</string>
+    <string name="nome">Nome:</string>
+    <string name="descrição">Descrição:</string>
+    <string name="detalhes">Detalhes:</string>
+
+    <!--    Pagina do servidor    -->
+    <string name="cartões">Cartões</string>
+
+    <!--    Pagina informações do servidor (is_)    -->
+    <string name="is_cpf">Cpf:</string>
+    <string name="is_matricula">Matricula</string>
+    <string name="is_tipo_de_usu_rio">Tipo de usuário</string>
+    <string name="is_status">Status</string>
+    <string name="is_financeiro">Financeiro</string>
+    <string name="is_limite_mensal">Limite mensal</string>
+    <string name="is_informa_es_adicionais">Informações adicionais</string>
+    <string name="is_instituto">Instituto:</string>
+
+    <!--    Pagina comprar servidor    -->
+    <string name="qr_code">QR code</string>
+    <string name="apresente_qr_code">Apresente esse QR code para o vendedor</string>
+
+    <!--    Pagina inserir valor    -->
+    <string name="inserir_valor">Inserir valor</string>
+    <string name="inserir_valor_hint">0,00 R$</string>
+    <string name="digite_o_valor_da_venda">Digite o valor da venda</string>
+
+    <!--    Pagina inserir senha    -->
+    <string name="inserir_senha">Inserir senha</string>
+
+    <!--    Pagina Venda    -->
+    <string name="status">Status</string>
+
+    <!--    Pagina vender comerciante    -->
+    <string name="leia_qr_code">Aponte para o QR code do cliente</string>
+
+    <!--    Pagina usuario Inativo    -->
+    <string name="usuario_inativo">Usuário inativo</string>
+    <string name="userInativo_text">No momento voce aparece como usuário inativo, entre em contato conosco para regularizar sua situação</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="ligar">Ligar</string>
+
+    <!--    Pagina usuario não permitido    -->
+    <string name="usuario_nao_permitido">Usuário não permitido</string>
+    <string name="texto_usuario_nao_permitido">Este tipo de usuário não tem suporte no aplicativo, acesse suas informações através de nosso site</string>
+    <string name="acessar_site">Acessar site</string>
+
+    <!--    Pagina do Comerciante    -->
+
+    <string name="colaboradores">Colaboradores</string>
+
+    <string name="funcionarios">Funcionários</string>
+    <string name="gerentes">Gerentes</string>
+
+    <string name="criarGerentes">Criar Gerentes</string>
+    <string name="gerenciarGerentes">Gerenciar Gerentes</string>
+
+    <string name="infoCriarGerente">Digite as informações do gerente</string>
+    <string name="infoCriarFuncionario">Digite as informações do funcionário</string>
+
+    <string name="detalheGerente">Detalhe Gerente</string>
+    <string name="detalheFuncionario">Detalhe Funcionário</string>
+
+    <!--    Pagina Historico Vendas    -->
+    <string name="historico_vendas">Histórico Vendas</string>
+
+    <!--    Pagina funcionario comerciante    -->
+
+
+    <!--    Pagina Sem Internet    -->
+    <string name="sem_internet">No momento seu celular está sem internet, conecte-se para aproveitar o aplicativo.</string>
+
+    <!--    Pagina sessão expirada    -->
+    <string name="sessao_expirada">Sua sessão atingiu o tempo limite, faça login novamente.</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="GerencieUmPerfil">Edite ou delete um perfil já existente</string>
+    <string name="CrieUmPerfil">Crie um novo perfil</string>
+
+    <string name="Salvar">Salvar</string>
+    <string name="Deletar">Deletar</string>
+
+
+
+    <string name="Sucesso">Sucesso!</string>
+    <string name="algoDeuErrado">Ops, algo deu errado</string>
+
+    <string name="gerentesEncontrados">Gerentes Encontrados</string>
+    <string name="funcionariosEncontrados">Funcionários Encontrados</string>
+    <string name="clickParaEditarItem">Click em um item para editá-lo</string>
+    <string name="clickParaVerDetalhes">Click em um item para ver os detalhes</string>
+
+    <string name="deletarGerente">Deletar gerente?</string>
+    <string name="deletarFuncionario">Deletar funcionário?</string>
+
+    <string name="Comercio">Comércio</string>
+    <string name="AondeComprar">Aonde você pode comprar</string>
+
+
+    <string name="Gerente">Gerente</string>
+    <string name="Funcionario">Funcionário</string>
+
+
+    <string name="Cliente">Cliente</string>
+    <string name="Vendedor">Vendedor</string>
+
+    <string name="digitePreço">Digite o preço</string>
+
+
+
+    <string name="Bloquear">Bloquear</string>
+    <string name="Desbloquear">Desbloquear</string>
+
+
+    <string name="PagarDepois">Pagar Depois</string>
+
+    <string name="Via">Via</string>
+    <string name="DetalhesNovoCartao">Existe uma solicitação de um novo cartão, veja detalhes</string>
+    <string name="ConfimarNovoCartao">Tem certeza que deseja solicitar um novo cartão?</string>
+    <string name="CancelarNovoCartao">Tem certeza que deseja cancelar a solicitar do novo cartão?</string>
+
+    <string name="Solicitação">Solicitação</string>
+
+    <string name="MeuCartão">Meu Cartão</string>
+
+    <string name="sucessoNovoCartao">Novo cartão solicitado com sucesso, pague utilizando o QRCode para liberar seu novo cartão</string>
+    <string name="erroNovoCartao">Não foi possivel solicitar um novo cartão nesse momento, tente novamente mais tarde</string>
+
+    <string name="Cancelar">Cancelar</string>
+
+    <string name="Detalhes">Detalhes</string>
+
+
+    <string name="SuasCompras">Suas Compras</string>
+
+</resources>

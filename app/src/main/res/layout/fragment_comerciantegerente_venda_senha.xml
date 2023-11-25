@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.appcartaoservidorv1.viewmodels.comerciantegerente.ComerciantegerenteVendaSenhaViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.card.MaterialCardView style="@style/Card.AppCartaoServidorV1.Superior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnVoltar"
+                    style="@style/Widget.AppCartaoServidorV1.CardSuperior.BtnVoltar"
+                    android:layout_marginStart="@dimen/AppCartaoServidorV1.Card.Superior.Margin.btnVoltar"
+                    app:icon="@drawable/ic_outline_arrow_back_ios_36"
+                    app:iconGravity="textStart"
+                    app:iconPadding="0dp"
+                    app:iconTint="?attr/colorOnSurface"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/Text.AppCartaoServidorV1.Card.Superior.Titulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/AppCartaoServidorV1.Card.Superior.Margin.Titulo"
+                    android:text="@string/Senha"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/btnVoltar"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/Mensagem"
+            style="@style/Text.AppCartaoServidorV1.Venda.Senha.Nome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/AppCartaoServidorV1.Basic.VerticalMargin"
+            android:text="@{viewModel.nomeCliente}"
+            tools:text="Fulano" />
+
+        <TextView
+            android:id="@+id/texto"
+            style="@style/Text.AppCartaoServidorV1.Venda.Senha.Legenda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.confirmStr}"
+            tools:text="Confirme sua compra em cristal no valor de " />
+
+        <TextView
+            android:id="@+id/Valor"
+            style="@style/Text.AppCartaoServidorV1.Venda.Senha.Valor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/AppCartaoServidorV1.Basic.VerticalMargin"
+            android:text="@{viewModel.valorStr}"
+            tools:text="30,00 R$" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/AppCartaoServidorV1.Basic.VerticalMargin"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/senha1Container"
+                style="@style/Widget.AppCartaoServidorV1.Venda.Senha.OutlinedBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:importantForAutofill="no">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/senha1"
+                    style="@style/Widget.AppCartaoServidorV1.Venda.Senha.EditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@={viewModel.senha1}"
+                    tools:text="0" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/senha2Container"
+                style="@style/Widget.AppCartaoServidorV1.Venda.Senha.OutlinedBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:importantForAutofill="no">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/senha2"
+                    style="@style/Widget.AppCartaoServidorV1.Venda.Senha.EditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@={viewModel.senha2}"
+                    tools:text="0" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/senha3Container"
+                style="@style/Widget.AppCartaoServidorV1.Venda.Senha.OutlinedBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:importantForAutofill="no">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/senha3"
+                    style="@style/Widget.AppCartaoServidorV1.Venda.Senha.EditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@={viewModel.senha3}"
+                    tools:text="0" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/senha4Container"
+                style="@style/Widget.AppCartaoServidorV1.Venda.Senha.OutlinedBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:importantForAutofill="no">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/senha4"
+                    style="@style/Widget.AppCartaoServidorV1.Venda.Senha.EditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@={viewModel.senha4}"
+                    tools:text="0" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/AppCartaoServidorV1.Basic.VerticalMargin"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout style="@style/Widget.AppCartaoServidorV1.Button.Container.Senha">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCancela"
+                    style="@style/Widget.AppCartaoServidorV1.Button.Senha.Cancela"
+                    app:icon="@drawable/ic_outline_close_24" />
+
+                <TextView
+                    style="@style/Widget.AppCartaoServidorV1.TextView.Button"
+                    android:text="@string/Cancela" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/Widget.AppCartaoServidorV1.Button.Container.Senha">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCorrige"
+                    style="@style/Widget.AppCartaoServidorV1.Button.Senha.Corrige"
+                    app:icon="@drawable/ic_outline_arrow_back_ios_24" />
+
+                <TextView
+                    style="@style/Widget.AppCartaoServidorV1.TextView.Button"
+                    android:text="@string/Corrige" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Widget.AppCartaoServidorV1.Button.Container"
+                android:layout_width="100dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAvancar"
+                    style="@style/Widget.AppCartaoServidorV1.Button"
+                    app:icon="@drawable/ic_outline_check_24"/>
+
+                <TextView
+                    style="@style/Widget.AppCartaoServidorV1.TextView.Button"
+                    android:text="@string/Confirma" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

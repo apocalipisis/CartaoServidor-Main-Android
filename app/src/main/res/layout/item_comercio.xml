@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="comercianteModel"
+            type="com.example.appcartaoservidorv1.models.ComercianteModel" />
+
+        <variable
+            name="clickListener"
+            type="com.example.appcartaoservidorv1.adapters.ComercianteModelListener" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onClick(comercianteModel)}"
+        android:orientation="vertical">
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Card.AppCartaoServidorV1.Item.Comercio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.Basic.HorizontalMargin"
+            android:layout_marginVertical="@dimen/AppCartaoServidorV1.RecyclerView.Card.Item.MarginVertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/AppCartaoServidorV1.Card.Conteudo.Margin"
+                android:orientation="horizontal">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    style="@style/Image.AppCartaoServidorV1.RecyclerView.Item.Icon"
+                    android:src="@drawable/ic_outline_store_24" />
+
+                <TextView
+                    android:id="@+id/Nome"
+                    style="@style/Text.AppCartaoServidorV1.RecycleView.Card.Nome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/AppCartaoServidorV1.RecyclerView.Card.Content.MarginHorizontal"
+                    tools:text="Supermercado Cristal" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</layout>

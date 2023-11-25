@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="AppCartaoServidorV1.Basic.VerticalMargin">10dp</dimen>
+    <dimen name="AppCartaoServidorV1.Basic.HorizontalMargin">20dp</dimen>
+
+    <!--Recycleview-->
+    <dimen name="AppCartaoServidorV1.Image.Login.Logo.VerticalMargin">40dp</dimen>
+
+    <!--Dialogs-->
+    <dimen name="AppCartaoServidorV1.Dialog.TituloContainer.VerticalMargin">10dp</dimen>
+    <dimen name="AppCartaoServidorV1.Dialog.TituloContainer.HorizontalMargin">10dp</dimen>
+    <dimen name="AppCartaoServidorV1.Dialog.BtnContainer.VerticalMargin">30dp</dimen>
+    <dimen name="AppCartaoServidorV1.Dialog.EditTextContainer.VerticalMargin">30dp</dimen>
+
+    <!--Cards-->
+    <dimen name="AppCartaoServidorV1.Card.Conteudo.Margin">5dp</dimen>
+
+    <!--Card superior-->
+    <dimen name="AppCartaoServidorV1.Card.Superior.Margin.btnVoltar">10dp</dimen>
+    <dimen name="AppCartaoServidorV1.Card.Superior.Margin.Titulo">48dp</dimen>
+
+    <!--QRCode-->
+    <dimen name="AppCartaoServidorV1.Venda.QrCode.Card.HorizontalMargin">45dp</dimen>
+    <dimen name="AppCartaoServidorV1.Venda.QrCode.Card.VerticalMargin">10dp</dimen>
+    <dimen name="AppCartaoServidorV1.Venda.QrCode.Camera.Margin">5dp</dimen>
+    <dimen name="AppCartaoServidorV1.Venda.QrCode.Image.Width">175dp</dimen>
+    <dimen name="AppCartaoServidorV1.Venda.QrCode.Image.Heigth">175dp</dimen>
+
+    <!--Recycleview-->
+    <dimen name="AppCartaoServidorV1.RecyclerView.Card.Item.MarginVertical">6dp</dimen>
+    <dimen name="AppCartaoServidorV1.RecyclerView.Card.Content.MarginHorizontal">10dp</dimen>
+    <dimen name="AppCartaoServidorV1.RecyclerView.Card.Content.Info.MarginVertical">1dp</dimen>
+    <dimen name="AppCartaoServidorV1.RecyclerView.Card.Btns.MarginHorizontal">5dp</dimen>
+    <dimen name="AppCartaoServidorV1.RecyclerView.PaddingBotton">72dp</dimen>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <dimen name="AppCartaoServidorV1.Superior.Card.Heigth">100dp</dimen>
+    <dimen name="AppCartaoServidorV1.Superior.Card.Elevation">2dp</dimen>
+
+    <dimen name="AppCartaoServidorV1.Usuario.TextView.MensagemErro.MarginVertical">25dp</dimen>
+    <dimen name="AppCartaoServidorV1.Usuario.TextView.MensagemErro.MarginHorizontal">10dp</dimen>
+    <dimen name="AppCartaoServidorV1.Usuario.Buttons.MarginBotton">30dp</dimen>
+
+    <dimen name="Info.AppCartaoServidorV1.Card.CardElevation">6dp</dimen>
+    <dimen name="Info.AppCartaoServidorV1.Card.MarginHorizontal">10dp</dimen>
+    <dimen name="Info.AppCartaoServidorV1.LinearLayout.PaddingHorizontal">20dp</dimen>
+    <dimen name="Info.AppCartaoServidorV1.LinearLayout.PaddingVertical">5dp</dimen>
+
+
+    <dimen name="Button.Heigth">48dp</dimen>
+    <dimen name="Button.Width">48dp</dimen>
+    <dimen name="Button.LinearLayout.Padding">5dp</dimen>
+    <dimen name="Button.TextView.MarginTop">5dp</dimen>
+
+    <!-- ________________________________________________________________________________________________ -->
+    <!-- ________________________________________________________________________________________________ -->
+    <!-- ________________________________________________________________________________________________ -->
+    <!-- ________________________________________________________________________________________________ -->
+    <!-- ________________________________________________________________________________________________ -->
+    <!--Antes de usar Materials-->
+    <!-- ________________________________________________________________________________________________ -->
+    <!-- ________________________________________________________________________________________________ -->
+    <!-- ________________________________________________________________________________________________ -->
+    <!-- ________________________________________________________________________________________________ -->
+
+    <dimen name="PaddingInternoFragmento">20sp</dimen>
+
+
+    <!--    Barras superior    -->
+    <dimen name="textSizeUserBar">20sp</dimen>
+    <dimen name="textSizeTituloBar">30sp</dimen>
+    <dimen name="paddingTopTextoTituloBar">20dp</dimen>
+    <dimen name="paddingBottomTextoTituloBar">30dp</dimen>
+    <dimen name="widthImagemTituloBar">50dp</dimen>
+    <dimen name="heightImagemTituloBar">50dp</dimen>
+    <dimen name="marginTopImagemTituloBar">-25dp</dimen>
+
+    <!--    Cards    -->
+    <dimen name="paddingCard">15dp</dimen>
+    <dimen name="marginVerticalCard">20dp</dimen>
+    <dimen name="marginHorizontalCard">40dp</dimen>
+    <dimen name="cornerRadiusCard">4dp</dimen>
+    <dimen name="elevationCard">8dp</dimen>
+    <dimen name="textSizeTituloCard">20sp</dimen>
+    <dimen name="textSizeLabelCard">16sp</dimen>
+    <dimen name="textSizeItemCard">14sp</dimen>
+    <dimen name="heigthLinhaCard">1dp</dimen>
+    <dimen name="marginTopLinhaCard">8dp</dimen>
+    <dimen name="marginTopLabelCard">10dp</dimen>
+    <dimen name="marginTopItemCard">5dp</dimen>
+
+    <!--    Backgroud Saldo    -->
+    <dimen name="bordasBackgroundSaldo">7dp</dimen>
+    <dimen name="cantosBackgroundSaldo1">30dp</dimen>
+    <dimen name="cantosBackgroundSaldo2">23dp</dimen>
+
+    <!--    Fragment info servidor (is_)   -->
+    <dimen name="is_paddingTitulo">30dp</dimen>
+    <dimen name="is_marginTopLinha">30dp</dimen>
+    <dimen name="is_horizontalMarginLinha">40dp</dimen>
+    <dimen name="is_heigthLinha">2dp</dimen>
+    <dimen name="is_marginTopItem">25dp</dimen>
+    <dimen name="is_marginTopsubItem">5dp</dimen>
+    <dimen name="is_fontSizeItem">22sp</dimen>
+    <dimen name="is_fontSizeNome">30sp</dimen>
+
+    <!--    Transação Intem (ti_)   -->
+    <dimen name="ti_marginTopLinha">15dp</dimen>
+    <dimen name="ti_heigthLinha">1dp</dimen>
+    <dimen name="ti_textSizeNomeVendedor">16dp</dimen>
+    <dimen name="ti_textSizeValor">16dp</dimen>
+    <dimen name="ti_textSizeData">14dp</dimen>
+
+    <!--    Inserir Valor (iv_)   -->
+    <dimen name="iv_textSizeEntry">40sp</dimen>
+
+    <!--    Animações (an_)   -->
+    <dimen name="an_duration">800</dimen>
+
+    <!--    Animações (an_)   -->
+    <dimen name="btn_corpo_largura">35dp</dimen>
+    <dimen name="btn_corpo_altura">35dp</dimen>
+
+    <dimen name="btn_cabeça_largura">50dp</dimen>
+    <dimen name="btn_cabeça_altura">50dp</dimen>
+
+    <dimen name="btn_cabeça_margem">-31dp</dimen>
+
+    <dimen name="bg_quadrado_verde_width">3dp</dimen>
+    <dimen name="bg_quadrado_verde_radius">6dp</dimen>
+
+
+</resources>
